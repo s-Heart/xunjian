@@ -2,14 +2,159 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <include layout="@layout/toolbar" />
+
+    <!--查看新建测试-->
+    <RelativeLayout
+        android:id="@+id/layout_view_add_test"
+        android:layout_width="@dimen/x625"
+        android:layout_height="@dimen/y245"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/y50">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/view_add_test_bg" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x50">
+
+            <TextView
+                android:id="@+id/layout_view_add_test_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="被测设备管理"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/x50" />
+
+            <TextView
+                android:layout_width="@dimen/x350"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_view_add_test_title"
+                android:text="The tested equipment management"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/x30" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!--被测管理-->
+    <RelativeLayout
+        android:id="@+id/layout_tested_mgr"
+        android:layout_width="@dimen/x625"
+        android:layout_height="@dimen/y245"
+        android:layout_below="@+id/layout_view_add_test"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/y20">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tested_bg" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x50">
+
+            <TextView
+                android:id="@+id/tested_mgr_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="被测设备管理"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/x50" />
+
+            <TextView
+                android:layout_width="@dimen/x350"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tested_mgr_title"
+                android:text="The tested equipment management"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/x30" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!--测试处理-->
+    <RelativeLayout
+        android:id="@+id/layout_test"
+        android:layout_width="@dimen/x625"
+        android:layout_height="@dimen/y245"
+        android:layout_below="@+id/layout_tested_mgr"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/y20">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/test_bg" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x50">
+
+            <TextView
+                android:id="@+id/test_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="测试设备处理"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/x50" />
+
+            <TextView
+                android:layout_width="@dimen/x350"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/test_title"
+                android:text="Test equipment management"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/x30" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!--数据查询-->
+    <RelativeLayout
+        android:id="@+id/layout_data_query"
+        android:layout_width="@dimen/x625"
+        android:layout_height="@dimen/y245"
+        android:layout_below="@+id/layout_test"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/y20">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/data_bg" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x50">
+
+            <TextView
+                android:id="@+id/layout_data_query_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="数据查询"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/x50" />
+
+            <TextView
+                android:layout_width="@dimen/x350"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_data_query_title"
+                android:text="Test equipment management"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/x30" />
+        </RelativeLayout>
+    </RelativeLayout>
 </RelativeLayout>
