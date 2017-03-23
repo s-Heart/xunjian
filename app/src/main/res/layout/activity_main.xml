@@ -13,34 +13,35 @@
         android:layout_height="@dimen/y245"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/y50">
+        android:layout_marginTop="@dimen/y26">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/view_add_test_bg" />
+            android:background="@drawable/main_view_add_test_bg" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x50">
+            android:layout_marginLeft="@dimen/x42">
 
             <TextView
                 android:id="@+id/layout_view_add_test_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="被测设备管理"
+                android:text="查看/新建测试"
                 android:textColor="#ffffff"
-                android:textSize="@dimen/x50" />
+                android:textSize="@dimen/x40" />
 
             <TextView
                 android:layout_width="@dimen/x350"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/layout_view_add_test_title"
-                android:text="The tested equipment management"
+                android:layout_marginTop="@dimen/y14"
+                android:text="View/add test"
                 android:textColor="#ffffff"
-                android:textSize="@dimen/x30" />
+                android:textSize="@dimen/x28" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -56,13 +57,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/tested_bg" />
+            android:background="@drawable/main_tested_bg" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x50">
+            android:layout_marginLeft="@dimen/x42">
 
             <TextView
                 android:id="@+id/tested_mgr_title"
@@ -70,15 +71,16 @@
                 android:layout_height="wrap_content"
                 android:text="被测设备管理"
                 android:textColor="#ffffff"
-                android:textSize="@dimen/x50" />
+                android:textSize="@dimen/x40" />
 
             <TextView
                 android:layout_width="@dimen/x350"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tested_mgr_title"
+                android:layout_marginTop="@dimen/y14"
                 android:text="The tested equipment management"
                 android:textColor="#ffffff"
-                android:textSize="@dimen/x30" />
+                android:textSize="@dimen/x28" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -94,13 +96,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/test_bg" />
+            android:background="@drawable/main_test_bg" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x50">
+            android:layout_marginLeft="@dimen/x42">
 
             <TextView
                 android:id="@+id/test_title"
@@ -108,15 +110,16 @@
                 android:layout_height="wrap_content"
                 android:text="测试设备处理"
                 android:textColor="#ffffff"
-                android:textSize="@dimen/x50" />
+                android:textSize="@dimen/x40" />
 
             <TextView
                 android:layout_width="@dimen/x350"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/test_title"
+                android:layout_marginTop="@dimen/y14"
                 android:text="Test equipment management"
                 android:textColor="#ffffff"
-                android:textSize="@dimen/x30" />
+                android:textSize="@dimen/x28" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -132,13 +135,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/data_bg" />
+            android:background="@drawable/main_data_bg" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x50">
+            android:layout_marginLeft="@dimen/x42">
 
             <TextView
                 android:id="@+id/layout_data_query_title"
@@ -146,15 +149,16 @@
                 android:layout_height="wrap_content"
                 android:text="数据查询"
                 android:textColor="#ffffff"
-                android:textSize="@dimen/x50" />
+                android:textSize="@dimen/x40" />
 
             <TextView
                 android:layout_width="@dimen/x350"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/layout_data_query_title"
-                android:text="Test equipment management"
+                android:layout_marginTop="@dimen/y14"
+                android:text="Data query"
                 android:textColor="#ffffff"
-                android:textSize="@dimen/x30" />
+                android:textSize="@dimen/x28" />
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

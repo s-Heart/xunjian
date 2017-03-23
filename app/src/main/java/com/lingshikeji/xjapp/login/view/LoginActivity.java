@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 
+import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.login.frame.ILoginPresenter;
 import com.lingshikeji.xjapp.login.frame.ILoginView;
 import com.lingshikeji.xjapp.login.presenter.LoginPresenterImpl;
@@ -30,7 +31,7 @@ public class LoginActivity extends Activity implements ILoginView {
     }
 
     private void initView() {
-
+        setContentView(R.layout.activity_login);
     }
 
     private void initData() {
