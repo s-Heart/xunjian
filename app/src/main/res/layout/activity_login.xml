@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/rl_yonghudenglu"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y60"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/y266">
 
         <TextView
@@ -26,12 +26,13 @@
         android:layout_height="@dimen/y102"
         android:layout_below="@+id/rl_yonghudenglu"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/y132">
-        <!--todo 圆角矩形画边框-->
+        android:layout_marginTop="@dimen/y132"
+        android:background="@drawable/shape_username">
+
         <ImageView
             android:id="@+id/iv_username"
             android:layout_width="@dimen/x46"
-            android:layout_height="@dimen/y46"
+            android:layout_height="@dimen/y56"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x32"
             android:background="@drawable/login_icon_username" />
@@ -55,12 +56,13 @@
         android:layout_height="@dimen/y102"
         android:layout_below="@+id/rl_username"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/y32">
-        <!--todo 圆角矩形画边框-->
+        android:layout_marginTop="@dimen/y32"
+        android:background="@drawable/shape_username">
+
         <ImageView
             android:id="@+id/iv_password"
             android:layout_width="@dimen/x46"
-            android:layout_height="@dimen/y46"
+            android:layout_height="@dimen/y56"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x32"
             android:background="@drawable/login_icon_password" />
@@ -78,7 +80,6 @@
     </RelativeLayout>
 
     <!--login-->
-    <!--todo 圆角矩形-->
     <RelativeLayout
         android:id="@+id/rl_login"
         android:layout_width="@dimen/x638"
@@ -87,17 +88,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/y32">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_login"
             android:text="登录"
             android:textColor="#ffffff"
-            android:textSize="@dimen/y40"/>
+            android:textSize="@dimen/y40" />
     </RelativeLayout>
 
     <!--register-->
-    <!--todo 圆角矩形-->
     <RelativeLayout
         android:layout_width="@dimen/x638"
         android:layout_height="@dimen/y102"
@@ -105,13 +105,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/y54">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_register"
             android:text="注册新用户"
             android:textColor="#ffffff"
-            android:textSize="@dimen/y28"/>
+            android:textSize="@dimen/y28" />
+
     </RelativeLayout>
 
 </RelativeLayout>

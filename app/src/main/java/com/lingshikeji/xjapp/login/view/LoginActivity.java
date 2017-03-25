@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.login.frame.ILoginPresenter;
@@ -23,8 +24,8 @@ public class LoginActivity extends Activity implements ILoginView {
     private ILoginPresenter iLoginPresenter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         initView();
         initData();
         initPresenter();
