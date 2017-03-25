@@ -45,7 +45,8 @@
             android:layout_marginRight="@dimen/x26"
             android:layout_toRightOf="@+id/iv_username"
             android:hint="Username"
-            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:textColorHint="@color/gainsboro"
             android:textSize="@dimen/y28" />
     </RelativeLayout>
 
@@ -75,7 +76,9 @@
             android:layout_marginRight="@dimen/x26"
             android:layout_toRightOf="@+id/iv_password"
             android:hint="Password"
-            android:textColorHint="#ffffff"
+            android:inputType="textPassword"
+            android:textColor="#ffffff"
+            android:textColorHint="@color/gainsboro"
             android:textSize="@dimen/y28" />
     </RelativeLayout>
 
