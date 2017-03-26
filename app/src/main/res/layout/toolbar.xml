@@ -3,8 +3,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="?attr/colorPrimary">
-
+    android:background="#053c6e">
 
     <TextView
         android:id="@+id/toolbar_title"
@@ -13,6 +12,7 @@
         android:layout_gravity="center"
         android:ellipsize="end"
         android:singleLine="true"
+        android:textColor="@color/white"
         android:textSize="@dimen/x54"
         android:textStyle="bold" />
 
