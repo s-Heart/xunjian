@@ -48,6 +48,8 @@
 
         <activity android:name=".test_mgr.view.TestDetailActivity" />
 
+        <activity android:name=".data_query.view.SearchActivity" />
+
     </application>
 
 </manifest>
