@@ -11,13 +11,21 @@
 
         <activity android:name=".login.view.LoginActivity">
             <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
         </activity>
 
         <activity android:name=".register.view.RegisterActivity">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,13 +33,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
-
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
+        <activity android:name=".view_add_test.view.ViewAddTestedActivity" />
+        <activity android:name=".tested_mgr.view.TestedMgrActivity" />
+        <activity android:name=".test.view.TestActivity" />
+        <activity android:name=".data_query.view.DataQueryActivity" />
     </application>
 
 </manifest>

@@ -16,6 +16,20 @@
         android:textSize="@dimen/x54"
         android:textStyle="bold" />
 
+    <!--当前用户-->
+    <TextView
+        android:id="@+id/toolbar_title_main_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="当前用户："
+        android:textColor="@color/white"
+        android:textSize="@dimen/x32"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <!--右侧按钮-->
     <TextView
         android:id="@+id/toolbar_right_menu"
         android:layout_width="wrap_content"
@@ -25,8 +39,9 @@
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/x28"
         android:paddingRight="@dimen/x28"
-        android:textColor="#3ea2ff"
-        android:textSize="@dimen/x46"
+        android:text="安全退出"
+        android:textColor="@color/white"
+        android:textSize="@dimen/x32"
         android:visibility="gone" />
 
 
