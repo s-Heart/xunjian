@@ -13,7 +13,7 @@
         android:ellipsize="end"
         android:singleLine="true"
         android:textColor="@color/white"
-        android:textSize="@dimen/x54"
+        android:textSize="@dimen/x32"
         android:textStyle="bold" />
 
     <!--当前用户-->

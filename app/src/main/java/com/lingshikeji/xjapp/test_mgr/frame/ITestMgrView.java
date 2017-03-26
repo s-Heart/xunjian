@@ -1,4 +1,4 @@
-package com.lingshikeji.xjapp.test.frame;
+package com.lingshikeji.xjapp.test_mgr.frame;
 
 import com.lingshikeji.xjapp.mvp.BaseView;
 
@@ -10,5 +10,5 @@ import com.lingshikeji.xjapp.mvp.BaseView;
  * <br/>FIXME
  */
 
-public interface ITestView extends BaseView {
+public interface ITestMgrView extends BaseView {
 }

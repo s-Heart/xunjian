@@ -1,4 +1,4 @@
-package com.lingshikeji.xjapp.tested_mgr.view;
+package com.lingshikeji.xjapp.test_mgr.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
-import com.lingshikeji.xjapp.tested_mgr.frame.ITestedMgrPresenter;
-import com.lingshikeji.xjapp.tested_mgr.frame.ITestedMgrView;
-import com.lingshikeji.xjapp.tested_mgr.presenter.TestedMgrPresenterImpl;
+import com.lingshikeji.xjapp.test_mgr.frame.ITestMgrPresenter;
+import com.lingshikeji.xjapp.test_mgr.frame.ITestMgrView;
+import com.lingshikeji.xjapp.test_mgr.presenter.TestMgrPresenterImpl;
 
 /**
  * <br/>Author: tony(shishaojie@koolearn.com)
@@ -23,9 +23,9 @@ import com.lingshikeji.xjapp.tested_mgr.presenter.TestedMgrPresenterImpl;
  * <br/>FIXME
  */
 
-public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
+public class TestMgrActivity extends BaseActivity implements ITestMgrView {
 
-    private ITestedMgrPresenter iTestedMgrPresenter;
+    private ITestMgrPresenter iTestMgrPresenter;
     private TextView titleTextview;
 
     @Override
@@ -37,7 +37,7 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
     }
 
     private void initView() {
-        setContentView(R.layout.activity_tested_mgr);
+        setContentView(R.layout.activity_test);
         initToolbar();
     }
 
@@ -46,7 +46,7 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         titleTextview = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        titleTextview.setText("被测设备数据库");
+        titleTextview.setText("测试设备数据库");
         titleTextview.setVisibility(View.VISIBLE);
 
         TextView addTv = (TextView) toolbar.findViewById(R.id.toolbar_right_menu);
@@ -55,7 +55,7 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
         addTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TestedMgrActivity.this, TestedDetailActivity.class);
+                Intent intent = new Intent(TestMgrActivity.this, TestDetailActivity.class);
                 startActivity(intent);
             }
         });
@@ -74,9 +74,9 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
     }
 
     private void initPresenter() {
-        iTestedMgrPresenter = new TestedMgrPresenterImpl();
-        iTestedMgrPresenter.attachView(this);
-//        iTestedMgrPresenter.doSubmit();
+        iTestMgrPresenter = new TestMgrPresenterImpl();
+        iTestMgrPresenter.attachView(this);
+//        iTestMgrPresenter.doSubmit();
     }
 
     @Override

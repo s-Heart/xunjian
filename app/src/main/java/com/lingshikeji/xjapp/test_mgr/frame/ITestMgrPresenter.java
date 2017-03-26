@@ -1,4 +1,4 @@
-package com.lingshikeji.xjapp.test.frame;
+package com.lingshikeji.xjapp.test_mgr.frame;
 
 import com.lingshikeji.xjapp.mvp.BasePresenter;
 
@@ -10,5 +10,5 @@ import com.lingshikeji.xjapp.mvp.BasePresenter;
  * <br/>FIXME
  */
 
-public abstract class ITestPresenter extends BasePresenter<ITestView>{
+public abstract class ITestMgrPresenter extends BasePresenter<ITestMgrView>{
 }

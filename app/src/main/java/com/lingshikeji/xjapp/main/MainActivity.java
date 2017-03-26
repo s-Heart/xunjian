@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
 import com.lingshikeji.xjapp.data_query.view.DataQueryActivity;
-import com.lingshikeji.xjapp.test.view.TestActivity;
+import com.lingshikeji.xjapp.test_mgr.view.TestMgrActivity;
 import com.lingshikeji.xjapp.tested_mgr.view.TestedMgrActivity;
 import com.lingshikeji.xjapp.view_add_test.view.ViewAddTestedActivity;
 
@@ -78,7 +78,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.layout_test:
-                intent = new Intent(this, TestActivity.class);
+                intent = new Intent(this, TestMgrActivity.class);
                 startActivity(intent);
                 break;
             case R.id.layout_data_query:
