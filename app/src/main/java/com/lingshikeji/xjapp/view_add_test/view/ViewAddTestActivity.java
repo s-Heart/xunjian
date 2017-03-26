@@ -2,18 +2,14 @@ package com.lingshikeji.xjapp.view_add_test.view;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
-import android.widget.Button;
 
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
-import com.lingshikeji.xjapp.register.view.RegisterActivity;
-import com.lingshikeji.xjapp.view_add_test.frame.IViewAddTestedPresenter;
-import com.lingshikeji.xjapp.view_add_test.frame.IViewAddTestedView;
-import com.lingshikeji.xjapp.view_add_test.presenter.ViewAddTestedPresenterImpl;
+import com.lingshikeji.xjapp.view_add_test.frame.IViewAddTestPresenter;
+import com.lingshikeji.xjapp.view_add_test.frame.IViewAddTestView;
+import com.lingshikeji.xjapp.view_add_test.presenter.ViewAddTestPresenterImpl;
 
 /**
  * <br/>Author: tony(shishaojie@koolearn.com)
@@ -23,9 +19,9 @@ import com.lingshikeji.xjapp.view_add_test.presenter.ViewAddTestedPresenterImpl;
  * <br/>FIXME
  */
 
-public class ViewAddTestedActivity extends BaseActivity implements IViewAddTestedView {
+public class ViewAddTestActivity extends BaseActivity implements IViewAddTestView {
 
-    private IViewAddTestedPresenter iViewAddTestedPresenter;
+    private IViewAddTestPresenter iViewAddTestPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +32,7 @@ public class ViewAddTestedActivity extends BaseActivity implements IViewAddTeste
     }
 
     private void initView() {
-        setContentView(R.layout.activity_view_add_tested);
+        setContentView(R.layout.activity_view_add_test);
     }
 
     private void initData() {
@@ -44,9 +40,9 @@ public class ViewAddTestedActivity extends BaseActivity implements IViewAddTeste
     }
 
     private void initPresenter() {
-        iViewAddTestedPresenter = new ViewAddTestedPresenterImpl();
-        iViewAddTestedPresenter.attachView(this);
-//        iViewAddTestedPresenter.doSubmit();
+        iViewAddTestPresenter = new ViewAddTestPresenterImpl();
+        iViewAddTestPresenter.attachView(this);
+//        iViewAddTestPresenter.doSubmit();
     }
 
     @Override

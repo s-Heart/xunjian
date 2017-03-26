@@ -10,5 +10,5 @@ import com.lingshikeji.xjapp.mvp.BasePresenter;
  * <br/>FIXME
  */
 
-public abstract class IViewAddTestedPresenter extends BasePresenter<IViewAddTestedView>{
+public abstract class IViewAddTestPresenter extends BasePresenter<IViewAddTestView>{
 }

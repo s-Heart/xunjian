@@ -10,5 +10,5 @@ import com.lingshikeji.xjapp.mvp.BaseView;
  * <br/>FIXME
  */
 
-public interface IViewAddTestedView extends BaseView {
+public interface IViewAddTestView extends BaseView {
 }

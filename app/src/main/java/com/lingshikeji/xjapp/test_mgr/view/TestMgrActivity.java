@@ -37,7 +37,7 @@ public class TestMgrActivity extends BaseActivity implements ITestMgrView {
     }
 
     private void initView() {
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_test_mgr);
         initToolbar();
     }
 

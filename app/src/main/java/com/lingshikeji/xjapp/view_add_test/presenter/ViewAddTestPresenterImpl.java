@@ -1,7 +1,7 @@
 package com.lingshikeji.xjapp.view_add_test.presenter;
 
-import com.lingshikeji.xjapp.view_add_test.frame.IViewAddTestedPresenter;
-import com.lingshikeji.xjapp.view_add_test.frame.IViewAddTestedView;
+import com.lingshikeji.xjapp.view_add_test.frame.IViewAddTestPresenter;
+import com.lingshikeji.xjapp.view_add_test.frame.IViewAddTestView;
 
 /**
  * <br/>Author: tony(shishaojie@koolearn.com)
@@ -11,10 +11,10 @@ import com.lingshikeji.xjapp.view_add_test.frame.IViewAddTestedView;
  * <br/>FIXME
  */
 
-public class ViewAddTestedPresenterImpl extends IViewAddTestedPresenter {
+public class ViewAddTestPresenterImpl extends IViewAddTestPresenter {
 
     @Override
-    public void attachView(IViewAddTestedView iView) {
+    public void attachView(IViewAddTestView iView) {
         super.attachView(iView);
     }
 

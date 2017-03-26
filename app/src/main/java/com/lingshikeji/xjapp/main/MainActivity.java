@@ -12,7 +12,7 @@ import com.lingshikeji.xjapp.base.BaseActivity;
 import com.lingshikeji.xjapp.data_query.view.DataQueryActivity;
 import com.lingshikeji.xjapp.test_mgr.view.TestMgrActivity;
 import com.lingshikeji.xjapp.tested_mgr.view.TestedMgrActivity;
-import com.lingshikeji.xjapp.view_add_test.view.ViewAddTestedActivity;
+import com.lingshikeji.xjapp.view_add_test.view.ViewAddTestActivity;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_view_add_test:
-                Intent intent = new Intent(this, ViewAddTestedActivity.class);
+                Intent intent = new Intent(this, ViewAddTestActivity.class);
                 startActivity(intent);
                 break;
             case R.id.layout_tested_mgr:
