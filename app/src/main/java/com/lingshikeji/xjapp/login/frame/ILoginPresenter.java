@@ -3,12 +3,12 @@ package com.lingshikeji.xjapp.login.frame;
 import com.lingshikeji.xjapp.mvp.BasePresenter;
 
 /**
- * <br/>Author: tony(shishaojie@koolearn.com)
- * <br/>Date: 2017/3/22 0022
- * <br/>Time: 13:41
- * <br/>Description:
- * <br/>FIXME
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/3/28
+ * Time: 下午9:56
+ * Description:
  */
+public abstract class ILoginPresenter extends BasePresenter<ILoginView> {
 
-public abstract class ILoginPresenter extends BasePresenter<ILoginView>{
+    public abstract void doLogin(String userName, String pwd);
 }
