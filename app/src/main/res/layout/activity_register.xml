@@ -41,12 +41,14 @@
             android:background="@drawable/register_icon_username" />
 
         <EditText
-            android:id="@+id/edit_username_reg"
+            android:id="@+id/edit_email_address"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/y35"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x26"
             android:layout_marginRight="@dimen/x26"
             android:layout_toRightOf="@+id/iv_username_reg"
+            android:background="@null"
             android:hint="请输入邮箱地址"
             android:textColor="#000000"
             android:textColorHint="@color/gainsboro"
@@ -74,10 +76,12 @@
         <EditText
             android:id="@+id/edit_password_reg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/y35"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x26"
             android:layout_marginRight="@dimen/x26"
             android:layout_toRightOf="@+id/iv_password_reg"
+            android:background="@null"
             android:hint="请输入密码"
             android:inputType="textPassword"
             android:textColor="#000000"
@@ -106,10 +110,12 @@
         <EditText
             android:id="@+id/edit_password_again_reg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/y35"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x26"
             android:layout_marginRight="@dimen/x26"
             android:layout_toRightOf="@+id/iv_password_again_reg"
+            android:background="@null"
             android:hint="请重复输入密码"
             android:inputType="textPassword"
             android:textColor="#000000"
@@ -127,6 +133,7 @@
         android:layout_marginTop="@dimen/y32">
 
         <Button
+            android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/selector_register_register"
