@@ -20,6 +20,7 @@ import com.lingshikeji.xjapp.main.MainActivity;
 import com.lingshikeji.xjapp.model.User;
 import com.lingshikeji.xjapp.register.view.RegisterActivity;
 import com.lingshikeji.xjapp.util.Preferences;
+import com.lingshikeji.xjapp.util.Utils;
 
 /**
  * <br/>Author: tony(shishaojie@koolearn.com)
@@ -29,7 +30,7 @@ import com.lingshikeji.xjapp.util.Preferences;
  * <br/>FIXME
  */
 
-public class LoginActivity extends BaseActivity implements ILoginView {
+public class LoginActivity extends BaseActivity implements ILoginView, View.OnClickListener {
 
     private ILoginPresenter iLoginPresenter;
     private Button btnRegister;
@@ -45,6 +46,17 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         initPresenter();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            boolean registerSuccess = data.getBooleanExtra("registerSuccess", false);
+            if (registerSuccess) {
+                startMainActivity();
+            }
+        }
+    }
+
     private void initView() {
         setContentView(R.layout.activity_login);
         editName = (EditText) findViewById(R.id.edit_username);
@@ -52,35 +64,21 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         btnLogin = (Button) findViewById(R.id.btn_login);
         btnRegister = (Button) findViewById(R.id.btn_register);
 
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (editName.getText().toString().isEmpty()) {
-                    toast("用户名不能为空");
-                    return;
-                }
-                if (editPwd.getText().toString().isEmpty()) {
-                    toast("密码不能为空");
-                    return;
-                }
-                String userName = editName.getText().toString();
-                String pwd = editPwd.getText().toString();
-                iLoginPresenter.doLogin(userName, pwd);
-            }
-        });
-
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
+        btnLogin.setOnClickListener(this);
+        btnRegister.setOnClickListener(this);
     }
 
     private void initData() {
-
+        if (Utils.isLogin()) {
+            try {
+                Intent intent = new Intent();
+                intent.setClass(this, MainActivity.class);
+                intent.putExtra("email", Preferences.getInstance().getEmail());
+                startActivity(intent);
+                finish();
+            } catch (Exception e) {
+            }
+        }
     }
 
     private void initPresenter() {
@@ -118,9 +116,35 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     public void loginSuccess(User user) {
         Preferences.getInstance().storeEmail(user.getUser().getEmail());
         Preferences.getInstance().storeToken(user.getJwt());
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
+        startMainActivity();
+    }
 
+    private void startMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_login:
+                if (editName.getText().toString().isEmpty()) {
+                    toast("用户名不能为空");
+                    return;
+                }
+                if (editPwd.getText().toString().isEmpty()) {
+                    toast("密码不能为空");
+                    return;
+                }
+                String userName = editName.getText().toString();
+                String pwd = editPwd.getText().toString();
+                iLoginPresenter.doLogin(userName, pwd);
+                break;
+            case R.id.btn_register:
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivityForResult(intent, 0);
+                break;
+        }
     }
 }

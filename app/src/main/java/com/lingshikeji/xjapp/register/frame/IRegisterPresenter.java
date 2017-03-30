@@ -10,5 +10,6 @@ import com.lingshikeji.xjapp.mvp.BasePresenter;
  * <br/>FIXME
  */
 
-public abstract class IRegisterPresenter extends BasePresenter<IRegisterView>{
+public abstract class IRegisterPresenter extends BasePresenter<IRegisterView> {
+    public abstract void register(String email, String pwd);
 }

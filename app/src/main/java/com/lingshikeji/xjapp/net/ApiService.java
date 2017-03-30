@@ -12,9 +12,12 @@ import rx.Observable;
  * Author: tony(110618445@qq.com)
  * Date: 2017/3/28
  * Time: 下午9:57
- * Description:
+ * Description:接口声明处
  */
 public interface ApiService {
     @POST("auth/local")
     Observable<User> login(@Body Map<String, String> params);
+
+    @POST("auth/local/register")
+    Observable<User> register(@Body Map<String, String> params);
 }

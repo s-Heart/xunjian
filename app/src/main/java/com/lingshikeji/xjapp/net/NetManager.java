@@ -1,26 +1,16 @@
 package com.lingshikeji.xjapp.net;
 
-import android.util.Log;
-
-import com.lingshikeji.xjapp.model.User;
 import com.lingshikeji.xjapp.util.Preferences;
 
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Dns;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Protocol;
 import okhttp3.Request;
@@ -115,10 +105,10 @@ public class NetManager {
         return instance;
     }
 
-    public <T> void runRxJava(Observable<T> observable, final Subscriber<T> subscriberCallBack) {
+    public <M> void runRxJava(Observable<M> observable, final Subscriber<M> subscriberCallBack) {
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<T>() {
+                .subscribe(new Subscriber<M>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -137,8 +127,8 @@ public class NetManager {
                     }
 
                     @Override
-                    public void onNext(T t) {
-                        subscriberCallBack.onNext(t);
+                    public void onNext(M m) {
+                        subscriberCallBack.onNext(m);
                     }
                 });
     }

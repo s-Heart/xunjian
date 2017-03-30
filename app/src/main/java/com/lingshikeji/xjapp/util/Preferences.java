@@ -66,4 +66,11 @@ public class Preferences {
         prefEditor.putString("email", email);
         prefEditor.commit();
     }
+
+    public String getEmail() {
+        if (mPrefs == null) {
+            mPrefs = mContext.getSharedPreferences(PREFERENCE_XUNJIAN, 0);
+        }
+        return mPrefs.getString("email", "");
+    }
 }
