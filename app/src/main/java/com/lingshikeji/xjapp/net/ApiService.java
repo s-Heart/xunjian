@@ -1,10 +1,10 @@
-package com.lingshikeji.xjapp.net.api_service;
+package com.lingshikeji.xjapp.net;
 
 import com.lingshikeji.xjapp.model.User;
 
-import okhttp3.RequestBody;
+import java.util.Map;
+
 import retrofit2.http.Body;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import rx.Observable;
 
@@ -14,8 +14,7 @@ import rx.Observable;
  * Time: 下午9:57
  * Description:
  */
-public interface LoginService {
-    @Headers("Content-Type: application/json")
+public interface ApiService {
     @POST("auth/local")
-    Observable<User> login(@Body RequestBody params);
+    Observable<User> login(@Body Map<String, String> params);
 }

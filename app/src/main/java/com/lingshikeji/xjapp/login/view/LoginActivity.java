@@ -12,11 +12,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.lingshikeji.xjapp.R;
+import com.lingshikeji.xjapp.base.BaseActivity;
 import com.lingshikeji.xjapp.login.frame.ILoginPresenter;
 import com.lingshikeji.xjapp.login.frame.ILoginView;
 import com.lingshikeji.xjapp.login.presenter.LoginPresenterImpl;
+import com.lingshikeji.xjapp.main.MainActivity;
 import com.lingshikeji.xjapp.model.User;
 import com.lingshikeji.xjapp.register.view.RegisterActivity;
+import com.lingshikeji.xjapp.util.Preferences;
 
 /**
  * <br/>Author: tony(shishaojie@koolearn.com)
@@ -26,7 +29,7 @@ import com.lingshikeji.xjapp.register.view.RegisterActivity;
  * <br/>FIXME
  */
 
-public class LoginActivity extends Activity implements ILoginView {
+public class LoginActivity extends BaseActivity implements ILoginView {
 
     private ILoginPresenter iLoginPresenter;
     private Button btnRegister;
@@ -103,16 +106,21 @@ public class LoginActivity extends Activity implements ILoginView {
 
     @Override
     public void showProgress() {
-
+        showLoadingDialog();
     }
 
     @Override
     public void hideProgress() {
-
+        dismissLoadingDialog();
     }
 
     @Override
     public void loginSuccess(User user) {
+        Preferences.getInstance().storeEmail(user.getUser().getEmail());
+        Preferences.getInstance().storeToken(user.getJwt());
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
 
     }
 }

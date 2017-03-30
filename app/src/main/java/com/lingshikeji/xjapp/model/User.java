@@ -1,10 +1,12 @@
 package com.lingshikeji.xjapp.model;
 
+import java.io.Serializable;
+
 /**
  * Created by tony on 2017/3/28.
  */
 
-public class User {
+public class User implements Serializable {
 
 
     /**
@@ -31,7 +33,7 @@ public class User {
         this.user = user;
     }
 
-    public static class UserBean {
+    public static class UserBean implements Serializable {
         /**
          * username : John DOE
          * email : contact@company.com

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
 import com.lingshikeji.xjapp.data_query.view.DataQueryActivity;
+import com.lingshikeji.xjapp.model.User;
 import com.lingshikeji.xjapp.test_mgr.view.TestMgrActivity;
 import com.lingshikeji.xjapp.tested_mgr.view.TestedMgrActivity;
 import com.lingshikeji.xjapp.view_add_test.view.ViewAddTestActivity;
@@ -22,12 +23,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private RelativeLayout viewTestedMgr;
     private RelativeLayout viewTest;
     private RelativeLayout viewDataQuery;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initView();
         initData();
+        initView();
     }
 
     private void initView() {
@@ -48,7 +50,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         mainPageTitle = (TextView) toolbar.findViewById(R.id.toolbar_title_main_page);
-        mainPageTitle.setText("当前用户：xxxxxxxxxx");
+        mainPageTitle.setText("当前用户：" + user.getUser().getEmail());
         mainPageTitle.setVisibility(View.VISIBLE);
 
         TextView logoutTv = (TextView) toolbar.findViewById(R.id.toolbar_right_menu);
@@ -63,7 +65,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void initData() {
-
+        user = (User) getIntent().getSerializableExtra("user");
     }
 
     @Override
