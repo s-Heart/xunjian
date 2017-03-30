@@ -11,7 +11,12 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", "\"http://rgzx.lingshikeji.cn:1338/api/\""
+        }
+
         release {
+            buildConfigField "String", "BASE_URL", "\"http://rgzx.lingshikeji.cn:81/api/\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

@@ -62,12 +62,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         logoutTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Preferences.getInstance().storeToken("");//清空token,重置retrofit
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
-                Preferences.getInstance().storeToken("");
-                NetManager.getInstance().refreshRetrofit();
                 finish();
-
             }
         });
     }

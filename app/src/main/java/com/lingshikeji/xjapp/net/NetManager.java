@@ -1,5 +1,6 @@
 package com.lingshikeji.xjapp.net;
 
+import com.lingshikeji.xjapp.BuildConfig;
 import com.lingshikeji.xjapp.util.Preferences;
 
 import org.json.JSONObject;
@@ -34,9 +35,6 @@ import rx.schedulers.Schedulers;
  * 1.登录/注册成功后调用refreshRetrofit(),将Authorization重新赋值
  */
 public class NetManager {
-    public static final String BASE_URL_DEV = "http://rgzx.lingshikeji.cn:1338/api/";
-    public static final String BASE_URL = "http://rgzx.lingshikeji.cn:81/api/";
-
     private static NetManager instance;
     private Retrofit retrofit;
     private OkHttpClient okHttpClient;
@@ -47,7 +45,7 @@ public class NetManager {
     }
 
     /**
-     * 进入MainActivity时刷新retrofit的请求头,让之后请求全都带有token
+     * 时刷新retrofit的请求头,让之后请求全都带有token
      */
     public void refreshRetrofit() {
         initHeaderMap();
@@ -87,7 +85,7 @@ public class NetManager {
                 }).build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(NetManager.BASE_URL_DEV)
+                .baseUrl(BuildConfig.BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

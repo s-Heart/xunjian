@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.lingshikeji.xjapp.base.XJApp;
+import com.lingshikeji.xjapp.net.NetManager;
 
 /**
  * Created by tony on 2017/3/29.
@@ -48,6 +49,8 @@ public class Preferences {
         SharedPreferences.Editor prefEditor = mPrefs.edit();
         prefEditor.putString("token", token);
         prefEditor.commit();
+
+        NetManager.getInstance().refreshRetrofit();
     }
 
     public String getToken() {

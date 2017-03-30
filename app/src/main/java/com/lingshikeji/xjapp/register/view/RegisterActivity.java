@@ -113,8 +113,8 @@ public class RegisterActivity extends BaseActivity implements IRegisterView, Vie
         Preferences.getInstance().storeToken(user.getJwt());
         Intent intent = new Intent();
         intent.putExtra("registerSuccess", true);
-        setResult(0, intent); //intent为A传来的带有Bundle的intent，当然也可以自己定义新的Bundle
-        finish();//此处一定要调用finish()方法
+        setResult(0, intent);
+        finish();
     }
 
     @Override

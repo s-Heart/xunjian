@@ -121,7 +121,6 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     }
 
     private void startMainActivity() {
-        NetManager.getInstance().refreshRetrofit();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
