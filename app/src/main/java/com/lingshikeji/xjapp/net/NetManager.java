@@ -31,9 +31,7 @@ import rx.schedulers.Schedulers;
  * Time: 下午10:28
  * Description:
  * 网络操作管理类，请求都从此类发出
- * 1.在程序初始化时，先调用init，来初始化retrofit（baseUrl，build（））
- * 2.连续访问网络时使用rxjavaFlat（）
- * 3.单次访问网络时使用rxjava（）
+ * 1.登录/注册成功后调用refreshRetrofit(),将Authorization重新赋值
  */
 public class NetManager {
     public static final String BASE_URL_DEV = "http://rgzx.lingshikeji.cn:1338/api/";
@@ -45,6 +43,13 @@ public class NetManager {
     private Map<String, String> headerMap;
 
     private NetManager() {
+        refreshRetrofit();
+    }
+
+    /**
+     * 进入MainActivity时刷新retrofit的请求头,让之后请求全都带有token
+     */
+    public void refreshRetrofit() {
         initHeaderMap();
         initRetrofit();
     }

@@ -18,6 +18,7 @@ import com.lingshikeji.xjapp.login.frame.ILoginView;
 import com.lingshikeji.xjapp.login.presenter.LoginPresenterImpl;
 import com.lingshikeji.xjapp.main.MainActivity;
 import com.lingshikeji.xjapp.model.User;
+import com.lingshikeji.xjapp.net.NetManager;
 import com.lingshikeji.xjapp.register.view.RegisterActivity;
 import com.lingshikeji.xjapp.util.Preferences;
 import com.lingshikeji.xjapp.util.Utils;
@@ -120,6 +121,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     }
 
     private void startMainActivity() {
+        NetManager.getInstance().refreshRetrofit();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
