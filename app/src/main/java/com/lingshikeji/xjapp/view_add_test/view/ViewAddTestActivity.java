@@ -67,6 +67,6 @@ public class ViewAddTestActivity extends BaseActivity implements IViewAddTestVie
 
     @Override
     public void hideProgress() {
-        dismissLoadingDialog();
+        hideLoadingDialog();
     }
 }

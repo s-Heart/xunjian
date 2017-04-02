@@ -10,6 +10,8 @@ import com.lingshikeji.xjapp.mvp.BasePresenter;
  * <br/>FIXME
  */
 
-public abstract class ITestedMgrPresenter extends BasePresenter<ITestedMgrView>{
+public abstract class ITestedMgrPresenter extends BasePresenter<ITestedMgrView> {
     public abstract void queryDevices();
+
+    public abstract void queryDevicePage(int currentLastItemIndex);
 }

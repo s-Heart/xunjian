@@ -25,7 +25,7 @@ public class BaseActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void dismissLoadingDialog() {
+    public void hideLoadingDialog() {
         dialog.dismiss();
     }
 }

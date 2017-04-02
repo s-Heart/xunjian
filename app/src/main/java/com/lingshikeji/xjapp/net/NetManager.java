@@ -60,7 +60,7 @@ public class NetManager {
         this.headerMap = new HashMap<>();
         headerMap.put("Content-Type", "application/json; charset=UTF-8");
         if (!Preferences.getInstance().getToken().isEmpty()) {
-            headerMap.put("Authorization", Preferences.getInstance().getToken());
+            headerMap.put("Authorization", "bearer " + Preferences.getInstance().getToken());
         }
     }
 
@@ -135,6 +135,7 @@ public class NetManager {
                             String msg = (String) response.get("message");
                             subscriberCallBack.onError(new Exception(msg));
                         } catch (Exception e1) {
+                            subscriberCallBack.onError(new Exception("unKnown error"));
                             e1.printStackTrace();
                         }
 

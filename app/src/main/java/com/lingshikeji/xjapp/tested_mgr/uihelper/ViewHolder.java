@@ -1,6 +1,6 @@
 package com.lingshikeji.xjapp.tested_mgr.uihelper;
 
-import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 class ViewHolder {
     public TextView title;
-    public ImageView chooseImg;
+    public CheckBox chooseImg;
     public ImageView checkImg;
     public ImageView divider;
 }

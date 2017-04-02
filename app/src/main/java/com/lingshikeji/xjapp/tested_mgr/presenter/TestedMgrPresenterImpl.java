@@ -37,7 +37,9 @@ public class TestedMgrPresenterImpl extends ITestedMgrPresenter {
     public void queryDevices() {
         getiView().showProgress();
         Map<String, String> params = new HashMap<>();
-        Observable<List<DeviceEntity>> observable = NetManager.getInstance().getApiService().queryDevices();
+        params.put("sort", "id desc");
+        params.put("limit", "8");//返回前8条数据
+        Observable<List<DeviceEntity>> observable = NetManager.getInstance().getApiService().queryDevices(params);
         NetManager.getInstance().runRxJava(observable, new Subscriber<List<DeviceEntity>>() {
             @Override
             public void onCompleted() {
@@ -54,6 +56,34 @@ public class TestedMgrPresenterImpl extends ITestedMgrPresenter {
             public void onNext(List<DeviceEntity> devices) {
                 getiView().hideProgress();
                 getiView().querySuccess(devices);
+            }
+        });
+    }
+
+    @Override
+    public void queryDevicePage(int currentLastItemIndex) {
+        getiView().showProgress();
+        Map<String, String> params = new HashMap<>();
+        params.put("sort", "id desc");
+        params.put("skip", "" + currentLastItemIndex);
+        params.put("limit", "8");
+        Observable<List<DeviceEntity>> observable = NetManager.getInstance().getApiService().queryDeviceForPage(params);
+        NetManager.getInstance().runRxJava(observable, new Subscriber<List<DeviceEntity>>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                getiView().hideProgress();
+                getiView().toast(e.getMessage());
+            }
+
+            @Override
+            public void onNext(List<DeviceEntity> devices) {
+                getiView().hideProgress();
+                getiView().queryPageSuccess(devices);
             }
         });
     }

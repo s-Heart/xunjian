@@ -15,8 +15,6 @@ import com.lingshikeji.xjapp.base.BaseActivity;
 import com.lingshikeji.xjapp.data_query.frame.IDataQueryPresenter;
 import com.lingshikeji.xjapp.data_query.frame.IDataQueryView;
 import com.lingshikeji.xjapp.data_query.presenter.DataQueryPresenterImpl;
-import com.lingshikeji.xjapp.tested_mgr.view.TestedDetailActivity;
-import com.lingshikeji.xjapp.tested_mgr.view.TestedMgrActivity;
 
 /**
  * <br/>Author: tony(shishaojie@koolearn.com)
@@ -103,6 +101,6 @@ public class DataQueryActivity extends BaseActivity implements IDataQueryView {
 
     @Override
     public void hideProgress() {
-        dismissLoadingDialog();
+        hideLoadingDialog();
     }
 }

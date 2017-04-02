@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <include layout="@layout/toolbar" />
 
 
-    <ListView
-        android:id="@+id/lv_tested_devices"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"></ListView>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:background="#f3f1f1">
+
+        <ListView
+            android:id="@+id/lv_tested_devices"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y1000"
+            android:layout_marginTop="@dimen/y16"
+            android:listSelector="#00000000" />
+    </RelativeLayout>
+
 </RelativeLayout>

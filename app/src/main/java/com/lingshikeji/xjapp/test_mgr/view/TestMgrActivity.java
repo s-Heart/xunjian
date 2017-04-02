@@ -101,6 +101,6 @@ public class TestMgrActivity extends BaseActivity implements ITestMgrView {
 
     @Override
     public void hideProgress() {
-        dismissLoadingDialog();
+        hideLoadingDialog();
     }
 }

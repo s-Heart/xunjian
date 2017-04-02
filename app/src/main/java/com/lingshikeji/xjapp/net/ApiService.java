@@ -9,6 +9,7 @@ import java.util.Map;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
 import rx.Observable;
 
 /**
@@ -29,7 +30,25 @@ public interface ApiService {
 
     /*被测设备*/
 
+    /**
+     * 第一页数据请求
+     *
+     * @param param
+     * @return
+     */
     @GET("device")
-    Observable<List<DeviceEntity>> queryDevices();
+    Observable<List<DeviceEntity>> queryDevices(@QueryMap Map<String, String> param);
 
+    /**
+     * 分页数据请求
+     *
+     * @param params
+     * @return
+     */
+    @GET("device")
+    Observable<List<DeviceEntity>> queryDeviceForPage(@QueryMap Map<String, String> params);
+
+    //创建被测设备
+    @POST("device")
+    Observable<DeviceEntity> createDevice(@Body Map<String, String> params);
 }

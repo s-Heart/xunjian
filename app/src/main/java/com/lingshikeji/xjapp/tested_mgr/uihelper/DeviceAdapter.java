@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -53,9 +54,9 @@ public class DeviceAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.listitem_device, null);
             viewHolder.title = (TextView) convertView.findViewById(R.id.item_device_title);
-            viewHolder.chooseImg = (ImageView) convertView.findViewById(R.id.item_device_choose_img);
+            viewHolder.chooseImg = (CheckBox) convertView.findViewById(R.id.item_device_choose_img);
             viewHolder.checkImg = (ImageView) convertView.findViewById(R.id.item_device_check_img);
-            viewHolder.divider = (ImageView)convertView.findViewById(R.id.item_divider_line);
+            viewHolder.divider = (ImageView) convertView.findViewById(R.id.item_divider_line);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -64,5 +65,9 @@ public class DeviceAdapter extends BaseAdapter {
         viewHolder.title.setText(datas.get(position).getName());
 
         return convertView;
+    }
+
+    public List<DeviceEntity> getDatas() {
+        return datas;
     }
 }
