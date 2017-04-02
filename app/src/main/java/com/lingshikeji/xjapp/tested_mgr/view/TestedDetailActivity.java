@@ -34,11 +34,15 @@ public class TestedDetailActivity extends BaseActivity {
     private EditText edManufacture;
     private EditText edRemark;
     private Button btnSave;
+    private Button btnModify;
+    private Button btnDelete;
+    private DeviceEntity deviceEntity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
+        initData();
     }
 
     private void initView() {
@@ -57,21 +61,68 @@ public class TestedDetailActivity extends BaseActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (edContact.getText().toString().isEmpty() ||
-                        edAddress.getText().toString().isEmpty() ||
-                        edDevice.getText().toString().isEmpty() ||
-                        edModel.getText().toString().isEmpty() ||
-                        edSerialNum.getText().toString().isEmpty() ||
-                        edManufacture.getText().toString().isEmpty() ||
-                        edRemark.getText().toString().isEmpty()) {
-                    Toast.makeText(TestedDetailActivity.this, "请检查所填信息", Toast.LENGTH_SHORT).show();
+                if (messageCheck()) {
                     return;
                 }
-
                 createDevice();
-
             }
         });
+
+        btnModify = (Button) findViewById(R.id.btn_modify);
+        btnModify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (messageCheck()) {
+                    return;
+                }
+                modifyDevice();
+            }
+        });
+        btnDelete = (Button) findViewById(R.id.btn_delete);
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (messageCheck()) {
+                    return;
+                }
+                deleteDevice();
+            }
+        });
+    }
+
+    private boolean messageCheck() {
+        if (edContact.getText().toString().isEmpty() ||
+                edAddress.getText().toString().isEmpty() ||
+                edDevice.getText().toString().isEmpty() ||
+                edModel.getText().toString().isEmpty() ||
+                edSerialNum.getText().toString().isEmpty() ||
+                edManufacture.getText().toString().isEmpty() ||
+                edRemark.getText().toString().isEmpty()) {
+            Toast.makeText(TestedDetailActivity.this, "请检查所填信息", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
+    }
+
+    private void initData() {
+        deviceEntity = (DeviceEntity) getIntent().getSerializableExtra("deviceEntity");
+        if (deviceEntity != null) {
+            edContact.setText(deviceEntity.getContact());
+            edAddress.setText(deviceEntity.getAddress());
+            edDevice.setText(deviceEntity.getName());
+            edModel.setText(deviceEntity.getModel());
+            edSerialNum.setText(deviceEntity.getSerialnumber());
+            edManufacture.setText(deviceEntity.getManufacture());
+            edRemark.setText(deviceEntity.getRemark());
+
+            btnSave.setVisibility(View.GONE);
+            btnModify.setVisibility(View.VISIBLE);
+            btnDelete.setVisibility(View.VISIBLE);
+        } else {
+            btnSave.setVisibility(View.VISIBLE);
+            btnModify.setVisibility(View.GONE);
+            btnDelete.setVisibility(View.GONE);
+        }
     }
 
     /**
@@ -109,6 +160,72 @@ public class TestedDetailActivity extends BaseActivity {
             }
         });
     }
+
+
+    /**
+     * 修改测试设备信息
+     */
+    private void modifyDevice() {
+        showLoadingDialog();
+        Map<String, String> params = new HashMap<>();
+        params.put("name", edDevice.getText().toString());
+        params.put("contact", edContact.getText().toString());
+        params.put("address", edAddress.getText().toString());
+        params.put("model", edModel.getText().toString());
+        params.put("serialnumber", edSerialNum.getText().toString());
+        params.put("manufacture", edManufacture.getText().toString());
+        params.put("remark", edRemark.getText().toString());
+        Observable<DeviceEntity> observable = NetManager.getInstance().getApiService().modifyDevice(deviceEntity.getId(), params);
+        NetManager.getInstance().runRxJava(observable, new Subscriber<DeviceEntity>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                hideLoadingDialog();
+                Toast.makeText(TestedDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNext(DeviceEntity deviceEntity) {
+                hideLoadingDialog();
+                Toast.makeText(TestedDetailActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                setResult(TestedMgrActivity.MODIFY_OK);
+                finish();
+            }
+        });
+    }
+
+    /**
+     * 删除测试设备信息
+     */
+    private void deleteDevice() {
+        showLoadingDialog();
+        Observable<DeviceEntity> observable = NetManager.getInstance().getApiService().deleteDevice(deviceEntity.getId());
+        NetManager.getInstance().runRxJava(observable, new Subscriber<DeviceEntity>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                hideLoadingDialog();
+                Toast.makeText(TestedDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNext(DeviceEntity deviceEntity) {
+                hideLoadingDialog();
+                Toast.makeText(TestedDetailActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
+                setResult(TestedMgrActivity.DELETE_OK);
+                finish();
+            }
+        });
+    }
+
 
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

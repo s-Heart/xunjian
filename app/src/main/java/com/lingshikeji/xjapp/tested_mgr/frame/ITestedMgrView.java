@@ -17,4 +17,6 @@ public interface ITestedMgrView extends BaseView {
     void querySuccess(List<DeviceEntity> devices);
 
     void queryPageSuccess(List<DeviceEntity> devices);
+
+    void startModify(DeviceEntity deviceEntity);
 }

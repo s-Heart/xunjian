@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
@@ -34,6 +35,8 @@ import java.util.List;
 public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
 
     protected static final int CREATE_OK = 1;
+    public static final int MODIFY_OK = 2;
+    public static final int DELETE_OK = 3;
     private ITestedMgrPresenter iTestedMgrPresenter;
     private TextView titleTextview;
     private ListView lvDevices;
@@ -46,8 +49,8 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
-        initData();
         initPresenter();
+        initData();
     }
 
     private void initView() {
@@ -63,8 +66,13 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
             public void onScrollStateChanged(AbsListView absListView, int scrollState) {
                 if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE
                         && lastItemIndex == deviceAdapter.getCount() - 1) {
+                    Log.d("index--", "" + lastItemIndex);
                     //加载数据代码，此处省略了
-                    iTestedMgrPresenter.queryDevicePage(lastItemIndex);
+                    if (lastItemIndex < TestedMgrPresenterImpl.PageLimitCount-1) {
+                        iTestedMgrPresenter.queryDevices();
+                    } else {
+                        iTestedMgrPresenter.queryDevicePage(lastItemIndex);
+                    }
                 }
             }
 
@@ -108,13 +116,13 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == CREATE_OK) {
+        if (resultCode == CREATE_OK || resultCode == MODIFY_OK || resultCode == DELETE_OK) {
             iTestedMgrPresenter.queryDevices();
         }
     }
 
     private void initData() {
-
+        deviceAdapter.setPresenter(iTestedMgrPresenter);
     }
 
     private void initPresenter() {
@@ -169,5 +177,12 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
         }
         deviceAdapter.getDatas().addAll(devices);
         deviceAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void startModify(DeviceEntity deviceEntity) {
+        Intent intent = new Intent(this, TestedDetailActivity.class);
+        intent.putExtra("deviceEntity", deviceEntity);
+        startActivityForResult(intent, 1);
     }
 }

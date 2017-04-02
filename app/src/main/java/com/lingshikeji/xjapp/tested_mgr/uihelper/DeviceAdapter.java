@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.model.DeviceEntity;
+import com.lingshikeji.xjapp.tested_mgr.frame.ITestedMgrPresenter;
 import com.lingshikeji.xjapp.tested_mgr.view.TestedMgrActivity;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import java.util.List;
 public class DeviceAdapter extends BaseAdapter {
     private final Context context;
     private List<DeviceEntity> datas = new ArrayList<>();
+    private ITestedMgrPresenter iTestedMgrPresenter;
 
     public DeviceAdapter(Context context) {
         this.context = context;
@@ -38,7 +40,7 @@ public class DeviceAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public DeviceEntity getItem(int position) {
         return datas.get(position);
     }
 
@@ -48,7 +50,7 @@ public class DeviceAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
+    public View getView(final int position, View convertView, ViewGroup viewGroup) {
         ViewHolder viewHolder;
         if (convertView == null) {
             viewHolder = new ViewHolder();
@@ -64,10 +66,21 @@ public class DeviceAdapter extends BaseAdapter {
 
         viewHolder.title.setText(datas.get(position).getName());
 
+        viewHolder.checkImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                iTestedMgrPresenter.gotoModifyDetail(getItem(position));
+            }
+        });
+
         return convertView;
     }
 
     public List<DeviceEntity> getDatas() {
         return datas;
+    }
+
+    public void setPresenter(ITestedMgrPresenter iTestedMgrPresenter) {
+        this.iTestedMgrPresenter = iTestedMgrPresenter;
     }
 }

@@ -1,7 +1,6 @@
 package com.lingshikeji.xjapp.tested_mgr.presenter;
 
 import com.lingshikeji.xjapp.model.DeviceEntity;
-import com.lingshikeji.xjapp.model.User;
 import com.lingshikeji.xjapp.net.NetManager;
 import com.lingshikeji.xjapp.tested_mgr.frame.ITestedMgrPresenter;
 import com.lingshikeji.xjapp.tested_mgr.frame.ITestedMgrView;
@@ -22,6 +21,7 @@ import rx.Subscriber;
  */
 
 public class TestedMgrPresenterImpl extends ITestedMgrPresenter {
+    public static final int PageLimitCount = 8;
 
     @Override
     public void attachView(ITestedMgrView iView) {
@@ -38,7 +38,7 @@ public class TestedMgrPresenterImpl extends ITestedMgrPresenter {
         getiView().showProgress();
         Map<String, String> params = new HashMap<>();
         params.put("sort", "id desc");
-        params.put("limit", "8");//返回前8条数据
+        params.put("limit", "" + PageLimitCount);//返回前8条数据
         Observable<List<DeviceEntity>> observable = NetManager.getInstance().getApiService().queryDevices(params);
         NetManager.getInstance().runRxJava(observable, new Subscriber<List<DeviceEntity>>() {
             @Override
@@ -65,8 +65,8 @@ public class TestedMgrPresenterImpl extends ITestedMgrPresenter {
         getiView().showProgress();
         Map<String, String> params = new HashMap<>();
         params.put("sort", "id desc");
-        params.put("skip", "" + currentLastItemIndex);
-        params.put("limit", "8");
+        params.put("skip", "" + (currentLastItemIndex + 1));
+        params.put("limit", "" + PageLimitCount);
         Observable<List<DeviceEntity>> observable = NetManager.getInstance().getApiService().queryDeviceForPage(params);
         NetManager.getInstance().runRxJava(observable, new Subscriber<List<DeviceEntity>>() {
             @Override
@@ -86,5 +86,10 @@ public class TestedMgrPresenterImpl extends ITestedMgrPresenter {
                 getiView().queryPageSuccess(devices);
             }
         });
+    }
+
+    @Override
+    public void gotoModifyDetail(DeviceEntity deviceEntity) {
+        getiView().startModify(deviceEntity);
     }
 }
