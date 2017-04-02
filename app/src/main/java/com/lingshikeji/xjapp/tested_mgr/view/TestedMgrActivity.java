@@ -7,13 +7,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
+import com.lingshikeji.xjapp.model.DeviceEntity;
 import com.lingshikeji.xjapp.tested_mgr.frame.ITestedMgrPresenter;
 import com.lingshikeji.xjapp.tested_mgr.frame.ITestedMgrView;
 import com.lingshikeji.xjapp.tested_mgr.presenter.TestedMgrPresenterImpl;
+import com.lingshikeji.xjapp.tested_mgr.uihelper.DeviceAdapter;
+
+import java.util.List;
 
 /**
  * <br/>Author: tony(shishaojie@koolearn.com)
@@ -27,6 +32,8 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
 
     private ITestedMgrPresenter iTestedMgrPresenter;
     private TextView titleTextview;
+    private ListView lvDevices;
+    private DeviceAdapter deviceAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +46,11 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
     private void initView() {
         setContentView(R.layout.activity_tested_mgr);
         initToolbar();
+
+        lvDevices = (ListView) findViewById(R.id.lv_tested_devices);
+        deviceAdapter = new DeviceAdapter(this);
+        lvDevices.setAdapter(deviceAdapter);
+
     }
 
     private void initToolbar() {
@@ -76,7 +88,7 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
     private void initPresenter() {
         iTestedMgrPresenter = new TestedMgrPresenterImpl();
         iTestedMgrPresenter.attachView(this);
-//        iTestedMgrPresenter.doSubmit();
+        iTestedMgrPresenter.queryDevices();
     }
 
     @Override
@@ -102,5 +114,11 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
     @Override
     public void hideProgress() {
         dismissLoadingDialog();
+    }
+
+    @Override
+    public void querySuccess(List<DeviceEntity> devices) {
+        deviceAdapter.setDatas(devices);
+        deviceAdapter.notifyDataSetChanged();
     }
 }

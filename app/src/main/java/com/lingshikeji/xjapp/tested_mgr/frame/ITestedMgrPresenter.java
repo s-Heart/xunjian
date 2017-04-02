@@ -11,4 +11,5 @@ import com.lingshikeji.xjapp.mvp.BasePresenter;
  */
 
 public abstract class ITestedMgrPresenter extends BasePresenter<ITestedMgrView>{
+    public abstract void queryDevices();
 }

@@ -1,6 +1,10 @@
 package com.lingshikeji.xjapp.net;
 
+import android.content.Context;
+
 import com.lingshikeji.xjapp.BuildConfig;
+import com.lingshikeji.xjapp.base.XJApp;
+import com.lingshikeji.xjapp.util.NetWorkUtils;
 import com.lingshikeji.xjapp.util.Preferences;
 
 import org.json.JSONObject;
@@ -118,6 +122,13 @@ public class NetManager {
 
                     @Override
                     public void onError(Throwable throwable) {
+                        if (!NetWorkUtils.isConnectedByState(XJApp.getInstance())) {
+                            subscriberCallBack.onError(new Exception("请检查网络连接"));
+                            return;
+                        }
+                        //token失效处理
+
+
                         ResponseBody body = ((HttpException) throwable).response().errorBody();
                         try {
                             JSONObject response = new JSONObject(body.string());
