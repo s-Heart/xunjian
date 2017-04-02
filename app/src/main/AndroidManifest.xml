@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".login.view.LoginActivity">
+        <activity
+            android:name=".login.view.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,38 +25,39 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".register.view.RegisterActivity">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
+        <activity
+            android:name=".register.view.RegisterActivity"
+            android:screenOrientation="portrait" />
 
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
+        <activity
+            android:name=".main.MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".main.MainActivity">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
+        <activity
+            android:name=".view_add_test.view.ViewAddTestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tested_mgr.view.TestedMgrActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".test_mgr.view.TestMgrActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".data_query.view.DataQueryActivity"
+            android:screenOrientation="portrait" />
 
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
+        <activity
+            android:name=".tested_mgr.view.TestedDetailActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".view_add_test.view.ViewAddTestActivity" />
-        <activity android:name=".tested_mgr.view.TestedMgrActivity" />
-        <activity android:name=".test_mgr.view.TestMgrActivity" />
-        <activity android:name=".data_query.view.DataQueryActivity" />
+        <activity
+            android:name=".test_mgr.view.TestDetailActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".tested_mgr.view.TestedDetailActivity">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
-
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
-
-        <activity android:name=".test_mgr.view.TestDetailActivity" />
-
-        <activity android:name=".data_query.view.SearchActivity" />
+        <activity
+            android:name=".data_query.view.SearchActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 
