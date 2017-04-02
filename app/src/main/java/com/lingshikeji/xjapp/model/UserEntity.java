@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by tony on 2017/3/28.
  */
 
-public class User implements Serializable {
+public class UserEntity implements Serializable {
 
 
     /**

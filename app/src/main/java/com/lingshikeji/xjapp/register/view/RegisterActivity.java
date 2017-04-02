@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
-import com.lingshikeji.xjapp.model.User;
+import com.lingshikeji.xjapp.model.UserEntity;
 import com.lingshikeji.xjapp.register.frame.IRegisterPresenter;
 import com.lingshikeji.xjapp.register.frame.IRegisterView;
 import com.lingshikeji.xjapp.register.presenter.RegisterPresenterImpl;
@@ -107,9 +107,9 @@ public class RegisterActivity extends BaseActivity implements IRegisterView, Vie
     }
 
     @Override
-    public void registerSuccess(User user) {
-        Preferences.getInstance().storeEmail(user.getUser().getEmail());
-        Preferences.getInstance().storeToken(user.getJwt());
+    public void registerSuccess(UserEntity userEntity) {
+        Preferences.getInstance().storeEmail(userEntity.getUser().getEmail());
+        Preferences.getInstance().storeToken(userEntity.getJwt());
         Intent intent = new Intent();
         intent.putExtra("registerSuccess", true);
         setResult(0, intent);

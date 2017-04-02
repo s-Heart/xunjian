@@ -6,9 +6,17 @@
 
     <include layout="@layout/toolbar" />
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="测试设备处理" />
+        android:layout_below="@+id/toolbar"
+        android:background="#f3f1f1">
+
+        <ListView
+            android:id="@+id/lv_test_devices"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y1000"
+            android:layout_marginTop="@dimen/y16"
+            android:listSelector="#00000000" />
+    </RelativeLayout>
 </LinearLayout>

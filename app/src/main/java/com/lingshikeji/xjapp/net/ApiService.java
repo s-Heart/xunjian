@@ -1,7 +1,8 @@
 package com.lingshikeji.xjapp.net;
 
 import com.lingshikeji.xjapp.model.DeviceEntity;
-import com.lingshikeji.xjapp.model.User;
+import com.lingshikeji.xjapp.model.InstrumentEntity;
+import com.lingshikeji.xjapp.model.UserEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -22,16 +23,16 @@ import rx.Observable;
  * Description:接口声明处
  */
 public interface ApiService {
-    /*注册登录*/
+    /*注册登录************************************************************************/
 
     @POST("auth/local")
-    Observable<User> login(@Body Map<String, String> params);
+    Observable<UserEntity> login(@Body Map<String, String> params);
 
     @POST("auth/local/register")
-    Observable<User> register(@Body Map<String, String> params);
+    Observable<UserEntity> register(@Body Map<String, String> params);
 
 
-    /*被测设备*/
+    /*被测设备************************************************************************/
 
     /**
      * 第一页数据请求
@@ -60,4 +61,34 @@ public interface ApiService {
 
     @DELETE("device/{id}")
     Observable<DeviceEntity> deleteDevice(@Path("id") int id);
+
+    /*测试设备*********************************************************************************/
+
+    /**
+     * 第一页数据请求
+     *
+     * @param params
+     * @return
+     */
+    @GET("instrument")
+    Observable<List<InstrumentEntity>> queryInstruments(@QueryMap Map<String, String> params);
+
+    /**
+     * 分页数据请求
+     *
+     * @param params
+     * @return
+     */
+    @GET("instrument")
+    Observable<List<InstrumentEntity>> queryInstrumentsForPage(@QueryMap Map<String, String> params);
+
+    //创建被测设备
+    @POST("instrument")
+    Observable<InstrumentEntity> createInstrument(@Body Map<String, String> params);
+
+    @PUT("instrument/{id}")
+    Observable<InstrumentEntity> modifyInstrument(@Path("id") int id, @Body Map<String, String> params);
+
+    @DELETE("instrument/{id}")
+    Observable<InstrumentEntity> deleteInstrument(@Path("id") int id);
 }

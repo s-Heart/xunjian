@@ -1,6 +1,6 @@
 package com.lingshikeji.xjapp.register.presenter;
 
-import com.lingshikeji.xjapp.model.User;
+import com.lingshikeji.xjapp.model.UserEntity;
 import com.lingshikeji.xjapp.net.NetManager;
 import com.lingshikeji.xjapp.register.frame.IRegisterPresenter;
 import com.lingshikeji.xjapp.register.frame.IRegisterView;
@@ -38,8 +38,8 @@ public class RegisterPresenterImpl extends IRegisterPresenter {
         params.put("username", email);
         params.put("email", email);
         params.put("password", pwd);
-        Observable<User> observable = NetManager.getInstance().getApiService().register(params);
-        NetManager.getInstance().runRxJava(observable, new Subscriber<User>() {
+        Observable<UserEntity> observable = NetManager.getInstance().getApiService().register(params);
+        NetManager.getInstance().runRxJava(observable, new Subscriber<UserEntity>() {
             @Override
             public void onCompleted() {
 
@@ -52,9 +52,9 @@ public class RegisterPresenterImpl extends IRegisterPresenter {
             }
 
             @Override
-            public void onNext(User user) {
+            public void onNext(UserEntity userEntity) {
                 getiView().hideProgress();
-                getiView().registerSuccess(user);
+                getiView().registerSuccess(userEntity);
             }
         });
     }

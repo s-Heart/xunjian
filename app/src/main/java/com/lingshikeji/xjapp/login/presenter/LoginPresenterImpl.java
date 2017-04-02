@@ -2,9 +2,8 @@ package com.lingshikeji.xjapp.login.presenter;
 
 import com.lingshikeji.xjapp.login.frame.ILoginPresenter;
 import com.lingshikeji.xjapp.login.frame.ILoginView;
-import com.lingshikeji.xjapp.model.User;
+import com.lingshikeji.xjapp.model.UserEntity;
 import com.lingshikeji.xjapp.net.NetManager;
-import com.lingshikeji.xjapp.net.ApiService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,8 +37,8 @@ public class LoginPresenterImpl extends ILoginPresenter {
         Map<String, String> params = new HashMap<>();
         params.put("identifier", userName);
         params.put("password", pwd);
-        Observable<User> observable = NetManager.getInstance().getApiService().login(params);
-        NetManager.getInstance().runRxJava(observable, new Subscriber<User>() {
+        Observable<UserEntity> observable = NetManager.getInstance().getApiService().login(params);
+        NetManager.getInstance().runRxJava(observable, new Subscriber<UserEntity>() {
             @Override
             public void onCompleted() {
 
@@ -52,9 +51,9 @@ public class LoginPresenterImpl extends ILoginPresenter {
             }
 
             @Override
-            public void onNext(User user) {
+            public void onNext(UserEntity userEntity) {
                 getiView().hideProgress();
-                getiView().loginSuccess(user);
+                getiView().loginSuccess(userEntity);
             }
         });
 

@@ -41,7 +41,6 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
     private TextView titleTextview;
     private ListView lvDevices;
     private DeviceAdapter deviceAdapter;
-    private int lastItemIndex;
     private RelativeLayout footer;
     private TextView tvFooter;
 
@@ -62,13 +61,15 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
         lvDevices.setAdapter(deviceAdapter);
 
         lvDevices.setOnScrollListener(new AbsListView.OnScrollListener() {
+            private int lastItemIndex;
+
             @Override
             public void onScrollStateChanged(AbsListView absListView, int scrollState) {
                 if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE
                         && lastItemIndex == deviceAdapter.getCount() - 1) {
                     Log.d("index--", "" + lastItemIndex);
                     //加载数据代码，此处省略了
-                    if (lastItemIndex < TestedMgrPresenterImpl.PageLimitCount-1) {
+                    if (lastItemIndex < TestedMgrPresenterImpl.PageLimitCount - 1) {
                         iTestedMgrPresenter.queryDevices();
                     } else {
                         iTestedMgrPresenter.queryDevicePage(lastItemIndex);
@@ -166,6 +167,10 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
             lvDevices.addFooterView(footer);
         } else {
             tvFooter.setText("下拉加载更多...");
+        }
+
+        if (devices.size() <= 7) {
+            tvFooter.setText("已无更多数据，请稍后重试");
         }
     }
 

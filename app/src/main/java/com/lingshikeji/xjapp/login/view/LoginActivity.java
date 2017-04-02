@@ -16,7 +16,7 @@ import com.lingshikeji.xjapp.login.frame.ILoginPresenter;
 import com.lingshikeji.xjapp.login.frame.ILoginView;
 import com.lingshikeji.xjapp.login.presenter.LoginPresenterImpl;
 import com.lingshikeji.xjapp.main.MainActivity;
-import com.lingshikeji.xjapp.model.User;
+import com.lingshikeji.xjapp.model.UserEntity;
 import com.lingshikeji.xjapp.register.view.RegisterActivity;
 import com.lingshikeji.xjapp.util.Preferences;
 import com.lingshikeji.xjapp.util.Utils;
@@ -112,9 +112,9 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     }
 
     @Override
-    public void loginSuccess(User user) {
-        Preferences.getInstance().storeEmail(user.getUser().getEmail());
-        Preferences.getInstance().storeToken(user.getJwt());
+    public void loginSuccess(UserEntity userEntity) {
+        Preferences.getInstance().storeEmail(userEntity.getUser().getEmail());
+        Preferences.getInstance().storeToken(userEntity.getJwt());
         startMainActivity();
     }
 

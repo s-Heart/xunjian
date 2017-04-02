@@ -28,13 +28,14 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
+                android:id="@+id/ed_name"
                 android:layout_width="@dimen/x500"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/x20"
                 android:background="@null"
-                android:hint="测试仪器"
+                android:hint="请填写"
                 android:textAlignment="viewEnd"
                 android:textColor="#9b9b9b"
                 android:textSize="@dimen/y28" />
@@ -61,13 +62,14 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
+                android:id="@+id/ed_model"
                 android:layout_width="@dimen/x500"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/x20"
                 android:background="@null"
-                android:hint="WERF45-1"
+                android:hint="请填写"
                 android:textAlignment="viewEnd"
                 android:textColor="#9b9b9b"
                 android:textSize="@dimen/y28" />
@@ -94,13 +96,14 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
+                android:id="@+id/ed_certnumber"
                 android:layout_width="@dimen/x500"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/x20"
                 android:background="@null"
-                android:hint="1111111111"
+                android:hint="请填写"
                 android:textAlignment="viewEnd"
                 android:textColor="#9b9b9b"
                 android:textSize="@dimen/y28" />
@@ -127,13 +130,14 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
+                android:id="@+id/ed_serialnumber"
                 android:layout_width="@dimen/x500"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/x20"
                 android:background="@null"
-                android:hint="st334443224444"
+                android:hint="请填写"
                 android:textAlignment="viewEnd"
                 android:textColor="#9b9b9b"
                 android:textSize="@dimen/y28" />
@@ -160,13 +164,14 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
+                android:id="@+id/ed_techinfo"
                 android:layout_width="@dimen/x500"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/x20"
                 android:background="@null"
-                android:hint="23444454545"
+                android:hint="请填写"
                 android:textAlignment="viewEnd"
                 android:textColor="#9b9b9b"
                 android:textSize="@dimen/y28" />
@@ -193,13 +198,14 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
+                android:id="@+id/ed_validdate"
                 android:layout_width="@dimen/x500"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/x20"
                 android:background="@null"
-                android:hint="2017-03-11"
+                android:hint="请填写"
                 android:inputType="date"
                 android:textAlignment="viewEnd"
                 android:textColor="#9b9b9b"
@@ -227,13 +233,14 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
+                android:id="@+id/ed_manufacture"
                 android:layout_width="@dimen/x500"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/x20"
                 android:background="@null"
-                android:hint="北京xxx商贸公司"
+                android:hint="请填写"
                 android:textAlignment="viewEnd"
                 android:textColor="#9b9b9b"
                 android:textSize="@dimen/y28" />
@@ -261,12 +268,13 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
+                android:id="@+id/ed_remark"
                 android:layout_width="@dimen/x676"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/tv_beizhu"
                 android:layout_below="@+id/tv_beizhu"
                 android:background="@null"
-                android:hint="备注详细信息，在这里，备注详细信息，在这里，备注详细信息，在这里，备注详细信息，在这里，备注详细信息，在这里，备注详细信息，在这里，备注详细信息，在这里，"
+                android:hint="请填写"
                 android:textColor="#9b9b9b"
                 android:textSize="@dimen/y28" />
 
@@ -285,6 +293,7 @@
         android:layout_alignParentBottom="true">
 
         <Button
+            android:id="@+id/btn_save"
             android:layout_width="@dimen/x690"
             android:layout_height="@dimen/y80"
             android:layout_centerInParent="true"
@@ -292,5 +301,30 @@
             android:text="保存"
             android:textColor="@color/white" />
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y200"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_modify"
+            android:layout_width="@dimen/x330"
+            android:layout_height="@dimen/y80"
+            android:background="@drawable/selector_modify"
+            android:text="修改"
+            android:layout_marginRight="@dimen/x30"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="@dimen/x330"
+            android:layout_height="@dimen/y80"
+            android:background="@drawable/selector_delete"
+            android:text="删除"
+            android:textColor="@color/white" />
+    </LinearLayout>
 
 </RelativeLayout>

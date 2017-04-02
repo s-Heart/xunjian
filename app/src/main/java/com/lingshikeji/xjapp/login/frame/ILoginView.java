@@ -1,6 +1,6 @@
 package com.lingshikeji.xjapp.login.frame;
 
-import com.lingshikeji.xjapp.model.User;
+import com.lingshikeji.xjapp.model.UserEntity;
 import com.lingshikeji.xjapp.mvp.BaseView;
 
 /**
@@ -12,5 +12,5 @@ import com.lingshikeji.xjapp.mvp.BaseView;
  */
 
 public interface ILoginView extends BaseView {
-    void loginSuccess(User user);
+    void loginSuccess(UserEntity userEntity);
 }

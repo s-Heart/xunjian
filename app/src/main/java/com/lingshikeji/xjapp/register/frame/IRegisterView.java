@@ -1,6 +1,6 @@
 package com.lingshikeji.xjapp.register.frame;
 
-import com.lingshikeji.xjapp.model.User;
+import com.lingshikeji.xjapp.model.UserEntity;
 import com.lingshikeji.xjapp.mvp.BaseView;
 
 /**
@@ -12,5 +12,5 @@ import com.lingshikeji.xjapp.mvp.BaseView;
  */
 
 public interface IRegisterView extends BaseView {
-    void registerSuccess(User user);
+    void registerSuccess(UserEntity userEntity);
 }
