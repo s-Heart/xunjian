@@ -3,12 +3,15 @@ package com.lingshikeji.xjapp.util;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lingshikeji.xjapp.R;
+import com.lingshikeji.xjapp.util.materialdialog.IPromptDilaog;
+import com.lingshikeji.xjapp.util.materialdialog.PromptDialog;
 
 /**
  * Created by tony on 2017/3/26.
@@ -38,5 +41,64 @@ public class DialogUtil {
 
     public static Dialog createLoadingDialog(Context context) {
         return createLoadingDialog(context, "请稍候...");
+    }
+
+
+    public static PromptDialog.Builder createDialog(Context context,
+                                                    @Nullable final String title, String content, String txtOk, @Nullable String txtCancle,
+                                                    final IPromptDilaog callBack, boolean cancelable) {
+
+        PromptDialog.Builder dialog = new PromptDialog.Builder(context);
+        if (title == null) {
+            dialog.setTitle("提示");
+        } else {
+            dialog.setTitle(title);
+        }
+        dialog.setMessage(content);
+        dialog.setButton1(txtOk, new PromptDialog.OnClickListener() {
+
+            @Override
+            public void onClick(Dialog dialog, int which) {
+                if (!"视频文件失效".equals(title)) {
+                    dialog.dismiss();
+                }
+                callBack.onOK();
+            }
+        });
+        if (txtCancle != null) {
+            dialog.setButton2(txtCancle, new PromptDialog.OnClickListener() {
+
+                @Override
+                public void onClick(Dialog dialog, int which) {
+                    dialog.dismiss();
+                    callBack.onCancle();
+                }
+            });
+        }
+        dialog.setCancelable(cancelable);
+        return dialog;
+
+    }
+
+    /**
+     * 确认对话框
+     *
+     * @param context
+     * @param content
+     * @param txtOk
+     * @param txtCancle
+     * @param callBack
+     * @return
+     */
+    public static PromptDialog.Builder createDialog(Context context,
+                                                    String content, String txtOk, String txtCancle,
+                                                    IPromptDilaog callBack, boolean cancelable) {
+        return createDialog(context, null, content, txtOk, txtCancle, callBack, cancelable);
+    }
+
+    public static PromptDialog.Builder createDialog(Context context,
+                                                    String content, String txtOk,
+                                                    IPromptDilaog callBack, boolean cancelable) {
+        return createDialog(context, null, content, txtOk, null, callBack, cancelable);
     }
 }

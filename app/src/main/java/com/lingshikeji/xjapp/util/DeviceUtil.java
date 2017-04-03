@@ -30,4 +30,10 @@ public class DeviceUtil {
 
     }
 
+
+    public static int dip2px(Context mContext, float dipValue) {
+        float scale = mContext.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
+
 }

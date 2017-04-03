@@ -2,6 +2,7 @@ package com.lingshikeji.xjapp.net;
 
 import com.lingshikeji.xjapp.model.DeviceEntity;
 import com.lingshikeji.xjapp.model.InstrumentEntity;
+import com.lingshikeji.xjapp.model.StandardEntity;
 import com.lingshikeji.xjapp.model.UserEntity;
 
 import java.util.List;
@@ -30,6 +31,10 @@ public interface ApiService {
 
     @POST("auth/local/register")
     Observable<UserEntity> register(@Body Map<String, String> params);
+
+    /*依赖技术文件*********************************************************************/
+    @GET("standard")
+    Observable<List<StandardEntity>> standard();
 
 
     /*被测设备************************************************************************/
@@ -91,4 +96,6 @@ public interface ApiService {
 
     @DELETE("instrument/{id}")
     Observable<InstrumentEntity> deleteInstrument(@Path("id") int id);
+
+
 }

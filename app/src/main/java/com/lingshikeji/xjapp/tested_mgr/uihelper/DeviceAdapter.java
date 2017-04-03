@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.model.DeviceEntity;
 import com.lingshikeji.xjapp.tested_mgr.frame.ITestedMgrPresenter;
-import com.lingshikeji.xjapp.tested_mgr.view.TestedMgrActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,6 @@ public class DeviceAdapter extends BaseAdapter {
     private final Context context;
     private List<DeviceEntity> datas = new ArrayList<>();
     private ITestedMgrPresenter iTestedMgrPresenter;
-    private DeviceEntity selectedData;
 
     public DeviceAdapter(Context context) {
         this.context = context;
@@ -81,6 +79,9 @@ public class DeviceAdapter extends BaseAdapter {
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
                     select(position);
+                } else {
+                    getItem(position).setSelect(false);
+                    notifyDataSetChanged();
                 }
             }
         });
@@ -98,12 +99,10 @@ public class DeviceAdapter extends BaseAdapter {
         for (int i = 0; i < datas.size(); i++) {
             if (datas.get(i).isSelect()) {
                 datas.get(i).setSelect(false);
-                break;
             }
         }
         datas.get(position).setSelect(true);
         notifyDataSetChanged();
-        selectedData = datas.get(position);
     }
 
     public List<DeviceEntity> getDatas() {
@@ -111,7 +110,12 @@ public class DeviceAdapter extends BaseAdapter {
     }
 
     public DeviceEntity getSelectedData() {
-        return selectedData;
+        for (DeviceEntity data : datas) {
+            if (data.isSelect()) {
+                return data;
+            }
+        }
+        return null;
     }
 
     public void setPresenter(ITestedMgrPresenter iTestedMgrPresenter) {

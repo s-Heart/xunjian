@@ -22,7 +22,7 @@ import com.lingshikeji.xjapp.tested_mgr.frame.ITestedMgrPresenter;
 import com.lingshikeji.xjapp.tested_mgr.frame.ITestedMgrView;
 import com.lingshikeji.xjapp.tested_mgr.presenter.TestedMgrPresenterImpl;
 import com.lingshikeji.xjapp.tested_mgr.uihelper.DeviceAdapter;
-import com.lingshikeji.xjapp.view_add_test.view.AddTestDetailActivity;
+import com.lingshikeji.xjapp.view_add_test.view.AddTestActivity;
 
 import java.util.List;
 
@@ -59,7 +59,7 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
     private void getIntentFromOther() {
         Intent intent = getIntent();
         if (intent != null) {
-            boolean fromAddTestDetail = intent.getBooleanExtra("fromAddTestDetail", false);
+            boolean fromAddTestDetail = intent.getBooleanExtra("fromAddTest", false);
             if (fromAddTestDetail) {
                 btnAddToTest.setVisibility(View.VISIBLE);
             } else {
@@ -82,7 +82,7 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
                 }
                 Intent intent = new Intent();
                 intent.putExtra("deviceEntity", deviceAdapter.getSelectedData());
-                setResult(AddTestDetailActivity.CHOOSE_DEVICE_OK, intent);
+                setResult(AddTestActivity.CHOOSE_DEVICE_OK, intent);
                 finish();
             }
         });

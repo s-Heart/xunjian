@@ -24,7 +24,7 @@ import com.lingshikeji.xjapp.view_add_test.presenter.ViewAddTestPresenterImpl;
  * <br/>FIXME
  */
 
-public class ViewAddTestActivity extends BaseActivity implements IViewAddTestView {
+public class ViewTestActivity extends BaseActivity implements IViewAddTestView {
 
     public static final int CREATE_OK = 1;
     private IViewAddTestPresenter iViewAddTestPresenter;
@@ -57,7 +57,7 @@ public class ViewAddTestActivity extends BaseActivity implements IViewAddTestVie
         addTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewAddTestActivity.this, AddTestDetailActivity.class);
+                Intent intent = new Intent(ViewTestActivity.this, AddTestActivity.class);
 //                startActivityForResult(intent, CREATE_OK);
                 startActivity(intent);
             }

@@ -36,10 +36,10 @@
 
         <!--新建查看测试-->
         <activity
-            android:name=".view_add_test.view.ViewAddTestActivity"
+            android:name=".view_add_test.view.ViewTestActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view_add_test.view.AddTestDetailActivity"
+            android:name=".view_add_test.view.AddTestActivity"
             android:screenOrientation="portrait" />
 
 

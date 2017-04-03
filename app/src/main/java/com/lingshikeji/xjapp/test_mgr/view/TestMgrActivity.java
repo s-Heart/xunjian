@@ -14,16 +14,16 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
-import com.lingshikeji.xjapp.model.DeviceEntity;
 import com.lingshikeji.xjapp.model.InstrumentEntity;
 import com.lingshikeji.xjapp.test_mgr.frame.ITestMgrPresenter;
 import com.lingshikeji.xjapp.test_mgr.frame.ITestMgrView;
 import com.lingshikeji.xjapp.test_mgr.presenter.TestMgrPresenterImpl;
 import com.lingshikeji.xjapp.test_mgr.uihelper.InstrumentAdapter;
-import com.lingshikeji.xjapp.view_add_test.view.AddTestDetailActivity;
+import com.lingshikeji.xjapp.view_add_test.view.AddTestActivity;
 
 import java.util.List;
 
@@ -60,7 +60,7 @@ public class TestMgrActivity extends BaseActivity implements ITestMgrView {
     private void getIntentFromOther() {
         Intent intent = getIntent();
         if (intent != null) {
-            boolean fromAddTestDetail = intent.getBooleanExtra("fromAddTestDetail", false);
+            boolean fromAddTestDetail = intent.getBooleanExtra("fromAddTest", false);
             if (fromAddTestDetail) {
                 btnAddToTest.setVisibility(View.VISIBLE);
             } else {
@@ -83,7 +83,7 @@ public class TestMgrActivity extends BaseActivity implements ITestMgrView {
                 }
                 Intent intent = new Intent();
                 intent.putExtra("instrumentEntity", instrumentAdapter.getSelectedData());
-                setResult(AddTestDetailActivity.CHOOSE_INSTRUMENT_OK, intent);
+                setResult(AddTestActivity.CHOOSE_INSTRUMENT_OK, intent);
                 finish();
             }
         });
@@ -177,7 +177,7 @@ public class TestMgrActivity extends BaseActivity implements ITestMgrView {
 
     @Override
     public void toast(String str) {
-
+        Toast.makeText(this, str, Toast.LENGTH_LONG).show();
     }
 
     @Override

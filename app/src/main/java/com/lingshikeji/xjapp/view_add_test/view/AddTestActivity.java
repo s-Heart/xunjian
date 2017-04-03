@@ -10,24 +10,34 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
-import com.lingshikeji.xjapp.data_query.view.SearchActivity;
 import com.lingshikeji.xjapp.model.DeviceEntity;
 import com.lingshikeji.xjapp.model.InstrumentEntity;
+import com.lingshikeji.xjapp.model.StandardEntity;
+import com.lingshikeji.xjapp.net.NetManager;
 import com.lingshikeji.xjapp.test_mgr.view.TestMgrActivity;
 import com.lingshikeji.xjapp.tested_mgr.view.TestedMgrActivity;
+import com.lingshikeji.xjapp.util.DialogUtil;
+import com.lingshikeji.xjapp.util.materialdialog.IPromptDilaog;
+import com.lingshikeji.xjapp.util.materialdialog.PromptDialog;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
+
+import rx.Observable;
+import rx.Subscriber;
 
 /**
  * Created by tony on 2017/4/3.
  */
 
-public class AddTestDetailActivity extends BaseActivity {
+public class AddTestActivity extends BaseActivity {
     private static final int CHOOSE_TESTED = 1;
     private static final int CHOOSE_TEST = 2;
     public static final int CHOOSE_DEVICE_OK = 1;
@@ -50,6 +60,7 @@ public class AddTestDetailActivity extends BaseActivity {
     private TextView tvStandard;
     private DeviceEntity deviceEntity;
     private InstrumentEntity instrumentEntity;
+    private StandardEntity currentStandard;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,16 +106,16 @@ public class AddTestDetailActivity extends BaseActivity {
         rlTested.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddTestDetailActivity.this, TestedMgrActivity.class);
-                intent.putExtra("fromAddTestDetail", true);
+                Intent intent = new Intent(AddTestActivity.this, TestedMgrActivity.class);
+                intent.putExtra("fromAddTest", true);
                 startActivityForResult(intent, CHOOSE_TESTED);
             }
         });
         rlTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddTestDetailActivity.this, TestMgrActivity.class);
-                intent.putExtra("fromAddTestDetail", true);
+                Intent intent = new Intent(AddTestActivity.this, TestMgrActivity.class);
+                intent.putExtra("fromAddTest", true);
                 startActivityForResult(intent, CHOOSE_TEST);
             }
         });
@@ -135,7 +146,8 @@ public class AddTestDetailActivity extends BaseActivity {
                     }
                 };
                 //生成一个DatePickerDialog对象，并显示。显示的DatePickerDialog控件可以选择年月日，并设置
-                new DatePickerDialog(AddTestDetailActivity.this,
+                new DatePickerDialog(AddTestActivity.this,
+
                         onDateSetListener,
                         dateAndTime.get(Calendar.YEAR),
                         dateAndTime.get(Calendar.MONTH),
@@ -144,8 +156,73 @@ public class AddTestDetailActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 获取技术文件
+     */
     private void getStandardList() {
+        showLoadingDialog();
+        Observable<List<StandardEntity>> observable = NetManager.getInstance().getApiService().standard();
+        NetManager.getInstance().runRxJava(observable, new Subscriber<List<StandardEntity>>() {
+            @Override
+            public void onCompleted() {
 
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                hideLoadingDialog();
+                Toast.makeText(AddTestActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNext(List<StandardEntity> standardEntities) {
+                hideLoadingDialog();
+                showSelectDialog(standardEntities);
+            }
+        });
+    }
+
+    private void showSelectDialog(final List<StandardEntity> standardEntities) {
+        final List<String> chooseList = new ArrayList<>();
+        for (StandardEntity standardEntity : standardEntities) {
+            chooseList.add(standardEntity.getName());
+        }
+        final PromptDialog.Builder dialog = DialogUtil.createDialog(this, "选择依据技术文件",
+                "", "确定", "取消",
+                new IPromptDilaog() {
+
+                    @Override
+                    public void onOK() {
+                        if (currentStandard != null) {
+                            tvStandard.setText(currentStandard.getName());
+                        } else {
+                            Toast.makeText(AddTestActivity.this, "请选择依据技术文件", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancle() {
+                    }
+                }, true);
+        dialog.setOnListItemClickListener(new PromptDialog.OnListDialogItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                currentStandard = standardEntities.get(position);
+                if (dialog.getListViewAdapter() != null) {
+                    dialog.getListViewAdapter().setSelectPosition(position);
+                    dialog.getListViewAdapter().refreshAdapter();
+                }
+            }
+        });
+        dialog.setDialogType(PromptDialog.DialogType.LIST_DIALOG);
+        dialog.setListItemData(chooseList);
+        dialog.show();
+
+        if (dialog.getListViewAdapter() != null) {
+            currentStandard = standardEntities.get(0);
+            dialog.getListViewAdapter().setSelectPosition(0);
+            dialog.getListViewAdapter().refreshAdapter();
+        }
     }
 
 
