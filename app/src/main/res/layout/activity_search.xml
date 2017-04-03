@@ -28,6 +28,7 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
+                android:id="@+id/ed_consumer"
                 android:layout_width="@dimen/x400"
                 android:layout_height="@dimen/y60"
                 android:layout_alignParentRight="true"
@@ -60,6 +61,7 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
+                android:id="@+id/ed_instrument"
                 android:layout_width="@dimen/x400"
                 android:layout_height="@dimen/y60"
                 android:layout_alignParentRight="true"
@@ -92,6 +94,7 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
+                android:id="@+id/ed_model"
                 android:layout_width="@dimen/x400"
                 android:layout_height="@dimen/y60"
                 android:layout_alignParentRight="true"
@@ -124,6 +127,7 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
+                android:id="@+id/ed_serialnumber"
                 android:layout_width="@dimen/x400"
                 android:layout_height="@dimen/y60"
                 android:layout_alignParentRight="true"
@@ -156,12 +160,13 @@
                 android:textSize="@dimen/y28" />
 
             <TextView
+                android:id="@+id/tv_starttime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/x10"
                 android:layout_toLeftOf="@+id/iv_date_start"
-                android:text="2017-01-01" />
+                android:text="请选择" />
 
             <ImageView
                 android:id="@+id/iv_date_start"
@@ -194,12 +199,13 @@
                 android:textSize="@dimen/y28" />
 
             <TextView
+                android:id="@+id/tv_endtime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/x10"
                 android:layout_toLeftOf="@+id/iv_date_end"
-                android:text="2017-01-01" />
+                android:text="请选择" />
 
             <ImageView
                 android:id="@+id/iv_date_end"
@@ -232,6 +238,7 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
+                android:id="@+id/ed_tmp"
                 android:layout_width="@dimen/x400"
                 android:layout_height="@dimen/y60"
                 android:layout_alignParentRight="true"
@@ -264,6 +271,7 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
+                android:id="@+id/ed_humidity"
                 android:layout_width="@dimen/x400"
                 android:layout_height="@dimen/y60"
                 android:layout_alignParentRight="true"
@@ -290,6 +298,7 @@
         android:layout_alignParentBottom="true">
 
         <Button
+            android:id="@+id/btn_search"
             android:layout_width="@dimen/x690"
             android:layout_height="@dimen/y80"
             android:layout_centerInParent="true"
