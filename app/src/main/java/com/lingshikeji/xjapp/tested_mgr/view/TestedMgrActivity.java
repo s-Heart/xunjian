@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import com.lingshikeji.xjapp.tested_mgr.frame.ITestedMgrPresenter;
 import com.lingshikeji.xjapp.tested_mgr.frame.ITestedMgrView;
 import com.lingshikeji.xjapp.tested_mgr.presenter.TestedMgrPresenterImpl;
 import com.lingshikeji.xjapp.tested_mgr.uihelper.DeviceAdapter;
+import com.lingshikeji.xjapp.view_add_test.view.AddTestDetailActivity;
 
 import java.util.List;
 
@@ -43,6 +45,7 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
     private DeviceAdapter deviceAdapter;
     private RelativeLayout footer;
     private TextView tvFooter;
+    private Button btnAddToTest;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,11 +53,40 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
         initView();
         initPresenter();
         initData();
+        getIntentFromOther();
+    }
+
+    private void getIntentFromOther() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            boolean fromAddTestDetail = intent.getBooleanExtra("fromAddTestDetail", false);
+            if (fromAddTestDetail) {
+                btnAddToTest.setVisibility(View.VISIBLE);
+            } else {
+                btnAddToTest.setVisibility(View.GONE);
+            }
+        }
     }
 
     private void initView() {
         setContentView(R.layout.activity_tested_mgr);
         initToolbar();
+
+        btnAddToTest = (Button) findViewById(R.id.btn_add_to_test);
+        btnAddToTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (deviceAdapter.getSelectedData() == null) {
+                    toast("请选择被测设备");
+                    return;
+                }
+                Intent intent = new Intent();
+                intent.putExtra("deviceEntity", deviceAdapter.getSelectedData());
+                setResult(AddTestDetailActivity.CHOOSE_DEVICE_OK, intent);
+                finish();
+            }
+        });
+
 
         lvDevices = (ListView) findViewById(R.id.lv_tested_devices);
         deviceAdapter = new DeviceAdapter(this);

@@ -40,6 +40,7 @@ public class InstrumentEntity implements Serializable {
     private int id;
     private String createdAt;
     private String updatedAt;
+    private boolean isSelect;
 
     public String getName() {
         return name;
@@ -151,5 +152,13 @@ public class InstrumentEntity implements Serializable {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public boolean isSelect() {
+        return isSelect;
+    }
+
+    public void setSelect(boolean isSelect) {
+        this.isSelect = isSelect;
     }
 }

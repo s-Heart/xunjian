@@ -34,27 +34,35 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
+        <!--新建查看测试-->
         <activity
             android:name=".view_add_test.view.ViewAddTestActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".tested_mgr.view.TestedMgrActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".test_mgr.view.TestMgrActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".data_query.view.DataQueryActivity"
+            android:name=".view_add_test.view.AddTestDetailActivity"
             android:screenOrientation="portrait" />
 
+
+        <!--被测设备管理-->
+        <activity
+            android:name=".tested_mgr.view.TestedMgrActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".tested_mgr.view.TestedDetailActivity"
             android:screenOrientation="portrait" />
 
+        <!--测试设备处理-->
+        <activity
+            android:name=".test_mgr.view.TestMgrActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".test_mgr.view.TestDetailActivity"
             android:screenOrientation="portrait" />
 
+        <!--数据查询-->
+        <activity
+            android:name=".data_query.view.DataQueryActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".data_query.view.SearchActivity"
             android:screenOrientation="portrait" />

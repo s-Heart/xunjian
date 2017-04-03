@@ -2,8 +2,13 @@ package com.lingshikeji.xjapp.view_add_test.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
@@ -21,7 +26,9 @@ import com.lingshikeji.xjapp.view_add_test.presenter.ViewAddTestPresenterImpl;
 
 public class ViewAddTestActivity extends BaseActivity implements IViewAddTestView {
 
+    public static final int CREATE_OK = 1;
     private IViewAddTestPresenter iViewAddTestPresenter;
+    private TextView titleTextview;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +40,36 @@ public class ViewAddTestActivity extends BaseActivity implements IViewAddTestVie
 
     private void initView() {
         setContentView(R.layout.activity_view_add_test);
+        initToolbar();
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        titleTextview = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        titleTextview.setText("正在进行的测试");
+        titleTextview.setVisibility(View.VISIBLE);
+
+        TextView addTv = (TextView) toolbar.findViewById(R.id.toolbar_right_menu);
+        addTv.setText("新增");
+        addTv.setVisibility(View.VISIBLE);
+        addTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewAddTestActivity.this, AddTestDetailActivity.class);
+//                startActivityForResult(intent, CREATE_OK);
+                startActivity(intent);
+            }
+        });
+
+        toolbar.setNavigationIcon(R.drawable.ic_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void initData() {
@@ -57,7 +94,7 @@ public class ViewAddTestActivity extends BaseActivity implements IViewAddTestVie
 
     @Override
     public void toast(String str) {
-
+        Toast.makeText(this, str, Toast.LENGTH_LONG).show();
     }
 
     @Override

@@ -44,6 +44,7 @@ public class DeviceEntity implements Serializable {
     private int id;
     private String createdAt;
     private String updatedAt;
+    private boolean isSelect;
 
 
     public String getName() {
@@ -151,4 +152,11 @@ public class DeviceEntity implements Serializable {
     }
 
 
+    public boolean isSelect() {
+        return isSelect;
+    }
+
+    public void setSelect(boolean isSelect) {
+        this.isSelect = isSelect;
+    }
 }

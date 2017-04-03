@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ public class InstrumentAdapter extends BaseAdapter {
     private final Context context;
     private List<InstrumentEntity> datas = new ArrayList<>();
     private ITestMgrPresenter iTestMgrPresenter;
+    private InstrumentEntity selectedData;
 
     public InstrumentAdapter(Context context) {
         this.context = context;
@@ -73,7 +75,38 @@ public class InstrumentAdapter extends BaseAdapter {
             }
         });
 
+        viewHolder.chooseImg.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    select(position);
+                }
+            }
+        });
+
+        if (getItem(position).isSelect()) {
+            viewHolder.chooseImg.setChecked(true);
+        } else {
+            viewHolder.chooseImg.setChecked(false);
+        }
+
         return convertView;
+    }
+
+    private void select(int position) {
+        for (int i = 0; i < datas.size(); i++) {
+            if (datas.get(i).isSelect()) {
+                datas.get(i).setSelect(false);
+                break;
+            }
+        }
+        datas.get(position).setSelect(true);
+        notifyDataSetChanged();
+        selectedData = datas.get(position);
+    }
+
+    public InstrumentEntity getSelectedData() {
+        return selectedData;
     }
 
     public List<InstrumentEntity> getDatas() {
