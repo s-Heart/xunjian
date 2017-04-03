@@ -1,5 +1,6 @@
 package com.lingshikeji.xjapp.tested_mgr.view;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
@@ -176,7 +178,7 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
 
     @Override
     public void toast(String str) {
-
+        Toast.makeText(this, str, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -189,6 +191,7 @@ public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
         hideLoadingDialog();
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public void querySuccess(List<DeviceEntity> devices) {
         deviceAdapter.setDatas(devices);
