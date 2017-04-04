@@ -32,7 +32,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private RelativeLayout viewTestedMgr;
     private RelativeLayout viewTest;
     private RelativeLayout viewDataQuery;
-    private String email;
     private BroadcastReceiver tokenInvalidReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
