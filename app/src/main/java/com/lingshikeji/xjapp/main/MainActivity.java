@@ -14,10 +14,10 @@ import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
 import com.lingshikeji.xjapp.data_query.view.DataQueryActivity;
 import com.lingshikeji.xjapp.login.view.LoginActivity;
-import com.lingshikeji.xjapp.test_mgr.view.TestMgrActivity;
-import com.lingshikeji.xjapp.tested_mgr.view.TestedMgrActivity;
+import com.lingshikeji.xjapp.instrument_mgr.view.InstrumentMgrActivity;
+import com.lingshikeji.xjapp.device_mgr.view.DeviceMgrActivity;
 import com.lingshikeji.xjapp.util.Preferences;
-import com.lingshikeji.xjapp.view_add_test.view.ViewTestActivity;
+import com.lingshikeji.xjapp.view_add_test_plan.view.ViewTestPlanActivity;
 
 /**
  * Author: tony(110618445@qq.com)
@@ -123,15 +123,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_view_add_test:
-                Intent intent = new Intent(this, ViewTestActivity.class);
+                Intent intent = new Intent(this, ViewTestPlanActivity.class);
                 startActivity(intent);
                 break;
             case R.id.layout_tested_mgr:
-                intent = new Intent(this, TestedMgrActivity.class);
+                intent = new Intent(this, DeviceMgrActivity.class);
                 startActivity(intent);
                 break;
             case R.id.layout_test:
-                intent = new Intent(this, TestMgrActivity.class);
+                intent = new Intent(this, InstrumentMgrActivity.class);
                 startActivity(intent);
                 break;
             case R.id.layout_data_query:

@@ -36,27 +36,27 @@
 
         <!--新建查看测试-->
         <activity
-            android:name=".view_add_test.view.ViewTestActivity"
+            android:name=".view_add_test_plan.view.ViewTestPlanActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view_add_test.view.AddTestActivity"
+            android:name=".view_add_test_plan.view.AddTestPlanActivity"
             android:screenOrientation="portrait" />
 
 
         <!--被测设备管理-->
         <activity
-            android:name=".tested_mgr.view.TestedMgrActivity"
+            android:name=".device_mgr.view.DeviceMgrActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".tested_mgr.view.TestedDetailActivity"
+            android:name=".device_mgr.view.DeviceDetailActivity"
             android:screenOrientation="portrait" />
 
         <!--测试设备处理-->
         <activity
-            android:name=".test_mgr.view.TestMgrActivity"
+            android:name=".instrument_mgr.view.InstrumentMgrActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".test_mgr.view.TestDetailActivity"
+            android:name=".instrument_mgr.view.InstrumentDetailActivity"
             android:screenOrientation="portrait" />
 
         <!--数据查询-->
