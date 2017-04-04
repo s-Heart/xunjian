@@ -3,12 +3,11 @@ package com.lingshikeji.xjapp.view_add_test.frame;
 import com.lingshikeji.xjapp.mvp.BasePresenter;
 
 /**
- * <br/>Author: tony(shishaojie@koolearn.com)
- * <br/>Date: 2017/3/22 0022
- * <br/>Time: 13:41
- * <br/>Description:
- * <br/>FIXME
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:31
+ * Description:
  */
-
-public abstract class IViewAddTestPresenter extends BasePresenter<IViewAddTestView>{
+public abstract class IViewAddTestPresenter extends BasePresenter<IViewAddTestView> {
+    public abstract void queryTestPlan();
 }

@@ -20,10 +20,13 @@ import java.util.Map;
 import rx.Observable;
 import rx.Subscriber;
 
-/**
- * Created by tony on 2017/3/26.
- */
 
+/**
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:33
+ * Description:
+ */
 public class TestDetailActivity extends BaseActivity {
     private TextView titleTextview;
     private EditText edName;

@@ -18,10 +18,13 @@ import com.lingshikeji.xjapp.test_mgr.frame.ITestMgrPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by tony on 2017/4/2.
- */
 
+/**
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:34
+ * Description:
+ */
 public class InstrumentAdapter extends BaseAdapter {
     private final Context context;
     private List<InstrumentEntity> datas = new ArrayList<>();

@@ -25,11 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-* Author: tony(110618445@qq.com)
-* Date: 2017/4/3
-* Time: 下午11:14
-* Description:
-*/
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/3
+ * Time: 下午11:14
+ * Description:
+ */
 public class PromptDialog extends Dialog {
     private Context context;
 

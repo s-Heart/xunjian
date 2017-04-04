@@ -16,14 +16,13 @@ import com.lingshikeji.xjapp.view_add_test.frame.IViewAddTestPresenter;
 import com.lingshikeji.xjapp.view_add_test.frame.IViewAddTestView;
 import com.lingshikeji.xjapp.view_add_test.presenter.ViewAddTestPresenterImpl;
 
-/**
- * <br/>Author: tony(shishaojie@koolearn.com)
- * <br/>Date: 2017/3/22 0022
- * <br/>Time: 13:38
- * <br/>Description:
- * <br/>FIXME
- */
 
+/**
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:32
+ * Description:
+ */
 public class ViewTestActivity extends BaseActivity implements IViewAddTestView {
 
     public static final int CREATE_OK = 1;
@@ -42,7 +41,7 @@ public class ViewTestActivity extends BaseActivity implements IViewAddTestView {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == CREATE_OK) {
-            // TODO: 2017/4/4 获取数据刷新列表
+            iViewAddTestPresenter.queryTestPlan();
         }
     }
 
@@ -86,7 +85,7 @@ public class ViewTestActivity extends BaseActivity implements IViewAddTestView {
     private void initPresenter() {
         iViewAddTestPresenter = new ViewAddTestPresenterImpl();
         iViewAddTestPresenter.attachView(this);
-//        iViewAddTestPresenter.doSubmit();
+        iViewAddTestPresenter.queryTestPlan();
     }
 
     @Override

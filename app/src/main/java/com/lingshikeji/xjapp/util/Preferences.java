@@ -7,10 +7,13 @@ import android.content.SharedPreferences;
 import com.lingshikeji.xjapp.base.XJApp;
 import com.lingshikeji.xjapp.net.NetManager;
 
-/**
- * Created by tony on 2017/3/29.
- */
 
+/**
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:39
+ * Description:
+ */
 public class Preferences {
 
     private static final String PREFERENCE_XUNJIAN = "xunjian";

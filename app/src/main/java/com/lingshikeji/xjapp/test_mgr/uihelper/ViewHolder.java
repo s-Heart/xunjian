@@ -4,10 +4,13 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by tony on 2017/4/2.
- */
 
+/**
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:34
+ * Description:
+ */
 class ViewHolder {
     public TextView title;
     public CheckBox chooseImg;

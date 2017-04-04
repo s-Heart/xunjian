@@ -17,10 +17,13 @@ import com.lingshikeji.xjapp.tested_mgr.frame.ITestedMgrPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by tony on 2017/4/2.
- */
 
+/**
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:32
+ * Description:
+ */
 public class DeviceAdapter extends BaseAdapter {
     private final Context context;
     private List<DeviceEntity> datas = new ArrayList<>();

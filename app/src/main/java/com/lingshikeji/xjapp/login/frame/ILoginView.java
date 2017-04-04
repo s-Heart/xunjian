@@ -4,13 +4,11 @@ import com.lingshikeji.xjapp.model.UserEntity;
 import com.lingshikeji.xjapp.mvp.BaseView;
 
 /**
- * <br/>Author: tony(shishaojie@koolearn.com)
- * <br/>Date: 2017/3/22 0022
- * <br/>Time: 13:42
- * <br/>Description:
- * <br/>FIXME
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:37
+ * Description:
  */
-
 public interface ILoginView extends BaseView {
     void loginSuccess(UserEntity userEntity);
 }

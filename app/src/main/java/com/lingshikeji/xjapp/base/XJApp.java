@@ -2,10 +2,13 @@ package com.lingshikeji.xjapp.base;
 
 import android.app.Application;
 
-/**
- * Created by tony on 2017/3/29.
- */
 
+/**
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:38
+ * Description:
+ */
 public class XJApp extends Application {
 
     private static Application mAppContext;

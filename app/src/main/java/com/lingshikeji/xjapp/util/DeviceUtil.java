@@ -6,6 +6,10 @@ import android.view.WindowManager;
 
 
 /**
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:40
+ * Description:
  * 系统版本信息类
  */
 public class DeviceUtil {

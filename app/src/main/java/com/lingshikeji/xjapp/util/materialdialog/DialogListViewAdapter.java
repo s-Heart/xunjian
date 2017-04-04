@@ -15,7 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by songbinbin on 2016/5/25.
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:40
+ * Description:
  */
 public class DialogListViewAdapter extends BaseAdapter {
     private Context mContext;

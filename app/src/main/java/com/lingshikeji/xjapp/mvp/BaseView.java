@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 
 /**
- * view 通用操作接口
- * Created by songbinbin on 2015/12/11.
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:36
+ * Description:
  */
 public interface BaseView extends IView {
     /**

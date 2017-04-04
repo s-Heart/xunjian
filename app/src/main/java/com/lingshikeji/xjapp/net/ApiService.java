@@ -39,7 +39,7 @@ public interface ApiService {
      * 获取技术依赖文件
      */
     @GET("standard")
-    Observable<List<StandardEntity>> standard();
+    Observable<List<StandardEntity>> queryStandard();
 
     /**
      * 创建测试（开始采集）
@@ -47,7 +47,11 @@ public interface ApiService {
     @POST("testplan")
     Observable<TestPlanEntity> createTestPlan(@Body Map<String, String> params);
 
-
+    /**
+     * 查询测试
+     */
+    @GET("testplan")
+    Observable<List<Object>> queryTestPlan();
 
     /*被测设备************************************************************************/
 

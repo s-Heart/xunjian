@@ -2,10 +2,13 @@ package com.lingshikeji.xjapp.model;
 
 import java.io.Serializable;
 
-/**
- * Created by tony on 2017/3/28.
- */
 
+/**
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:36
+ * Description:
+ */
 public class UserEntity implements Serializable {
 
 

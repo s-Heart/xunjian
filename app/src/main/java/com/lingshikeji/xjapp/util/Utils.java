@@ -1,13 +1,11 @@
 package com.lingshikeji.xjapp.util;
 
 /**
- * <br/>Author: tony(shishaojie@koolearn.com)
- * <br/>Date: 2017/3/30 0030
- * <br/>Time: 13:17
- * <br/>Description:
- * <br/>FIXME
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:39
+ * Description:
  */
-
 public class Utils {
     public static boolean isLogin() {
         return !Preferences.getInstance().getToken().isEmpty();

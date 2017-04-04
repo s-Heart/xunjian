@@ -15,9 +15,11 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 /**
- * Created by tony on 2017/3/29.
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:39
+ * Description:
  */
-
 public class NetWorkUtils {
     /**
      * 网络类型 - 无连接

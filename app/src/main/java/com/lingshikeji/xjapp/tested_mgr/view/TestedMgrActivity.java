@@ -28,14 +28,13 @@ import com.lingshikeji.xjapp.view_add_test.view.AddTestActivity;
 
 import java.util.List;
 
-/**
- * <br/>Author: tony(shishaojie@koolearn.com)
- * <br/>Date: 2017/3/22 0022
- * <br/>Time: 13:38
- * <br/>Description:
- * <br/>FIXME
- */
 
+/**
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:32
+ * Description:
+ */
 public class TestedMgrActivity extends BaseActivity implements ITestedMgrView {
 
     protected static final int CREATE_OK = 1;

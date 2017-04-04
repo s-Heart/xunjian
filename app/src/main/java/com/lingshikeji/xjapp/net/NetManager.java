@@ -1,7 +1,5 @@
 package com.lingshikeji.xjapp.net;
 
-import android.content.Context;
-
 import com.lingshikeji.xjapp.BuildConfig;
 import com.lingshikeji.xjapp.base.XJApp;
 import com.lingshikeji.xjapp.util.NetWorkUtils;

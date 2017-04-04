@@ -38,9 +38,11 @@ import rx.Observable;
 import rx.Subscriber;
 
 /**
- * Created by tony on 2017/4/3.
+ * Author: tony(110618445@qq.com)
+ * Date: 2017/4/4
+ * Time: 下午3:32
+ * Description:
  */
-
 public class AddTestActivity extends BaseActivity {
     private static final int CHOOSE_TESTED = 1;
     private static final int CHOOSE_TEST = 2;
@@ -244,7 +246,7 @@ public class AddTestActivity extends BaseActivity {
         params.put("meanhumidity", "" + edTestHum.getText().toString());
         params.put("instrument", "" + instrumentEntity.getId());
         params.put("device", "" + deviceEntity.getId());
-        params.put("standard", "" + standardEntity.getId());
+        params.put("queryStandard", "" + standardEntity.getId());
         Observable<TestPlanEntity> observable = NetManager.getInstance().getApiService().createTestPlan(params);
         NetManager.getInstance().runRxJava(observable, new Subscriber<TestPlanEntity>() {
             @Override
@@ -277,7 +279,7 @@ public class AddTestActivity extends BaseActivity {
      */
     private void getStandardList() {
         showLoadingDialog();
-        Observable<List<StandardEntity>> observable = NetManager.getInstance().getApiService().standard();
+        Observable<List<StandardEntity>> observable = NetManager.getInstance().getApiService().queryStandard();
         NetManager.getInstance().runRxJava(observable, new Subscriber<List<StandardEntity>>() {
             @Override
             public void onCompleted() {
