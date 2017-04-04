@@ -69,9 +69,9 @@ public class DialogListViewAdapter extends BaseAdapter {
         }
         viewHolder.txt.setText(lists.get(position));
         if (position == selectPosition) {
-            viewHolder.img.setImageResource(R.drawable.icon_radio_on);
+            viewHolder.img.setImageResource(R.drawable.icon_dialog_radio_on);
         } else {
-            viewHolder.img.setImageResource(R.drawable.icon_radio_off);
+            viewHolder.img.setImageResource(R.drawable.icon_dialog_radio_off);
         }
 
         return view;

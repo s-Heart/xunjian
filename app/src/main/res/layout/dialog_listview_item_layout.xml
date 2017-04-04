@@ -23,7 +23,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/x40"
-        android:src="@drawable/icon_radio_off" />
+        android:src="@drawable/icon_dialog_radio_off" />
 
 
 </RelativeLayout>
