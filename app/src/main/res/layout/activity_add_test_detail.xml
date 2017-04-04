@@ -487,7 +487,7 @@
                 android:layout_height="@dimen/y200">
 
                 <Button
-                    android:id="@+id/btn_save"
+                    android:id="@+id/btn_test_plan"
                     android:layout_width="@dimen/x690"
                     android:layout_height="@dimen/y80"
                     android:layout_centerInParent="true"

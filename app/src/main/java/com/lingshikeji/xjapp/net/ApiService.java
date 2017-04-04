@@ -3,6 +3,7 @@ package com.lingshikeji.xjapp.net;
 import com.lingshikeji.xjapp.model.DeviceEntity;
 import com.lingshikeji.xjapp.model.InstrumentEntity;
 import com.lingshikeji.xjapp.model.StandardEntity;
+import com.lingshikeji.xjapp.model.TestPlanEntity;
 import com.lingshikeji.xjapp.model.UserEntity;
 
 import java.util.List;
@@ -32,9 +33,20 @@ public interface ApiService {
     @POST("auth/local/register")
     Observable<UserEntity> register(@Body Map<String, String> params);
 
-    /*依赖技术文件*********************************************************************/
+    /*查看新建测试*********************************************************************/
+
+    /**
+     * 获取技术依赖文件
+     */
     @GET("standard")
     Observable<List<StandardEntity>> standard();
+
+    /**
+     * 创建测试（开始采集）
+     */
+    @POST("testplan")
+    Observable<TestPlanEntity> createTestPlan(@Body Map<String, String> params);
+
 
 
     /*被测设备************************************************************************/

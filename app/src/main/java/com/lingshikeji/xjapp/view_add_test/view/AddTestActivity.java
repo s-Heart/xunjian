@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -17,6 +18,7 @@ import com.lingshikeji.xjapp.base.BaseActivity;
 import com.lingshikeji.xjapp.model.DeviceEntity;
 import com.lingshikeji.xjapp.model.InstrumentEntity;
 import com.lingshikeji.xjapp.model.StandardEntity;
+import com.lingshikeji.xjapp.model.TestPlanEntity;
 import com.lingshikeji.xjapp.net.NetManager;
 import com.lingshikeji.xjapp.test_mgr.view.TestMgrActivity;
 import com.lingshikeji.xjapp.tested_mgr.view.TestedMgrActivity;
@@ -27,8 +29,10 @@ import com.lingshikeji.xjapp.util.materialdialog.PromptDialog;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -58,9 +62,10 @@ public class AddTestActivity extends BaseActivity {
     private TextView tvTested;
     private TextView tvTest;
     private TextView tvStandard;
+    private Button btnTestPlan;
     private DeviceEntity deviceEntity;
     private InstrumentEntity instrumentEntity;
-    private StandardEntity currentStandard;
+    private StandardEntity standardEntity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -102,6 +107,7 @@ public class AddTestActivity extends BaseActivity {
         edHumSensorNum = (EditText) findViewById(R.id.ed_hum_sensor_number);
         edTestTemp = (EditText) findViewById(R.id.ed_test_temp);
         edTestHum = (EditText) findViewById(R.id.ed_test_hum);
+        btnTestPlan = (Button) findViewById(R.id.btn_test_plan);
 
         rlTested.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +131,6 @@ public class AddTestActivity extends BaseActivity {
                 getStandardList();
             }
         });
-
         tvStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -154,6 +159,117 @@ public class AddTestActivity extends BaseActivity {
                         dateAndTime.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+        btnTestPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!checkMsgAllow()) {
+                    return;
+                }
+                postTestPlan();
+            }
+        });
+
+    }
+
+    private boolean checkMsgAllow() {
+        if (deviceEntity == null) {
+            toast("请选择被测设备");
+            return false;
+        }
+        if (instrumentEntity == null) {
+            toast("请选择测试设备");
+            return false;
+        }
+        if (standardEntity == null) {
+            toast("请选择技术文件");
+            return false;
+        }
+        if (edTemp.getText().toString().isEmpty()) {
+            toast("请填写环境温度");
+            return false;
+        }
+        if (edHum.getText().toString().isEmpty()) {
+            toast("请填写环境湿度");
+            return false;
+        }
+        if (edCycle.getText().toString().isEmpty()) {
+            toast("请填写采样周期");
+            return false;
+        }
+        if (edNum.getText().toString().isEmpty()) {
+            toast("请填写采样数量");
+            return false;
+        }
+        if (edTempSensorNum.getText().toString().isEmpty()) {
+            toast("请填写温度传感器数");
+            return false;
+        }
+        if (edHumSensorNum.getText().toString().isEmpty()) {
+            toast("请填写湿度传感器数");
+            return false;
+        }
+        if (edTestTemp.getText().toString().isEmpty()) {
+            toast("请填写测试温度");
+            return false;
+        }
+        if (edTestHum.getText().toString().isEmpty()) {
+            toast("请填写测试湿度");
+            return false;
+        }
+
+        if (tvStartTime.getText().toString().equals("请选择")) {
+            Calendar calendar = Calendar.getInstance(Locale.CHINA);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            tvStartTime.setText(sdf.format(calendar.getTime()));
+            return true;
+        }
+
+        return true;
+    }
+
+    /**
+     * 创建测试计划（开始采集）
+     */
+    private void postTestPlan() {
+        showLoadingDialog();
+        Map<String, String> params = new HashMap<>();
+        params.put("sampleinterval", "" + edCycle.getText().toString());
+        params.put("samplequantity", "" + edNum.getText().toString());
+        params.put("starttime", "" + tvStartTime.getText().toString());
+        params.put("temperaturesensorcount", "" + edTempSensorNum.getText().toString());
+        params.put("humiditysensorcount", "" + edHumSensorNum.getText().toString());
+        params.put("temperatureExt", "" + edTemp.getText().toString());
+        params.put("humidityExt", "" + edHum.getText().toString());
+        params.put("meantemperature", "" + edTestTemp.getText().toString());
+        params.put("meanhumidity", "" + edTestHum.getText().toString());
+        params.put("instrument", "" + instrumentEntity.getId());
+        params.put("device", "" + deviceEntity.getId());
+        params.put("standard", "" + standardEntity.getId());
+        Observable<TestPlanEntity> observable = NetManager.getInstance().getApiService().createTestPlan(params);
+        NetManager.getInstance().runRxJava(observable, new Subscriber<TestPlanEntity>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                hideLoadingDialog();
+                toast(e.getMessage());
+            }
+
+            @Override
+            public void onNext(TestPlanEntity testPlanEntity) {
+                hideLoadingDialog();
+                toast("创建成功");
+                setResult(ViewTestActivity.CREATE_OK);
+                finish();
+            }
+        });
+    }
+
+    private void toast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -193,10 +309,10 @@ public class AddTestActivity extends BaseActivity {
 
                     @Override
                     public void onOK() {
-                        if (currentStandard != null) {
-                            tvStandard.setText(currentStandard.getName());
+                        if (standardEntity != null) {
+                            tvStandard.setText(standardEntity.getName());
                         } else {
-                            Toast.makeText(AddTestActivity.this, "请选择依据技术文件", Toast.LENGTH_SHORT).show();
+                            toast("请选择依据技术文件");
                         }
                     }
 
@@ -207,7 +323,7 @@ public class AddTestActivity extends BaseActivity {
         dialog.setOnListItemClickListener(new PromptDialog.OnListDialogItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                currentStandard = standardEntities.get(position);
+                standardEntity = standardEntities.get(position);
                 if (dialog.getListViewAdapter() != null) {
                     dialog.getListViewAdapter().setSelectPosition(position);
                     dialog.getListViewAdapter().refreshAdapter();
@@ -219,7 +335,7 @@ public class AddTestActivity extends BaseActivity {
         dialog.show();
 
         if (dialog.getListViewAdapter() != null) {
-            currentStandard = standardEntities.get(0);
+            standardEntity = standardEntities.get(0);
             dialog.getListViewAdapter().setSelectPosition(0);
             dialog.getListViewAdapter().refreshAdapter();
         }

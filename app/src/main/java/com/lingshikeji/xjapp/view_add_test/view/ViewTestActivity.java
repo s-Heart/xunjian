@@ -38,6 +38,14 @@ public class ViewTestActivity extends BaseActivity implements IViewAddTestView {
         initPresenter();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == CREATE_OK) {
+            // TODO: 2017/4/4 获取数据刷新列表
+        }
+    }
+
     private void initView() {
         setContentView(R.layout.activity_view_add_test);
         initToolbar();
@@ -58,8 +66,7 @@ public class ViewTestActivity extends BaseActivity implements IViewAddTestView {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ViewTestActivity.this, AddTestActivity.class);
-//                startActivityForResult(intent, CREATE_OK);
-                startActivity(intent);
+                startActivityForResult(intent, CREATE_OK);
             }
         });
 
