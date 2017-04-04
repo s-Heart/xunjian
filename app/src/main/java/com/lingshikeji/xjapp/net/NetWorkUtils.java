@@ -1,4 +1,4 @@
-package com.lingshikeji.xjapp.util;
+package com.lingshikeji.xjapp.net;
 
 import android.annotation.TargetApi;
 import android.content.Context;

@@ -19,7 +19,7 @@ import com.lingshikeji.xjapp.main.MainActivity;
 import com.lingshikeji.xjapp.model.UserEntity;
 import com.lingshikeji.xjapp.register.view.RegisterActivity;
 import com.lingshikeji.xjapp.util.Preferences;
-import com.lingshikeji.xjapp.util.Utils;
+import com.lingshikeji.xjapp.net.Utils;
 
 
 /**

@@ -1,8 +1,9 @@
 package com.lingshikeji.xjapp.net;
 
+import android.content.Intent;
+
 import com.lingshikeji.xjapp.BuildConfig;
 import com.lingshikeji.xjapp.base.XJApp;
-import com.lingshikeji.xjapp.util.NetWorkUtils;
 import com.lingshikeji.xjapp.util.Preferences;
 
 import org.json.JSONObject;
@@ -47,7 +48,7 @@ public class NetManager {
     }
 
     /**
-     * 时刷新retrofit的请求头,让之后请求全都带有token
+     * 刷新retrofit的请求头,让之后请求全都带有token
      */
     public void refreshRetrofit() {
         initHeaderMap();
@@ -94,11 +95,6 @@ public class NetManager {
                 .build();
     }
 
-    public Retrofit getRetrofit() {
-        return retrofit;
-    }
-
-
     public static NetManager getInstance() {
         if (instance == null) {
             synchronized (NetManager.class) {
@@ -125,7 +121,12 @@ public class NetManager {
                             return;
                         }
                         //token失效处理
-
+                        int errorCode = ((HttpException) throwable).response().code();
+                        if (errorCode == 403) {
+                            subscriberCallBack.onError(new Exception("token失效,请重新登录"));
+                            XJApp.getInstance().sendBroadcast(new Intent("token_invalid"));
+                            return;
+                        }
 
                         ResponseBody body = ((HttpException) throwable).response().errorBody();
                         try {

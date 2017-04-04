@@ -1,4 +1,6 @@
-package com.lingshikeji.xjapp.util;
+package com.lingshikeji.xjapp.net;
+
+import com.lingshikeji.xjapp.util.Preferences;
 
 /**
  * Author: tony(110618445@qq.com)

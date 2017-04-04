@@ -1,6 +1,9 @@
 package com.lingshikeji.xjapp.main;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -30,24 +33,43 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private RelativeLayout viewTest;
     private RelativeLayout viewDataQuery;
     private String email;
+    private BroadcastReceiver tokenInvalidReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals("token_invalid")) {
+                Intent intentNew = new Intent();
+                intentNew.setClass(context, MainActivity.class);
+                intentNew.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //注意本行的FLAG设置
+                startActivity(intentNew);
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initData();
         initView();
+        registerBroadcast();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (tokenInvalidReceiver != null) {
+            unregisterReceiver(tokenInvalidReceiver);
+        }
+    }
+
+    private void registerBroadcast() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("token_invalid");
+        registerReceiver(tokenInvalidReceiver, filter);
     }
 
     @Override
     protected void onNewIntent(Intent intentFlag) {
         super.onNewIntent(intentFlag);
-        // TODO: 2017/3/31 0031 其他页面token失效时在<<对应页面>>调用下面注释方法
-//        Intent intent = new Intent();
-//        intent.setClass(XXX.this, MainActivity.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //注意本行的FLAG设置
-//        startActivity(intent);
-//        finish();
-
         //退出
         if ((Intent.FLAG_ACTIVITY_CLEAR_TOP & intentFlag.getFlags()) != 0) {
             jumpLoginActivity();
