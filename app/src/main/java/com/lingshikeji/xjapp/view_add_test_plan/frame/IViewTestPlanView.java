@@ -1,6 +1,9 @@
 package com.lingshikeji.xjapp.view_add_test_plan.frame;
 
+import com.lingshikeji.xjapp.model.TestPlanEntity;
 import com.lingshikeji.xjapp.mvp.BaseView;
+
+import java.util.List;
 
 
 /**
@@ -10,4 +13,5 @@ import com.lingshikeji.xjapp.mvp.BaseView;
  * Description:
  */
 public interface IViewTestPlanView extends BaseView {
+    void querySuccess(List<TestPlanEntity> testPlanEntities);
 }

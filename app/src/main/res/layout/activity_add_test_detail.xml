@@ -332,7 +332,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/x20"
-                    android:background="@drawable/icon_date" />
+                    android:background="@drawable/icon_date_grey" />
 
                 <ImageView
                     android:layout_width="@dimen/x724"

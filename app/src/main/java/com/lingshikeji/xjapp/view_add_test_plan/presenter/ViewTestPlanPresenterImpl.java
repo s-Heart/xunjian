@@ -1,10 +1,13 @@
 package com.lingshikeji.xjapp.view_add_test_plan.presenter;
 
+import com.lingshikeji.xjapp.model.TestPlanEntity;
 import com.lingshikeji.xjapp.net.NetManager;
 import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanPresenter;
 import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -16,7 +19,7 @@ import rx.Subscriber;
  * Time: 下午3:31
  * Description:
  */
-public class ViewTestPlanPlanPresenterImpl extends IViewTestPlanPresenter {
+public class ViewTestPlanPresenterImpl extends IViewTestPlanPresenter {
 
     @Override
     public void attachView(IViewTestPlanView iView) {
@@ -31,8 +34,11 @@ public class ViewTestPlanPlanPresenterImpl extends IViewTestPlanPresenter {
     @Override
     public void queryTestPlan() {
         getiView().showProgress();
-        Observable<List<Object>> observable = NetManager.getInstance().getApiService().queryTestPlan();
-        NetManager.getInstance().runRxJava(observable, new Subscriber<List<Object>>() {
+        Map<String, String> params = new HashMap<>();
+        params.put("sort", "createdAt DESC");
+        params.put("populate", "device,instrument");
+        Observable<List<TestPlanEntity>> observable = NetManager.getInstance().getApiService().queryTestPlan(params);
+        NetManager.getInstance().runRxJava(observable, new Subscriber<List<TestPlanEntity>>() {
             @Override
             public void onCompleted() {
 
@@ -45,9 +51,9 @@ public class ViewTestPlanPlanPresenterImpl extends IViewTestPlanPresenter {
             }
 
             @Override
-            public void onNext(List<Object> objects) {
+            public void onNext(List<TestPlanEntity> testPlanEntities) {
                 getiView().hideProgress();
-                getiView().toast("查询成功");
+                getiView().querySuccess(testPlanEntities);
             }
         });
     }

@@ -7,8 +7,10 @@
     <include layout="@layout/toolbar" />
 
     <ExpandableListView
+        android:id="@+id/lv_test_plan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
-        android:gravity="center" />
+        android:gravity="center"
+        android:groupIndicator="@null" />
 </RelativeLayout>

@@ -7,14 +7,19 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
+import com.lingshikeji.xjapp.model.TestPlanEntity;
 import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanPresenter;
 import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanView;
-import com.lingshikeji.xjapp.view_add_test_plan.presenter.ViewTestPlanPlanPresenterImpl;
+import com.lingshikeji.xjapp.view_add_test_plan.presenter.ViewTestPlanPresenterImpl;
+import com.lingshikeji.xjapp.view_add_test_plan.uiHelper.ExpandLvAdapter;
+
+import java.util.List;
 
 
 /**
@@ -28,6 +33,8 @@ public class ViewTestPlanActivity extends BaseActivity implements IViewTestPlanV
     public static final int CREATE_OK = 1;
     private IViewTestPlanPresenter iViewTestPlanPresenter;
     private TextView titleTextview;
+    private ExpandableListView expandLvTestPlan;
+    private ExpandLvAdapter expandLvAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +55,11 @@ public class ViewTestPlanActivity extends BaseActivity implements IViewTestPlanV
     private void initView() {
         setContentView(R.layout.activity_view_add_test);
         initToolbar();
+
+        expandLvTestPlan = (ExpandableListView) findViewById(R.id.lv_test_plan);
+        expandLvAdapter = new ExpandLvAdapter(this);
+        expandLvTestPlan.setAdapter(expandLvAdapter);
+
     }
 
     private void initToolbar() {
@@ -79,11 +91,17 @@ public class ViewTestPlanActivity extends BaseActivity implements IViewTestPlanV
     }
 
     private void initData() {
-
+        expandLvTestPlan.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition,
+                                        long id) {
+                return true;
+            }
+        });
     }
 
     private void initPresenter() {
-        iViewTestPlanPresenter = new ViewTestPlanPlanPresenterImpl();
+        iViewTestPlanPresenter = new ViewTestPlanPresenterImpl();
         iViewTestPlanPresenter.attachView(this);
         iViewTestPlanPresenter.queryTestPlan();
     }
@@ -111,5 +129,13 @@ public class ViewTestPlanActivity extends BaseActivity implements IViewTestPlanV
     @Override
     public void hideProgress() {
         hideLoadingDialog();
+    }
+
+    @Override
+    public void querySuccess(List<TestPlanEntity> testPlanEntities) {
+        expandLvAdapter.setDatas(testPlanEntities);
+        for (int i = 0; i < testPlanEntities.size(); i++) {
+            expandLvTestPlan.expandGroup(i);
+        }
     }
 }

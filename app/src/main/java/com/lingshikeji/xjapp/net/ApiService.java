@@ -48,10 +48,10 @@ public interface ApiService {
     Observable<TestPlanEntity> createTestPlan(@Body Map<String, String> params);
 
     /**
-     * 查询测试
+     * 查询测试list
      */
-    @GET("testplan")
-    Observable<List<Object>> queryTestPlan();
+    @GET("listtestplangroup")
+    Observable<List<TestPlanEntity>> queryTestPlan(@QueryMap Map<String, String> params);
 
     /*被测设备************************************************************************/
 

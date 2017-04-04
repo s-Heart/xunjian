@@ -57,10 +57,10 @@ public class InstrumentAdapter extends BaseAdapter {
         ViewHolder viewHolder;
         if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.listitem_device, null);
-            viewHolder.title = (TextView) convertView.findViewById(R.id.item_device_title);
-            viewHolder.chooseImg = (CheckBox) convertView.findViewById(R.id.item_device_choose_img);
-            viewHolder.checkImg = (ImageView) convertView.findViewById(R.id.item_device_check_img);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_device_instrument, null);
+            viewHolder.title = (TextView) convertView.findViewById(R.id.item_device_instrument_title);
+            viewHolder.chooseImg = (CheckBox) convertView.findViewById(R.id.item_device_instrument_choose_img);
+            viewHolder.checkImg = (ImageView) convertView.findViewById(R.id.item_device_instrument_check_img);
             viewHolder.divider = (ImageView) convertView.findViewById(R.id.item_divider_line);
             convertView.setTag(viewHolder);
         } else {

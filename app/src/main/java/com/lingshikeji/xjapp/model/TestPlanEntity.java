@@ -12,179 +12,22 @@ import java.util.List;
  */
 public class TestPlanEntity implements Serializable {
 
+
     /**
-     * contributors : [{"username":"admin","email":"admin@admin.com","lang":"zh_CN","template":"default","id_ref":"1","provider":"local","id":1,"createdAt":"2017-03-27T15:09:12.000Z","updatedAt":"2017-03-27T15:09:12.000Z"}]
-     * testdatas : []
-     * createdBy : {"username":"admin","email":"admin@admin.com","lang":"zh_CN","template":"default","id_ref":"1","provider":"local","id":1,"createdAt":"2017-03-27T15:09:12.000Z","updatedAt":"2017-03-27T15:09:12.000Z"}
-     * updatedBy : {"username":"admin","email":"admin@admin.com","lang":"zh_CN","template":"default","id_ref":"1","provider":"local","id":1,"createdAt":"2017-03-27T15:09:12.000Z","updatedAt":"2017-03-27T15:09:12.000Z"}
-     * instrument : {"name":"突突突","model":"看看","serialnumber":"啦啦啦啦","certnumber":"来来来","techInfo":"啦啦啦啦","validdate":"2045-12-31T16:00:00.000Z","manufacture":"哈哈","remark":"哈哈哈","lang":"zh_CN","template":"default","id_ref":null,"id":3,"createdAt":"2017-04-02T13:57:05.000Z","updatedAt":"2017-04-02T13:57:05.000Z","createdBy":1,"updatedBy":1,"owner":null}
-     * device : {"name":"ฅ(♡ơ \u2083ơ)ฅ超级666","contact":"shishaojie","address":"haidian","model":"666","serialnumber":"666","manufacture":"666厂商","remark":"就是溜","lang":"zh_CN","template":"default","id_ref":null,"id":13,"createdAt":"2017-04-02T12:30:18.000Z","updatedAt":"2017-04-02T12:30:18.000Z","createdBy":1,"updatedBy":1}
-     * standard : {"name":"模拟测试标准","standardcode":"SIMSTANDAR1","description":"模拟测试依据技术条件","lang":"zh_CN","template":"default","id_ref":null,"id":1,"createdAt":"2017-04-02T03:38:32.000Z","updatedAt":"2017-04-02T03:39:27.000Z","createdBy":1,"updatedBy":1}
-     * sampleinterval : 5
-     * samplequantity : 1
-     * starttime : 2017-04-05T00:00:00.000Z
-     * temperaturesensorcount : 1
-     * humiditysensorcount : 1
-     * temperatureExt : 2
-     * humidityExt : 22
-     * meantemperature : 1
-     * meanhumidity : 1
-     * lang : zh_CN
-     * template : default
-     * id_ref : null
-     * id : 3
-     * createdAt : 2017-04-04T06:39:11.000Z
-     * updatedAt : 2017-04-04T06:39:11.000Z
+     * createdAt : 2017-4-2
+     * Ids : [1]
+     * startTime : ["2017-04-01T16:00:00.000Z"]
+     * devices : [{"name":"模拟测试设备1","contact":"模拟联系人1","address":"北京市海淀区上庄路135号","model":"SIM-TEST1","serialnumber":"55648812347789215","manufacture":"模拟制造商1","remark":"备注信息1","lang":"zh_CN","template":"default","id_ref":null,"id":2,"createdAt":"2017-04-02T03:00:36.000Z","updatedAt":"2017-04-02T12:14:08.000Z","createdBy":1,"updatedBy":1}]
+     * instruments : [{"name":"测试测试设备","model":"SIM-INSTRUMENT","serialnumber":"51657921165874","certnumber":"55277","techInfo":"测试技术信息","validdate":"2018-05-14T16:00:00.000Z","manufacture":"测试研究所","remark":"测试备注","lang":"zh_CN","template":"default","id_ref":null,"id":1,"createdAt":"2017-04-02T03:24:25.000Z","updatedAt":"2017-04-02T03:26:21.000Z","createdBy":1,"updatedBy":1,"owner":1}]
+     * status : ["notstart"]
      */
 
-    private InstrumentBean instrument;
-    private DeviceBean device;
-    private StandardBean standard;
-    private int sampleinterval;
-    private String samplequantity;
-    private String starttime;
-    private String temperaturesensorcount;
-    private String humiditysensorcount;
-    private String temperatureExt;
-    private String humidityExt;
-    private String meantemperature;
-    private String meanhumidity;
-    private String lang;
-    private String template;
-    private Object id_ref;
-    private int id;
     private String createdAt;
-    private String updatedAt;
-    private List<?> testdatas;
-
-
-    public InstrumentBean getInstrument() {
-        return instrument;
-    }
-
-    public void setInstrument(InstrumentBean instrument) {
-        this.instrument = instrument;
-    }
-
-    public DeviceBean getDevice() {
-        return device;
-    }
-
-    public void setDevice(DeviceBean device) {
-        this.device = device;
-    }
-
-    public StandardBean getStandard() {
-        return standard;
-    }
-
-    public void setStandard(StandardBean standard) {
-        this.standard = standard;
-    }
-
-    public int getSampleinterval() {
-        return sampleinterval;
-    }
-
-    public void setSampleinterval(int sampleinterval) {
-        this.sampleinterval = sampleinterval;
-    }
-
-    public String getSamplequantity() {
-        return samplequantity;
-    }
-
-    public void setSamplequantity(String samplequantity) {
-        this.samplequantity = samplequantity;
-    }
-
-    public String getStarttime() {
-        return starttime;
-    }
-
-    public void setStarttime(String starttime) {
-        this.starttime = starttime;
-    }
-
-    public String getTemperaturesensorcount() {
-        return temperaturesensorcount;
-    }
-
-    public void setTemperaturesensorcount(String temperaturesensorcount) {
-        this.temperaturesensorcount = temperaturesensorcount;
-    }
-
-    public String getHumiditysensorcount() {
-        return humiditysensorcount;
-    }
-
-    public void setHumiditysensorcount(String humiditysensorcount) {
-        this.humiditysensorcount = humiditysensorcount;
-    }
-
-    public String getTemperatureExt() {
-        return temperatureExt;
-    }
-
-    public void setTemperatureExt(String temperatureExt) {
-        this.temperatureExt = temperatureExt;
-    }
-
-    public String getHumidityExt() {
-        return humidityExt;
-    }
-
-    public void setHumidityExt(String humidityExt) {
-        this.humidityExt = humidityExt;
-    }
-
-    public String getMeantemperature() {
-        return meantemperature;
-    }
-
-    public void setMeantemperature(String meantemperature) {
-        this.meantemperature = meantemperature;
-    }
-
-    public String getMeanhumidity() {
-        return meanhumidity;
-    }
-
-    public void setMeanhumidity(String meanhumidity) {
-        this.meanhumidity = meanhumidity;
-    }
-
-    public String getLang() {
-        return lang;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
-
-    public String getTemplate() {
-        return template;
-    }
-
-    public void setTemplate(String template) {
-        this.template = template;
-    }
-
-    public Object getId_ref() {
-        return id_ref;
-    }
-
-    public void setId_ref(Object id_ref) {
-        this.id_ref = id_ref;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private List<Integer> Ids;
+    private List<String> startTime;
+    private List<Device> devices;
+    private List<Instrument> instruments;
+    private List<String> status;
 
     public String getCreatedAt() {
         return createdAt;
@@ -194,215 +37,61 @@ public class TestPlanEntity implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public String getUpdatedAt() {
-        return updatedAt;
+    public List<Integer> getIds() {
+        return Ids;
     }
 
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setIds(List<Integer> Ids) {
+        this.Ids = Ids;
     }
 
-
-    public List<?> getTestdatas() {
-        return testdatas;
+    public List<String> getStartTime() {
+        return startTime;
     }
 
-    public void setTestdatas(List<?> testdatas) {
-        this.testdatas = testdatas;
+    public void setStartTime(List<String> startTime) {
+        this.startTime = startTime;
     }
 
+    public List<Device> getDevices() {
+        return devices;
+    }
 
-    public static class InstrumentBean {
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
+    }
+
+    public List<Instrument> getInstruments() {
+        return instruments;
+    }
+
+    public void setInstruments(List<Instrument> instruments) {
+        this.instruments = instruments;
+    }
+
+    public List<String> getStatus() {
+        return status;
+    }
+
+    public void setStatus(List<String> status) {
+        this.status = status;
+    }
+
+    public static class Device implements Serializable {
         /**
-         * name : 突突突
-         * model : 看看
-         * serialnumber : 啦啦啦啦
-         * certnumber : 来来来
-         * techInfo : 啦啦啦啦
-         * validdate : 2045-12-31T16:00:00.000Z
-         * manufacture : 哈哈
-         * remark : 哈哈哈
+         * name : 模拟测试设备1
+         * contact : 模拟联系人1
+         * address : 北京市海淀区上庄路135号
+         * model : SIM-TEST1
+         * serialnumber : 55648812347789215
+         * manufacture : 模拟制造商1
+         * remark : 备注信息1
          * lang : zh_CN
          * template : default
          * id_ref : null
-         * id : 3
-         * createdAt : 2017-04-02T13:57:05.000Z
-         * updatedAt : 2017-04-02T13:57:05.000Z
-         * createdBy : 1
-         * updatedBy : 1
-         * owner : null
-         */
-
-        private String name;
-        private String model;
-        private String serialnumber;
-        private String certnumber;
-        private String techInfo;
-        private String validdate;
-        private String manufacture;
-        private String remark;
-        private String lang;
-        private String template;
-        private Object id_ref;
-        private int id;
-        private String createdAt;
-        private String updatedAt;
-        private int createdBy;
-        private int updatedBy;
-        private Object owner;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getModel() {
-            return model;
-        }
-
-        public void setModel(String model) {
-            this.model = model;
-        }
-
-        public String getSerialnumber() {
-            return serialnumber;
-        }
-
-        public void setSerialnumber(String serialnumber) {
-            this.serialnumber = serialnumber;
-        }
-
-        public String getCertnumber() {
-            return certnumber;
-        }
-
-        public void setCertnumber(String certnumber) {
-            this.certnumber = certnumber;
-        }
-
-        public String getTechInfo() {
-            return techInfo;
-        }
-
-        public void setTechInfo(String techInfo) {
-            this.techInfo = techInfo;
-        }
-
-        public String getValiddate() {
-            return validdate;
-        }
-
-        public void setValiddate(String validdate) {
-            this.validdate = validdate;
-        }
-
-        public String getManufacture() {
-            return manufacture;
-        }
-
-        public void setManufacture(String manufacture) {
-            this.manufacture = manufacture;
-        }
-
-        public String getRemark() {
-            return remark;
-        }
-
-        public void setRemark(String remark) {
-            this.remark = remark;
-        }
-
-        public String getLang() {
-            return lang;
-        }
-
-        public void setLang(String lang) {
-            this.lang = lang;
-        }
-
-        public String getTemplate() {
-            return template;
-        }
-
-        public void setTemplate(String template) {
-            this.template = template;
-        }
-
-        public Object getId_ref() {
-            return id_ref;
-        }
-
-        public void setId_ref(Object id_ref) {
-            this.id_ref = id_ref;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getCreatedAt() {
-            return createdAt;
-        }
-
-        public void setCreatedAt(String createdAt) {
-            this.createdAt = createdAt;
-        }
-
-        public String getUpdatedAt() {
-            return updatedAt;
-        }
-
-        public void setUpdatedAt(String updatedAt) {
-            this.updatedAt = updatedAt;
-        }
-
-        public int getCreatedBy() {
-            return createdBy;
-        }
-
-        public void setCreatedBy(int createdBy) {
-            this.createdBy = createdBy;
-        }
-
-        public int getUpdatedBy() {
-            return updatedBy;
-        }
-
-        public void setUpdatedBy(int updatedBy) {
-            this.updatedBy = updatedBy;
-        }
-
-        public Object getOwner() {
-            return owner;
-        }
-
-        public void setOwner(Object owner) {
-            this.owner = owner;
-        }
-    }
-
-    public static class DeviceBean {
-        /**
-         * name : ฅ(♡ơ ₃ơ)ฅ超级666
-         * contact : shishaojie
-         * address : haidian
-         * model : 666
-         * serialnumber : 666
-         * manufacture : 666厂商
-         * remark : 就是溜
-         * lang : zh_CN
-         * template : default
-         * id_ref : null
-         * id : 13
-         * createdAt : 2017-04-02T12:30:18.000Z
-         * updatedAt : 2017-04-02T12:30:18.000Z
+         * id : 2
+         * createdAt : 2017-04-02T03:00:36.000Z
+         * updatedAt : 2017-04-02T12:14:08.000Z
          * createdBy : 1
          * updatedBy : 1
          */
@@ -544,24 +233,35 @@ public class TestPlanEntity implements Serializable {
         }
     }
 
-    public static class StandardBean {
+    public static class Instrument implements Serializable {
         /**
-         * name : 模拟测试标准
-         * standardcode : SIMSTANDAR1
-         * description : 模拟测试依据技术条件
+         * name : 测试测试设备
+         * model : SIM-INSTRUMENT
+         * serialnumber : 51657921165874
+         * certnumber : 55277
+         * techInfo : 测试技术信息
+         * validdate : 2018-05-14T16:00:00.000Z
+         * manufacture : 测试研究所
+         * remark : 测试备注
          * lang : zh_CN
          * template : default
          * id_ref : null
          * id : 1
-         * createdAt : 2017-04-02T03:38:32.000Z
-         * updatedAt : 2017-04-02T03:39:27.000Z
+         * createdAt : 2017-04-02T03:24:25.000Z
+         * updatedAt : 2017-04-02T03:26:21.000Z
          * createdBy : 1
          * updatedBy : 1
+         * owner : 1
          */
 
         private String name;
-        private String standardcode;
-        private String description;
+        private String model;
+        private String serialnumber;
+        private String certnumber;
+        private String techInfo;
+        private String validdate;
+        private String manufacture;
+        private String remark;
         private String lang;
         private String template;
         private Object id_ref;
@@ -570,6 +270,7 @@ public class TestPlanEntity implements Serializable {
         private String updatedAt;
         private int createdBy;
         private int updatedBy;
+        private int owner;
 
         public String getName() {
             return name;
@@ -579,20 +280,60 @@ public class TestPlanEntity implements Serializable {
             this.name = name;
         }
 
-        public String getStandardcode() {
-            return standardcode;
+        public String getModel() {
+            return model;
         }
 
-        public void setStandardcode(String standardcode) {
-            this.standardcode = standardcode;
+        public void setModel(String model) {
+            this.model = model;
         }
 
-        public String getDescription() {
-            return description;
+        public String getSerialnumber() {
+            return serialnumber;
         }
 
-        public void setDescription(String description) {
-            this.description = description;
+        public void setSerialnumber(String serialnumber) {
+            this.serialnumber = serialnumber;
+        }
+
+        public String getCertnumber() {
+            return certnumber;
+        }
+
+        public void setCertnumber(String certnumber) {
+            this.certnumber = certnumber;
+        }
+
+        public String getTechInfo() {
+            return techInfo;
+        }
+
+        public void setTechInfo(String techInfo) {
+            this.techInfo = techInfo;
+        }
+
+        public String getValiddate() {
+            return validdate;
+        }
+
+        public void setValiddate(String validdate) {
+            this.validdate = validdate;
+        }
+
+        public String getManufacture() {
+            return manufacture;
+        }
+
+        public void setManufacture(String manufacture) {
+            this.manufacture = manufacture;
+        }
+
+        public String getRemark() {
+            return remark;
+        }
+
+        public void setRemark(String remark) {
+            this.remark = remark;
         }
 
         public String getLang() {
@@ -658,6 +399,13 @@ public class TestPlanEntity implements Serializable {
         public void setUpdatedBy(int updatedBy) {
             this.updatedBy = updatedBy;
         }
-    }
 
+        public int getOwner() {
+            return owner;
+        }
+
+        public void setOwner(int owner) {
+            this.owner = owner;
+        }
+    }
 }
