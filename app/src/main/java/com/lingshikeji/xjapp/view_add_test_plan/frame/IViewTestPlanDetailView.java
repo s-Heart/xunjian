@@ -1,9 +1,7 @@
 package com.lingshikeji.xjapp.view_add_test_plan.frame;
 
-import com.lingshikeji.xjapp.model.TestPlanGroup;
+import com.lingshikeji.xjapp.model.TestPlanDetailEntity;
 import com.lingshikeji.xjapp.mvp.BaseView;
-
-import java.util.List;
 
 
 /**
@@ -12,6 +10,6 @@ import java.util.List;
  * Time: 下午3:31
  * Description:
  */
-public interface IViewTestPlanView extends BaseView {
-    void querySuccess(List<TestPlanGroup> testPlanEntities);
+public interface IViewTestPlanDetailView extends BaseView {
+    void queryDetailSuccess(TestPlanDetailEntity testPlanDetailEntity);
 }

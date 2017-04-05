@@ -18,7 +18,7 @@ import com.lingshikeji.xjapp.base.BaseActivity;
 import com.lingshikeji.xjapp.model.DeviceEntity;
 import com.lingshikeji.xjapp.model.InstrumentEntity;
 import com.lingshikeji.xjapp.model.StandardEntity;
-import com.lingshikeji.xjapp.model.TestPlanEntity;
+import com.lingshikeji.xjapp.model.TestPlanGroup;
 import com.lingshikeji.xjapp.net.NetManager;
 import com.lingshikeji.xjapp.instrument_mgr.view.InstrumentMgrActivity;
 import com.lingshikeji.xjapp.device_mgr.view.DeviceMgrActivity;
@@ -105,6 +105,7 @@ public class AddTestPlanActivity extends BaseActivity {
         edCycle = (EditText) findViewById(R.id.ed_cycle);
         edNum = (EditText) findViewById(R.id.ed_num);
         tvStartTime = (TextView) findViewById(R.id.tv_starttime);
+
         edTempSensorNum = (EditText) findViewById(R.id.ed_temp_sensor_number);
         edHumSensorNum = (EditText) findViewById(R.id.ed_hum_sensor_number);
         edTestTemp = (EditText) findViewById(R.id.ed_test_temp);
@@ -247,8 +248,8 @@ public class AddTestPlanActivity extends BaseActivity {
         params.put("instrument", "" + instrumentEntity.getId());
         params.put("device", "" + deviceEntity.getId());
         params.put("queryStandard", "" + standardEntity.getId());
-        Observable<TestPlanEntity> observable = NetManager.getInstance().getApiService().createTestPlan(params);
-        NetManager.getInstance().runRxJava(observable, new Subscriber<TestPlanEntity>() {
+        Observable<TestPlanGroup> observable = NetManager.getInstance().getApiService().createTestPlan(params);
+        NetManager.getInstance().runRxJava(observable, new Subscriber<TestPlanGroup>() {
             @Override
             public void onCompleted() {
 
@@ -261,7 +262,7 @@ public class AddTestPlanActivity extends BaseActivity {
             }
 
             @Override
-            public void onNext(TestPlanEntity testPlanEntity) {
+            public void onNext(TestPlanGroup testPlanGroup) {
                 hideLoadingDialog();
                 toast("创建成功");
                 setResult(ViewTestPlanActivity.CREATE_OK);

@@ -3,7 +3,8 @@ package com.lingshikeji.xjapp.net;
 import com.lingshikeji.xjapp.model.DeviceEntity;
 import com.lingshikeji.xjapp.model.InstrumentEntity;
 import com.lingshikeji.xjapp.model.StandardEntity;
-import com.lingshikeji.xjapp.model.TestPlanEntity;
+import com.lingshikeji.xjapp.model.TestPlanDetailEntity;
+import com.lingshikeji.xjapp.model.TestPlanGroup;
 import com.lingshikeji.xjapp.model.UserEntity;
 
 import java.util.List;
@@ -45,13 +46,22 @@ public interface ApiService {
      * 创建测试（开始采集）
      */
     @POST("testplan")
-    Observable<TestPlanEntity> createTestPlan(@Body Map<String, String> params);
+    Observable<TestPlanGroup> createTestPlan(@Body Map<String, String> params);
 
     /**
      * 查询测试list
      */
     @GET("listtestplangroup")
-    Observable<List<TestPlanEntity>> queryTestPlan(@QueryMap Map<String, String> params);
+    Observable<List<TestPlanGroup>> queryTestPlan(@QueryMap Map<String, String> params);
+
+    /**
+     * 查询单个测试计划
+     *
+     * @param testPlanId
+     * @return
+     */
+    @GET("testplan/{id}")
+    Observable<TestPlanDetailEntity> queryTestPlanDetail(@Path("id") int testPlanId, @QueryMap Map<String, String> param);
 
     /*被测设备************************************************************************/
 

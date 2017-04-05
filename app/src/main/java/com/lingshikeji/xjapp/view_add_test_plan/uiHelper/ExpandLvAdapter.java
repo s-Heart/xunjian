@@ -1,7 +1,6 @@
 package com.lingshikeji.xjapp.view_add_test_plan.uiHelper;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +9,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lingshikeji.xjapp.R;
-import com.lingshikeji.xjapp.model.TestPlanEntity;
-import com.lingshikeji.xjapp.view_add_test_plan.view.ViewTestPlanActivity;
+import com.lingshikeji.xjapp.model.TestPlanGroup;
+import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +21,14 @@ import java.util.List;
 
 public class ExpandLvAdapter extends BaseExpandableListAdapter {
     private final Context context;
-    private List<TestPlanEntity> datas = new ArrayList<>();
+    private List<TestPlanGroup> datas = new ArrayList<>();
+    private IViewTestPlanPresenter iViewTestPlanPresenter;
 
     public ExpandLvAdapter(Context context) {
         this.context = context;
     }
 
-    public void setDatas(List<TestPlanEntity> datas) {
+    public void setDatas(List<TestPlanGroup> datas) {
         this.datas.clear();//不能重新赋值，只能清除之后addAll
         this.datas.addAll(datas);
         notifyDataSetChanged();
@@ -45,12 +45,12 @@ public class ExpandLvAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public TestPlanEntity getGroup(int groupPosition) {
+    public TestPlanGroup getGroup(int groupPosition) {
         return datas.get(groupPosition);
     }
 
     @Override
-    public TestPlanEntity getChild(int groupPosition, int childPosition) {
+    public TestPlanGroup getChild(int groupPosition, int childPosition) {
         return datas.get(groupPosition);
     }
 
@@ -86,7 +86,7 @@ public class ExpandLvAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         ChildViewHolder childViewHolder;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_expand_child_test_plan, parent, false);
@@ -116,12 +116,23 @@ public class ExpandLvAdapter extends BaseExpandableListAdapter {
         childViewHolder.tvDevice.setText(deviceName);
         childViewHolder.tvState.setText(status);
 
+        childViewHolder.rlMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iViewTestPlanPresenter.goTestPlanDetail(datas.get(groupPosition).getIds().get(childPosition));
+            }
+        });
+
         return convertView;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
+    }
+
+    public void setPresenter(IViewTestPlanPresenter iViewTestPlanPresenter) {
+        this.iViewTestPlanPresenter = iViewTestPlanPresenter;
     }
 
     private class GroupViewHolder {

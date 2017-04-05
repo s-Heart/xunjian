@@ -8,8 +8,7 @@ import com.lingshikeji.xjapp.mvp.BasePresenter;
  * Time: 下午3:31
  * Description:
  */
-public abstract class IViewTestPlanPresenter extends BasePresenter<IViewTestPlanView> {
-    public abstract void queryTestPlan();
+public abstract class IViewTestPlanDetailPresenter extends BasePresenter<IViewTestPlanDetailView> {
+    public abstract void queryTestPlanDetail(int testPlanId);
 
-    public abstract void goTestPlanDetail(int testPlanId);
 }

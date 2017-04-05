@@ -2,8 +2,11 @@ package com.lingshikeji.xjapp.view_add_test_plan.presenter;
 
 import android.content.Intent;
 
+import com.lingshikeji.xjapp.model.TestPlanDetailEntity;
 import com.lingshikeji.xjapp.model.TestPlanGroup;
 import com.lingshikeji.xjapp.net.NetManager;
+import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanDetailPresenter;
+import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanDetailView;
 import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanPresenter;
 import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanView;
 import com.lingshikeji.xjapp.view_add_test_plan.view.ViewTestPlanDetailActivity;
@@ -22,10 +25,10 @@ import rx.Subscriber;
  * Time: 下午3:31
  * Description:
  */
-public class ViewTestPlanPresenterImpl extends IViewTestPlanPresenter {
+public class ViewTestPlanDetailPresenterImpl extends IViewTestPlanDetailPresenter {
 
     @Override
-    public void attachView(IViewTestPlanView iView) {
+    public void attachView(IViewTestPlanDetailView iView) {
         super.attachView(iView);
     }
 
@@ -35,13 +38,12 @@ public class ViewTestPlanPresenterImpl extends IViewTestPlanPresenter {
     }
 
     @Override
-    public void queryTestPlan() {
+    public void queryTestPlanDetail(int testPlanId) {
         getiView().showProgress();
         Map<String, String> params = new HashMap<>();
-        params.put("sort", "createdAt DESC");
-        params.put("populate", "device,instrument");
-        Observable<List<TestPlanGroup>> observable = NetManager.getInstance().getApiService().queryTestPlan(params);
-        NetManager.getInstance().runRxJava(observable, new Subscriber<List<TestPlanGroup>>() {
+        params.put("populate", "instrument,device");//展开测试，被测对象，并返回
+        Observable<TestPlanDetailEntity> observable = NetManager.getInstance().getApiService().queryTestPlanDetail(testPlanId, params);
+        NetManager.getInstance().runRxJava(observable, new Subscriber<TestPlanDetailEntity>() {
             @Override
             public void onCompleted() {
 
@@ -54,17 +56,10 @@ public class ViewTestPlanPresenterImpl extends IViewTestPlanPresenter {
             }
 
             @Override
-            public void onNext(List<TestPlanGroup> testPlanEntities) {
+            public void onNext(TestPlanDetailEntity testPlanDetailEntity) {
                 getiView().hideProgress();
-                getiView().querySuccess(testPlanEntities);
+                getiView().queryDetailSuccess(testPlanDetailEntity);
             }
         });
-    }
-
-    @Override
-    public void goTestPlanDetail(int testPlanId) {
-        Intent intent = new Intent(getiView().getContext(), ViewTestPlanDetailActivity.class);
-        intent.putExtra("testPlanId", testPlanId);
-        getiView().getContext().startActivity(intent);
     }
 }

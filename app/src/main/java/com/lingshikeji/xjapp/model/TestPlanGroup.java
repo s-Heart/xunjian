@@ -10,7 +10,7 @@ import java.util.List;
  * Time: 下午3:36
  * Description:
  */
-public class TestPlanEntity implements Serializable {
+public class TestPlanGroup implements Serializable {
 
 
     /**

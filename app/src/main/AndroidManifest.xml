@@ -42,6 +42,10 @@
             android:name=".view_add_test_plan.view.AddTestPlanActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".view_add_test_plan.view.ViewTestPlanDetailActivity"
+            android:screenOrientation="portrait" />
+
 
         <!--被测设备管理-->
         <activity

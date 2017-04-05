@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
-import com.lingshikeji.xjapp.model.TestPlanEntity;
+import com.lingshikeji.xjapp.model.TestPlanGroup;
 import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanPresenter;
 import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanView;
 import com.lingshikeji.xjapp.view_add_test_plan.presenter.ViewTestPlanPresenterImpl;
@@ -132,8 +132,12 @@ public class ViewTestPlanActivity extends BaseActivity implements IViewTestPlanV
     }
 
     @Override
-    public void querySuccess(List<TestPlanEntity> testPlanEntities) {
+    public void querySuccess(List<TestPlanGroup> testPlanEntities) {
         expandLvAdapter.setDatas(testPlanEntities);
+        if (iViewTestPlanPresenter != null) {
+            expandLvAdapter.setPresenter(iViewTestPlanPresenter);
+        }
+
         for (int i = 0; i < testPlanEntities.size(); i++) {
             expandLvTestPlan.expandGroup(i);
         }
