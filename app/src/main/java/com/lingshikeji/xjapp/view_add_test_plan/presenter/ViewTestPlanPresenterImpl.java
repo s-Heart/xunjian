@@ -65,6 +65,6 @@ public class ViewTestPlanPresenterImpl extends IViewTestPlanPresenter {
     public void goTestPlanDetail(int testPlanId) {
         Intent intent = new Intent(getiView().getContext(), ViewTestPlanDetailActivity.class);
         intent.putExtra("testPlanId", testPlanId);
-        getiView().getContext().startActivity(intent);
+        getiView().getActivity().startActivityForResult(intent, 0);
     }
 }

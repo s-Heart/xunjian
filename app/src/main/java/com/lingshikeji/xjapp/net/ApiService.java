@@ -63,6 +63,9 @@ public interface ApiService {
     @GET("testplan/{id}")
     Observable<TestPlanDetailEntity> queryTestPlanDetail(@Path("id") int testPlanId, @QueryMap Map<String, String> param);
 
+    @DELETE("testplan/{id}")
+    Observable<Object> deleteTestPlan(@Path("id") int testPlanId);
+
     /*被测设备************************************************************************/
 
     /**

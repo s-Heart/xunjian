@@ -1,18 +1,11 @@
 package com.lingshikeji.xjapp.view_add_test_plan.presenter;
 
-import android.content.Intent;
-
 import com.lingshikeji.xjapp.model.TestPlanDetailEntity;
-import com.lingshikeji.xjapp.model.TestPlanGroup;
 import com.lingshikeji.xjapp.net.NetManager;
 import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanDetailPresenter;
 import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanDetailView;
-import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanPresenter;
-import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanView;
-import com.lingshikeji.xjapp.view_add_test_plan.view.ViewTestPlanDetailActivity;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import rx.Observable;
@@ -59,6 +52,31 @@ public class ViewTestPlanDetailPresenterImpl extends IViewTestPlanDetailPresente
             public void onNext(TestPlanDetailEntity testPlanDetailEntity) {
                 getiView().hideProgress();
                 getiView().queryDetailSuccess(testPlanDetailEntity);
+            }
+        });
+    }
+
+    @Override
+    public void deleteTestPlan(int testPlanId) {
+        getiView().showProgress();
+        Observable<Object> observable=NetManager.getInstance().getApiService().deleteTestPlan(testPlanId);
+
+        NetManager.getInstance().runRxJava(observable, new Subscriber<Object>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Object o) {
+                getiView().hideProgress();
+                getiView().toast("删除成功");
+                getiView().deleteTestPlanSuccess();
             }
         });
     }

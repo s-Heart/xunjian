@@ -37,14 +37,24 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    /**系统库****************************************/
     compile 'com.android.support:appcompat-v7:23.2.1'
 
-    /*
-    *rxjava+retrofit
-    * */
+    /**控件库****************************************/
+    compile(name: 'library-release', ext: 'aar')//吸顶tableView库
+
+    /**rxjava+retrofit******************************/
     compile 'io.reactivex:rxjava:x.y.z'
     compile 'io.reactivex:rxandroid:1.0.1'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+}
+
+
+repositories {
+    flatDir {
+        dirs 'libs' //this way we can find the .aar file in libs folder
+    }
+
 }

@@ -31,6 +31,7 @@ import java.util.List;
 public class ViewTestPlanActivity extends BaseActivity implements IViewTestPlanView {
 
     public static final int CREATE_OK = 1;
+    public static final int DELETE_OK = 2;
     private IViewTestPlanPresenter iViewTestPlanPresenter;
     private TextView titleTextview;
     private ExpandableListView expandLvTestPlan;
@@ -48,6 +49,10 @@ public class ViewTestPlanActivity extends BaseActivity implements IViewTestPlanV
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == CREATE_OK) {
+            iViewTestPlanPresenter.queryTestPlan();
+        }
+
+        if (resultCode == DELETE_OK) {
             iViewTestPlanPresenter.queryTestPlan();
         }
     }

@@ -11,4 +11,5 @@ import com.lingshikeji.xjapp.mvp.BasePresenter;
 public abstract class IViewTestPlanDetailPresenter extends BasePresenter<IViewTestPlanDetailView> {
     public abstract void queryTestPlanDetail(int testPlanId);
 
+    public abstract void deleteTestPlan(int testPlanId);
 }

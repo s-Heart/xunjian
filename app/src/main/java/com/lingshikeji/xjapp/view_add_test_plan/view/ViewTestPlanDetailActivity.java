@@ -5,18 +5,25 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.inqbarna.tablefixheaders.TableFixHeaders;
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
 import com.lingshikeji.xjapp.model.TestPlanDetailEntity;
+import com.lingshikeji.xjapp.util.DialogUtil;
+import com.lingshikeji.xjapp.util.materialdialog.IPromptDilaog;
+import com.lingshikeji.xjapp.util.materialdialog.PromptDialog;
 import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanDetailPresenter;
 import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanDetailView;
 import com.lingshikeji.xjapp.view_add_test_plan.presenter.ViewTestPlanDetailPresenterImpl;
+import com.lingshikeji.xjapp.view_add_test_plan.uiHelper.DataTableAdapter;
 
 /**
  * Author: tony(110618445@qq.com)
@@ -42,19 +49,76 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
     private Button btnPause;
     private Button btnDelete;
     private IViewTestPlanDetailPresenter iViewTestPlanDetailPresenter;
+    private TableFixHeaders tableFixHeaders;
+    private ScrollView scrollView;
+    private DataTableAdapter tableAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         testPlanId = getIntent().getIntExtra("testPlanId", 0);
         initView();
+        initData();
         initPresenter();
+    }
+
+    private void initData() {
+        tableFixHeaders.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    scrollView.requestDisallowInterceptTouchEvent(false);//拦截list的点击事件
+                } else {
+                    scrollView.requestDisallowInterceptTouchEvent(true);//不拦截list的点击事件
+                }
+                return false;
+            }
+        });
+        tableAdapter = new DataTableAdapter(this);
+        tableFixHeaders.setAdapter(tableAdapter);
+
+        btnSendEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toast("send email logic");
+            }
+        });
+        btnPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toast("pause logic");
+            }
+        });
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PromptDialog.Builder dialog = DialogUtil.createDialog(getContext(),
+                        "确定删除此次测试计划吗?", "确定", "取消",
+                        new IPromptDilaog() {
+
+                            @Override
+                            public void onOK() {
+                                iViewTestPlanDetailPresenter.deleteTestPlan(testPlanId);
+
+                            }
+
+                            @Override
+                            public void onCancle() {
+                            }
+                        }, true);
+                dialog.show();
+
+            }
+        });
     }
 
     private void initPresenter() {
         iViewTestPlanDetailPresenter = new ViewTestPlanDetailPresenterImpl();
         iViewTestPlanDetailPresenter.attachView(this);
         iViewTestPlanDetailPresenter.queryTestPlanDetail(testPlanId);
+
+        //set presenter to adapter
+        tableAdapter.setPresenter(iViewTestPlanDetailPresenter);
     }
 
     private void initView() {
@@ -76,6 +140,9 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
         btnPause = (Button) findViewById(R.id.btn_pause);
         btnDelete = (Button) findViewById(R.id.btn_delete_test_plan);
 
+
+        scrollView = (ScrollView) findViewById(R.id.scroll_view);
+        tableFixHeaders = (TableFixHeaders) findViewById(R.id.table);
     }
 
     private void initToolbar() {
@@ -121,11 +188,8 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
 
     @Override
     public void queryDetailSuccess(TestPlanDetailEntity testPlanDetailEntity) {
-
-
         tvInstrument.setText("" + testPlanDetailEntity.getInstrument().getName());
         tvDevice.setText("" + testPlanDetailEntity.getDevice().getName());
-
         tvSampleQuantity.setText("" + testPlanDetailEntity.getSamplequantity());
         tvCycle.setText("" + testPlanDetailEntity.getSampleinterval());
         tvTempSensorNum.setText("" + testPlanDetailEntity.getTemperaturesensorcount());
@@ -136,11 +200,23 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
         String status = testPlanDetailEntity.getTeststatus();
         if (status.equals("notstart")) {
             status = "未开始";
+            btnPause.setVisibility(View.GONE);
+            btnDelete.setVisibility(View.VISIBLE);
         } else if (status.equals("running")) {
             status = "运行中";
+            btnPause.setVisibility(View.VISIBLE);
+            btnDelete.setVisibility(View.GONE);
         } else if (status.equals("stopped")) {
             status = "停止";
+            btnPause.setVisibility(View.GONE);
+            btnDelete.setVisibility(View.VISIBLE);
         }
         tvStatus.setText("" + status);
+    }
+
+    @Override
+    public void deleteTestPlanSuccess() {
+        setResult(ViewTestPlanActivity.DELETE_OK);
+        finish();
     }
 }

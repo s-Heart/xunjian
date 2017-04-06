@@ -12,4 +12,6 @@ import com.lingshikeji.xjapp.mvp.BaseView;
  */
 public interface IViewTestPlanDetailView extends BaseView {
     void queryDetailSuccess(TestPlanDetailEntity testPlanDetailEntity);
+
+    void deleteTestPlanSuccess();
 }
