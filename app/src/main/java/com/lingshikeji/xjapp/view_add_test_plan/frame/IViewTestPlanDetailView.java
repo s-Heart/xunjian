@@ -14,4 +14,6 @@ public interface IViewTestPlanDetailView extends BaseView {
     void queryDetailSuccess(TestPlanDetailEntity testPlanDetailEntity);
 
     void deleteTestPlanSuccess();
+
+    void stopSuccess(TestPlanDetailEntity testPlanDetailEntity1);
 }

@@ -2,6 +2,7 @@ package com.lingshikeji.xjapp.view_add_test_plan.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +19,7 @@ import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
 import com.lingshikeji.xjapp.model.TestPlanDetailEntity;
 import com.lingshikeji.xjapp.util.DialogUtil;
+import com.lingshikeji.xjapp.util.Preferences;
 import com.lingshikeji.xjapp.util.materialdialog.IPromptDilaog;
 import com.lingshikeji.xjapp.util.materialdialog.PromptDialog;
 import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanDetailPresenter;
@@ -52,6 +54,7 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
     private TableFixHeaders tableFixHeaders;
     private ScrollView scrollView;
     private DataTableAdapter tableAdapter;
+    private TestPlanDetailEntity testPlanDetailEntity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,13 +83,20 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
         btnSendEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toast("send email logic");
+                String emailTo;
+                String emailString = Preferences.getInstance().getEmail();
+                if (!edEmailAddress.getText().toString().isEmpty()) {
+                    emailTo = edEmailAddress.getText().toString();
+                } else {
+                    emailTo = emailString;
+                }
+                iViewTestPlanDetailPresenter.sendEmail(testPlanId, emailTo);
             }
         });
         btnPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toast("pause logic");
+                iViewTestPlanDetailPresenter.stopTestPlan(testPlanId, testPlanDetailEntity);
             }
         });
         btnDelete.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +120,7 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
 
             }
         });
+        edEmailAddress.setText(Preferences.getInstance().getBakEmail());
     }
 
     private void initPresenter() {
@@ -188,6 +199,7 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
 
     @Override
     public void queryDetailSuccess(TestPlanDetailEntity testPlanDetailEntity) {
+        this.testPlanDetailEntity = testPlanDetailEntity;
         tvInstrument.setText("" + testPlanDetailEntity.getInstrument().getName());
         tvDevice.setText("" + testPlanDetailEntity.getDevice().getName());
         tvSampleQuantity.setText("" + testPlanDetailEntity.getSamplequantity());
@@ -218,5 +230,20 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
     public void deleteTestPlanSuccess() {
         setResult(ViewTestPlanActivity.DELETE_OK);
         finish();
+    }
+
+    @Override
+    public void stopSuccess(TestPlanDetailEntity testPlanDetailEntity1) {
+        this.testPlanDetailEntity = testPlanDetailEntity1;
+        String status = testPlanDetailEntity1.getTeststatus();
+        if (status.equals("notstart")) {
+            status = "未开始";
+        } else if (status.equals("stopped")) {
+            status = "停止";
+        }
+        tvStatus.setText("" + status);
+        btnPause.setVisibility(View.GONE);
+        btnDelete.setVisibility(View.VISIBLE);
+        sendBroadcast(new Intent("refresh_test_plan_list"));
     }
 }

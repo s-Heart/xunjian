@@ -1,5 +1,6 @@
 package com.lingshikeji.xjapp.view_add_test_plan.frame;
 
+import com.lingshikeji.xjapp.model.TestPlanDetailEntity;
 import com.lingshikeji.xjapp.mvp.BasePresenter;
 
 /**
@@ -12,4 +13,8 @@ public abstract class IViewTestPlanDetailPresenter extends BasePresenter<IViewTe
     public abstract void queryTestPlanDetail(int testPlanId);
 
     public abstract void deleteTestPlan(int testPlanId);
+
+    public abstract void sendEmail(int testPlanId, String emailTo);
+
+    public abstract void stopTestPlan(int testPlanId, TestPlanDetailEntity testPlanDetailEntity);
 }

@@ -79,4 +79,20 @@ public class Preferences {
         }
         return mPrefs.getString("email", "");
     }
+
+    public void storeBakEmail(String emailTo) {
+        if (mPrefs == null) {
+            mPrefs = mContext.getSharedPreferences(PREFERENCE_XUNJIAN, 0);
+        }
+        SharedPreferences.Editor prefEditor = mPrefs.edit();
+        prefEditor.putString("bakEmail", emailTo);
+        prefEditor.commit();
+    }
+
+    public String getBakEmail() {
+        if (mPrefs == null) {
+            mPrefs = mContext.getSharedPreferences(PREFERENCE_XUNJIAN, 0);
+        }
+        return mPrefs.getString("bakEmail", "");
+    }
 }

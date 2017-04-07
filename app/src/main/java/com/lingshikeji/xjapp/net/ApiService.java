@@ -12,6 +12,7 @@ import java.util.Map;
 
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.FieldMap;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -63,8 +64,33 @@ public interface ApiService {
     @GET("testplan/{id}")
     Observable<TestPlanDetailEntity> queryTestPlanDetail(@Path("id") int testPlanId, @QueryMap Map<String, String> param);
 
+    /**
+     * 删除测试计划
+     *
+     * @param testPlanId
+     * @return
+     */
     @DELETE("testplan/{id}")
     Observable<Object> deleteTestPlan(@Path("id") int testPlanId);
+
+    /**
+     * 停止测试计划
+     *
+     * @param testPlanId
+     * @param params
+     * @return
+     */
+    @PUT("testplan/{id}")
+    Observable<TestPlanDetailEntity> stopTestPlan(@Path("id") int testPlanId, @Body Map<String, String> params);
+
+    /**
+     * 发送邮件
+     *
+     * @param params
+     * @return
+     */
+    @POST("email")
+    Observable<Object> sendEmail(@Body Map<String, String> params);
 
     /*被测设备************************************************************************/
 

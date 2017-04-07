@@ -2,6 +2,7 @@ package com.lingshikeji.xjapp.view_add_test_plan.presenter;
 
 import com.lingshikeji.xjapp.model.TestPlanDetailEntity;
 import com.lingshikeji.xjapp.net.NetManager;
+import com.lingshikeji.xjapp.util.Preferences;
 import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanDetailPresenter;
 import com.lingshikeji.xjapp.view_add_test_plan.frame.IViewTestPlanDetailView;
 
@@ -59,7 +60,7 @@ public class ViewTestPlanDetailPresenterImpl extends IViewTestPlanDetailPresente
     @Override
     public void deleteTestPlan(int testPlanId) {
         getiView().showProgress();
-        Observable<Object> observable=NetManager.getInstance().getApiService().deleteTestPlan(testPlanId);
+        Observable<Object> observable = NetManager.getInstance().getApiService().deleteTestPlan(testPlanId);
 
         NetManager.getInstance().runRxJava(observable, new Subscriber<Object>() {
             @Override
@@ -77,6 +78,70 @@ public class ViewTestPlanDetailPresenterImpl extends IViewTestPlanDetailPresente
                 getiView().hideProgress();
                 getiView().toast("删除成功");
                 getiView().deleteTestPlanSuccess();
+            }
+        });
+    }
+
+    @Override
+    public void sendEmail(int testPlanId, final String emailTo) {
+        getiView().showProgress();
+        Map<String, String> params = new HashMap<>();
+        params.put("planid", "" + testPlanId);
+        params.put("to", "" + emailTo);
+        Observable<Object> observable = NetManager.getInstance().getApiService().sendEmail(params);
+        NetManager.getInstance().runRxJava(observable, new Subscriber<Object>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                getiView().hideProgress();
+                getiView().toast(e.getMessage());
+            }
+
+            @Override
+            public void onNext(Object o) {
+                getiView().hideProgress();
+                getiView().toast("发送成功");
+                if (emailTo != Preferences.getInstance().getEmail()) {
+                    Preferences.getInstance().storeBakEmail(emailTo);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void stopTestPlan(int testPlanId, TestPlanDetailEntity testPlanDetailEntity) {
+        getiView().showProgress();
+        Map<String, String> params = new HashMap<>();
+        params.put("sampleinterval", testPlanDetailEntity.getSamplequantity());
+        params.put("samplequantity", testPlanDetailEntity.getSamplequantity());
+        params.put("temperaturesensorcount", testPlanDetailEntity.getTemperaturesensorcount());
+        params.put("humiditysensorcount", testPlanDetailEntity.getHumiditysensorcount());
+        params.put("temperatureExt", testPlanDetailEntity.getTemperatureExt());
+        params.put("humidityExt", testPlanDetailEntity.getHumidityExt());
+        params.put("meantemperature", testPlanDetailEntity.getMeantemperature());
+        params.put("meanhumidity", testPlanDetailEntity.getMeanhumidity());
+        params.put("populate", "instrument,device");//展开测试，被测对象，并返回
+        Observable<TestPlanDetailEntity> observable = NetManager.getInstance().getApiService().stopTestPlan(testPlanId, params);
+        NetManager.getInstance().runRxJava(observable, new Subscriber<TestPlanDetailEntity>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                getiView().hideProgress();
+                getiView().toast(e.getMessage());
+            }
+
+            @Override
+            public void onNext(TestPlanDetailEntity testPlanDetailEntity1) {
+                getiView().hideProgress();
+                getiView().stopSuccess(testPlanDetailEntity1);
             }
         });
     }

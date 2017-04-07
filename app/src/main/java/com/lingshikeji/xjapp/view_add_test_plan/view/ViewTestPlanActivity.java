@@ -1,8 +1,10 @@
 package com.lingshikeji.xjapp.view_add_test_plan.view;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -36,6 +38,12 @@ public class ViewTestPlanActivity extends BaseActivity implements IViewTestPlanV
     private TextView titleTextview;
     private ExpandableListView expandLvTestPlan;
     private ExpandLvAdapter expandLvAdapter;
+    private BroadcastReceiver refreshReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            iViewTestPlanPresenter.queryTestPlan();
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +51,21 @@ public class ViewTestPlanActivity extends BaseActivity implements IViewTestPlanV
         initView();
         initData();
         initPresenter();
+        registerBroadcast();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (refreshReceiver != null) {
+            unregisterReceiver(refreshReceiver);
+        }
+    }
+
+    private void registerBroadcast() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("refresh_test_plan_list");
+        registerReceiver(refreshReceiver, filter);
     }
 
     @Override
