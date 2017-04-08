@@ -3,6 +3,7 @@ package com.lingshikeji.xjapp.net;
 import com.lingshikeji.xjapp.model.DeviceEntity;
 import com.lingshikeji.xjapp.model.InstrumentEntity;
 import com.lingshikeji.xjapp.model.StandardEntity;
+import com.lingshikeji.xjapp.model.TestDataEntity;
 import com.lingshikeji.xjapp.model.TestPlanDetailEntity;
 import com.lingshikeji.xjapp.model.TestPlanGroup;
 import com.lingshikeji.xjapp.model.UserEntity;
@@ -63,6 +64,15 @@ public interface ApiService {
      */
     @GET("testplan/{id}")
     Observable<TestPlanDetailEntity> queryTestPlanDetail(@Path("id") int testPlanId, @QueryMap Map<String, String> param);
+
+    /**
+     * 测试数据
+     *
+     * @param params
+     * @return
+     */
+    @GET("testdataplan")
+    Observable<TestDataEntity> queryTestPlanDetailData(@QueryMap Map<String, String> params);
 
     /**
      * 删除测试计划

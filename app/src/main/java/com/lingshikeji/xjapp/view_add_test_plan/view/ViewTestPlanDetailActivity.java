@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.inqbarna.tablefixheaders.TableFixHeaders;
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
+import com.lingshikeji.xjapp.model.TestDataEntity;
 import com.lingshikeji.xjapp.model.TestPlanDetailEntity;
 import com.lingshikeji.xjapp.util.DialogUtil;
 import com.lingshikeji.xjapp.util.Preferences;
@@ -55,6 +56,7 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
     private ScrollView scrollView;
     private DataTableAdapter tableAdapter;
     private TestPlanDetailEntity testPlanDetailEntity;
+    private TextView tvNoData;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,7 +79,7 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
                 return false;
             }
         });
-        tableAdapter = new DataTableAdapter(this);
+        tableAdapter = new DataTableAdapter(this, testPlanId);
         tableFixHeaders.setAdapter(tableAdapter);
 
         btnSendEmail.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +130,8 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
         iViewTestPlanDetailPresenter.attachView(this);
         iViewTestPlanDetailPresenter.queryTestPlanDetail(testPlanId);
 
+        iViewTestPlanDetailPresenter.queryTestPlanDetailData(testPlanId);
+
         //set presenter to adapter
         tableAdapter.setPresenter(iViewTestPlanDetailPresenter);
     }
@@ -154,6 +158,7 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
 
         scrollView = (ScrollView) findViewById(R.id.scroll_view);
         tableFixHeaders = (TableFixHeaders) findViewById(R.id.table);
+        tvNoData = (TextView) findViewById(R.id.tv_no_data);
     }
 
     private void initToolbar() {
@@ -245,5 +250,25 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
         btnPause.setVisibility(View.GONE);
         btnDelete.setVisibility(View.VISIBLE);
         sendBroadcast(new Intent("refresh_test_plan_list"));
+    }
+
+    @Override
+    public void queryDetailsDatas(TestDataEntity testDataEntity) {
+        if (testDataEntity.getHeaders() != null && testDataEntity.getTestdata() != null) {
+            tableAdapter.setDatas(testDataEntity);
+            tableFixHeaders.setVisibility(View.VISIBLE);
+            tvNoData.setVisibility(View.GONE);
+        }
+
+    }
+
+    @Override
+    public void queryDetailsDatasPage(TestDataEntity testDataEntity) {
+        //如果查不出更多数据了，禁止再次请求
+        if (testDataEntity.getTestdata() == null) {
+            toast("已无更多数据，请稍后再查看");
+        } else {
+            tableAdapter.addPageData(testDataEntity.getTestdata());
+        }
     }
 }

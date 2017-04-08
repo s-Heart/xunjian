@@ -1,5 +1,6 @@
 package com.lingshikeji.xjapp.view_add_test_plan.frame;
 
+import com.lingshikeji.xjapp.model.TestDataEntity;
 import com.lingshikeji.xjapp.model.TestPlanDetailEntity;
 import com.lingshikeji.xjapp.mvp.BaseView;
 
@@ -16,4 +17,8 @@ public interface IViewTestPlanDetailView extends BaseView {
     void deleteTestPlanSuccess();
 
     void stopSuccess(TestPlanDetailEntity testPlanDetailEntity1);
+
+    void queryDetailsDatas(TestDataEntity testDataEntity);
+
+    void queryDetailsDatasPage(TestDataEntity testDataEntity);
 }

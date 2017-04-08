@@ -17,4 +17,8 @@ public abstract class IViewTestPlanDetailPresenter extends BasePresenter<IViewTe
     public abstract void sendEmail(int testPlanId, String emailTo);
 
     public abstract void stopTestPlan(int testPlanId, TestPlanDetailEntity testPlanDetailEntity);
+
+    public abstract void queryTestPlanDetailData(int testPlanId);
+
+    public abstract void queryTestPlanDetailDataPage(int testPlanId, int skipCount);
 }

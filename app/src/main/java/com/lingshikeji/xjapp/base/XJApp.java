@@ -2,6 +2,8 @@ package com.lingshikeji.xjapp.base;
 
 import android.app.Application;
 
+import com.pgyersdk.crash.PgyCrashManager;
+
 
 /**
  * Author: tony(110618445@qq.com)
@@ -21,5 +23,7 @@ public class XJApp extends Application {
     public void onCreate() {
         super.onCreate();
         mAppContext = this;
+
+        PgyCrashManager.register(this);
     }
 }

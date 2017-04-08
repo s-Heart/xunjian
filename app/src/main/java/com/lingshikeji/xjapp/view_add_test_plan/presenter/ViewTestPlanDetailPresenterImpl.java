@@ -1,5 +1,6 @@
 package com.lingshikeji.xjapp.view_add_test_plan.presenter;
 
+import com.lingshikeji.xjapp.model.TestDataEntity;
 import com.lingshikeji.xjapp.model.TestPlanDetailEntity;
 import com.lingshikeji.xjapp.net.NetManager;
 import com.lingshikeji.xjapp.util.Preferences;
@@ -142,6 +143,58 @@ public class ViewTestPlanDetailPresenterImpl extends IViewTestPlanDetailPresente
             public void onNext(TestPlanDetailEntity testPlanDetailEntity1) {
                 getiView().hideProgress();
                 getiView().stopSuccess(testPlanDetailEntity1);
+            }
+        });
+    }
+
+    @Override
+    public void queryTestPlanDetailData(int testPlanId) {
+        Map<String, String> params = new HashMap<>();
+        params.put("where", "{\"testplan\":\"" + testPlanId + "\"}");
+        params.put("limit", "10");
+        Observable<TestDataEntity> observable = NetManager.getInstance().getApiService().queryTestPlanDetailData(params);
+        NetManager.getInstance().runRxJava(observable, new Subscriber<TestDataEntity>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                getiView().toast(e.getMessage());
+            }
+
+            @Override
+            public void onNext(TestDataEntity testDataEntity) {
+                getiView().queryDetailsDatas(testDataEntity);
+            }
+        });
+    }
+
+    @Override
+    public void queryTestPlanDetailDataPage(int testPlanId, int skipCount) {
+        getiView().showProgress();
+        Map<String, String> params = new HashMap<>();
+        params.put("where", "{\"testplan\":\"" + testPlanId + "\"}");
+        params.put("limit", "10");
+        params.put("skip", "" + skipCount);
+        Observable<TestDataEntity> observable = NetManager.getInstance().getApiService().queryTestPlanDetailData(params);
+        NetManager.getInstance().runRxJava(observable, new Subscriber<TestDataEntity>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                getiView().hideProgress();
+                getiView().toast(e.getMessage());
+            }
+
+            @Override
+            public void onNext(TestDataEntity testDataEntity) {
+                getiView().hideProgress();
+                getiView().queryDetailsDatasPage(testDataEntity);
             }
         });
     }
