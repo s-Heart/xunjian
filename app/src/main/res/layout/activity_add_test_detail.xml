@@ -186,6 +186,7 @@
                     android:background="@drawable/shape_data_edit"
                     android:hint="请填写"
                     android:inputType="numberDecimal"
+                    android:singleLine="true"
                     android:textAlignment="viewEnd"
                     android:textColor="#9b9b9b"
                     android:textSize="@dimen/y28" />
@@ -221,6 +222,7 @@
                     android:background="@drawable/shape_data_edit"
                     android:hint="请填写"
                     android:inputType="numberDecimal"
+                    android:singleLine="true"
                     android:textAlignment="viewEnd"
                     android:textColor="#9b9b9b"
                     android:textSize="@dimen/y28" />
@@ -256,6 +258,7 @@
                     android:background="@drawable/shape_data_edit"
                     android:hint="请填写"
                     android:inputType="numberDecimal"
+                    android:singleLine="true"
                     android:textAlignment="viewEnd"
                     android:textColor="#9b9b9b"
                     android:textSize="@dimen/y28" />
@@ -291,6 +294,7 @@
                     android:background="@drawable/shape_data_edit"
                     android:hint="请填写"
                     android:inputType="numberDecimal"
+                    android:singleLine="true"
                     android:textAlignment="viewEnd"
                     android:textColor="#9b9b9b"
                     android:textSize="@dimen/y28" />
@@ -366,6 +370,7 @@
                     android:background="@drawable/shape_data_edit"
                     android:hint="请填写"
                     android:inputType="number"
+                    android:singleLine="true"
                     android:textAlignment="viewEnd"
                     android:textColor="#9b9b9b"
                     android:textSize="@dimen/y28" />
@@ -401,6 +406,7 @@
                     android:background="@drawable/shape_data_edit"
                     android:hint="请填写"
                     android:inputType="number"
+                    android:singleLine="true"
                     android:textAlignment="viewEnd"
                     android:textColor="#9b9b9b"
                     android:textSize="@dimen/y28" />
@@ -436,6 +442,7 @@
                     android:background="@drawable/shape_data_edit"
                     android:hint="请填写"
                     android:inputType="numberDecimal"
+                    android:singleLine="true"
                     android:textAlignment="viewEnd"
                     android:textColor="#9b9b9b"
                     android:textSize="@dimen/y28" />
@@ -471,6 +478,7 @@
                     android:background="@drawable/shape_data_edit"
                     android:hint="请填写"
                     android:inputType="numberDecimal"
+                    android:singleLine="true"
                     android:textAlignment="viewEnd"
                     android:textColor="#9b9b9b"
                     android:textSize="@dimen/y28" />
