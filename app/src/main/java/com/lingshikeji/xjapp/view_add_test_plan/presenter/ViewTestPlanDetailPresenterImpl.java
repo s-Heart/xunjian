@@ -105,7 +105,7 @@ public class ViewTestPlanDetailPresenterImpl extends IViewTestPlanDetailPresente
             @Override
             public void onNext(Object o) {
                 getiView().hideProgress();
-                getiView().toast("发送成功");
+                getiView().toast("已发送");
                 if (emailTo != Preferences.getInstance().getEmail()) {
                     Preferences.getInstance().storeBakEmail(emailTo);
                 }

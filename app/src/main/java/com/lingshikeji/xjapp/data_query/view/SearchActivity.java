@@ -56,6 +56,34 @@ public class SearchActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         initView();
         initData();
+        initIntent();
+    }
+
+    private void initIntent() {
+        searchEntity = (SearchEntity) getIntent().getSerializableExtra("searchEntity");
+        if (searchEntity != null) {
+            if (searchEntity.getDevice_contact() != null) {
+                edDeviceContact.setText(searchEntity.getDevice_contact());
+            }
+            if (searchEntity.getDevice_name() != null) {
+                edDeviceName.setText(searchEntity.getDevice_name());
+            }
+            if (searchEntity.getDevice_serialnumber() != null) {
+                edDeviceSerialNumber.setText(searchEntity.getDevice_serialnumber());
+            }
+            if (searchEntity.getCreatedAt() != null && searchEntity.getCreatedAt().getStartTime() != null) {
+                tvStartTime.setText(searchEntity.getCreatedAt().getStartTime());
+            }
+            if (searchEntity.getCreatedAt() != null && searchEntity.getCreatedAt().getEndTime() != null) {
+                tvEndTime.setText(searchEntity.getCreatedAt().getEndTime());
+            }
+            if (searchEntity.getMeantemperature() != null) {
+                edMeanTemperature.setText(searchEntity.getMeantemperature());
+            }
+            if (searchEntity.getMeanhumidity() != null) {
+                edMeanHumidity.setText(searchEntity.getMeanhumidity());
+            }
+        }
     }
 
     private void initData() {

@@ -59,8 +59,10 @@ public class DataQueryActivity extends BaseActivity implements IDataQueryView {
                 for (int i = 0; i < testPlanGroups.size(); i++) {
                     expandLvTestPlan.expandGroup(i);
                 }
+                expandLvTestPlan.setVisibility(View.VISIBLE);
                 rlEmpty.setVisibility(View.GONE);
             } else {
+                expandLvTestPlan.setVisibility(View.GONE);
                 rlEmpty.setVisibility(View.VISIBLE);
             }
             searchEntity = (SearchEntity) data.getSerializableExtra("searchEntity");
@@ -92,6 +94,7 @@ public class DataQueryActivity extends BaseActivity implements IDataQueryView {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DataQueryActivity.this, SearchActivity.class);
+                intent.putExtra("searchEntity", searchEntity);
                 startActivityForResult(intent, 0);
             }
         });
@@ -159,8 +162,10 @@ public class DataQueryActivity extends BaseActivity implements IDataQueryView {
             }
 
             rlEmpty.setVisibility(View.GONE);
+            expandLvTestPlan.setVisibility(View.VISIBLE);
         } else {
             rlEmpty.setVisibility(View.VISIBLE);
+            expandLvTestPlan.setVisibility(View.GONE);
         }
     }
 }

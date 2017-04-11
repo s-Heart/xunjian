@@ -57,11 +57,13 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
     private DataTableAdapter tableAdapter;
     private TestPlanDetailEntity testPlanDetailEntity;
     private TextView tvNoData;
+    private boolean fromDataQuery;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         testPlanId = getIntent().getIntExtra("testPlanId", 0);
+        fromDataQuery = getIntent().getBooleanExtra("fromDataQuery", false);
         initView();
         initData();
         initPresenter();
@@ -123,6 +125,15 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
             }
         });
         edEmailAddress.setText(Preferences.getInstance().getBakEmail());
+
+        checkFromDataQuery();
+    }
+
+    private void checkFromDataQuery() {
+        if (fromDataQuery) {
+            btnPause.setVisibility(View.GONE);
+            btnDelete.setVisibility(View.GONE);
+        }
     }
 
     private void initPresenter() {
@@ -229,6 +240,7 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
             btnDelete.setVisibility(View.VISIBLE);
         }
         tvStatus.setText("" + status);
+        checkFromDataQuery();
     }
 
     @Override
@@ -250,6 +262,7 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
         btnPause.setVisibility(View.GONE);
         btnDelete.setVisibility(View.VISIBLE);
         sendBroadcast(new Intent("refresh_test_plan_list"));
+        checkFromDataQuery();
     }
 
     @Override
@@ -259,6 +272,8 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
             tableFixHeaders.setVisibility(View.VISIBLE);
             tvNoData.setVisibility(View.GONE);
         }
+
+        checkFromDataQuery();
 
     }
 
@@ -270,5 +285,6 @@ public class ViewTestPlanDetailActivity extends BaseActivity implements IViewTes
         } else {
             tableAdapter.addPageData(testDataEntity.getTestdata());
         }
+        checkFromDataQuery();
     }
 }

@@ -72,6 +72,7 @@ public class DataQueryPresenterImpl extends IDataQueryPresenter {
     public void goTestPlanDetail(int testPlanId) {
         Intent intent = new Intent(getiView().getContext(), ViewTestPlanDetailActivity.class);
         intent.putExtra("testPlanId", testPlanId);
+        intent.putExtra("fromDataQuery", true);
         getiView().getActivity().startActivityForResult(intent, 0);
     }
 }
