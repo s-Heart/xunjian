@@ -54,7 +54,7 @@ public class DeviceDetailActivity extends BaseActivity {
         edContact = (EditText) findViewById(R.id.ed_contact);
         edAddress = (EditText) findViewById(R.id.ed_address);
         edDevice = (EditText) findViewById(R.id.ed_device);
-        edModel = (EditText) findViewById(R.id.ed_model);
+        edModel = (EditText) findViewById(R.id.ed_device_model);
         edSerialNum = (EditText) findViewById(R.id.ed_serial_number);
         edManufacture = (EditText) findViewById(R.id.ed_manufacture);
         edRemark = (EditText) findViewById(R.id.ed_remark);

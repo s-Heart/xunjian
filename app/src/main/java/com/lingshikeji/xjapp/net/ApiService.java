@@ -162,5 +162,14 @@ public interface ApiService {
     @DELETE("instrument/{id}")
     Observable<InstrumentEntity> deleteInstrument(@Path("id") int id);
 
+    /*数据查询**********************************************************************************/
 
+    /**
+     * 查询测试list
+     */
+    @GET("listtestplangroup")
+    Observable<List<TestPlanGroup>> queryLastDayTestPlan(@QueryMap Map<String, String> params);
+
+    @GET("listtestplangroup")
+    Observable<List<TestPlanGroup>> searchByWhere(@QueryMap Map<String, String> params);
 }

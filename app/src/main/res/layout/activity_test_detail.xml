@@ -63,7 +63,7 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
-                android:id="@+id/ed_model"
+                android:id="@+id/ed_device_model"
                 android:layout_width="@dimen/x500"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -133,7 +133,7 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
-                android:id="@+id/ed_serialnumber"
+                android:id="@+id/ed_device_serial_number"
                 android:layout_width="@dimen/x500"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

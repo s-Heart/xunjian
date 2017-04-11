@@ -1,20 +1,35 @@
 package com.lingshikeji.xjapp.data_query.view;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.lingshikeji.xjapp.R;
 import com.lingshikeji.xjapp.base.BaseActivity;
+import com.lingshikeji.xjapp.model.SearchEntity;
+import com.lingshikeji.xjapp.model.TestPlanGroup;
+import com.lingshikeji.xjapp.net.NetManager;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+
+import rx.Observable;
+import rx.Subscriber;
 
 
 /**
@@ -25,25 +40,22 @@ import java.util.Locale;
  */
 public class SearchActivity extends BaseActivity {
     private TextView titleTextview;
-    private EditText edConsumer;
-    private EditText edInstrument;
-    private EditText edModel;
-    private EditText edSerialNumber;
+    private EditText edDeviceContact;
+    private EditText edDeviceName;
+    private EditText edDeviceModel;
+    private EditText edDeviceSerialNumber;
     private TextView tvStartTime;
     private TextView tvEndTime;
-    private EditText edTmp;
-    private EditText edHumidity;
+    private EditText edMeanTemperature;
+    private EditText edMeanHumidity;
+    private Button btnSearch;
+    private SearchEntity searchEntity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
         initData();
-    }
-
-
-    private void updateLabel() {
-
     }
 
     private void initData() {
@@ -101,22 +113,106 @@ public class SearchActivity extends BaseActivity {
                         dateAndTime.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String finalString = formatWhereQueryString();
+                Log.d("json", finalString);
+                queryForWhere(finalString);
+            }
+        });
+    }
+
+    private void queryForWhere(String finalString) {
+        showLoadingDialog();
+        Map<String, String> params = new HashMap<>();
+        params.put("where", finalString);
+        params.put("populate", "device,instrument");
+        params.put("sort", "createdAt DESC");
+        Observable<List<TestPlanGroup>> observable = NetManager.getInstance().getApiService().searchByWhere(params);
+
+        NetManager.getInstance().runRxJava(observable, new Subscriber<List<TestPlanGroup>>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                hideLoadingDialog();
+                Toast.makeText(SearchActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNext(List<TestPlanGroup> testPlanGroups) {
+                hideLoadingDialog();
+                Intent intent = new Intent();
+                intent.putExtra("testPlanGroups", (Serializable) testPlanGroups);
+                intent.putExtra("searchEntity", searchEntity);
+                setResult(DataQueryActivity.QUERY_SUCCESS, intent);
+                finish();
+            }
+        });
+    }
+
+    private String formatWhereQueryString() {
+        String device_contact = edDeviceContact.getText().toString();
+        String device_model = edDeviceModel.getText().toString();
+        String deviceName = edDeviceName.getText().toString();
+        String device_serialnumber = edDeviceSerialNumber.getText().toString();
+        String startTime = tvStartTime.getText().toString();
+        String endTime = tvEndTime.getText().toString();
+        String meantemperature = edMeanTemperature.getText().toString();
+        String meanhumidity = edMeanHumidity.getText().toString();
+        searchEntity = new SearchEntity();
+        if (!device_contact.equals("")) {
+            searchEntity.setDevice_contact(device_contact);
+        }
+        if (!deviceName.equals("")) {
+            searchEntity.setDevice_name(deviceName);
+        }
+        if (!device_model.equals("")) {
+            searchEntity.setDevice_model(device_model);
+        }
+        if (!device_serialnumber.equals("")) {
+            searchEntity.setDevice_serialnumber(device_serialnumber);
+        }
+        if (!startTime.equals("请选择") || !endTime.equals("请选择")) {
+            SearchEntity.CreatedAtBean createdAtBean = new SearchEntity.CreatedAtBean();
+            searchEntity.setCreatedAt(createdAtBean);
+            if (!startTime.equals("请选择")) {
+                searchEntity.getCreatedAt().setStartTime(startTime);
+            }
+            if (!endTime.equals("请选择")) {
+                searchEntity.getCreatedAt().setEndTime(endTime);
+            }
+        }
+        if (!meantemperature.equals("")) {
+            searchEntity.setMeantemperature(meantemperature);
+        }
+        if (!meanhumidity.equals("")) {
+            searchEntity.setMeanhumidity(meanhumidity);
+        }
+        String json = new Gson().toJson(searchEntity);
+        //将startTime，endTime replace成'>' '<'
+        return json.replace("startTime", ">").replace("endTime", "<");
     }
 
     private void initView() {
         setContentView(R.layout.activity_search);
+        initToolbar();
 
-        edConsumer = (EditText) findViewById(R.id.ed_consumer);
-        edInstrument = (EditText) findViewById(R.id.ed_instrument);
-        edModel = (EditText) findViewById(R.id.ed_model);
-        edSerialNumber = (EditText) findViewById(R.id.ed_serialnumber);
+        edDeviceContact = (EditText) findViewById(R.id.ed_device_contact);
+        edDeviceName = (EditText) findViewById(R.id.ed_device_name);
+        edDeviceModel = (EditText) findViewById(R.id.ed_device_model);
+        edDeviceSerialNumber = (EditText) findViewById(R.id.ed_device_serial_number);
         tvStartTime = (TextView) findViewById(R.id.tv_starttime);
         tvEndTime = (TextView) findViewById(R.id.tv_endtime);
-        edTmp = (EditText) findViewById(R.id.ed_tmp);
-        edHumidity = (EditText) findViewById(R.id.ed_humidity);
+        edMeanTemperature = (EditText) findViewById(R.id.ed_mean_temperature);
+        edMeanHumidity = (EditText) findViewById(R.id.ed_mean_humidity);
+        btnSearch = (Button) findViewById(R.id.btn_search);
 
-
-        initToolbar();
     }
 
     private void initToolbar() {

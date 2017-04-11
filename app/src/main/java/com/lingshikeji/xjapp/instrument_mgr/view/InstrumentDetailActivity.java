@@ -54,9 +54,9 @@ public class InstrumentDetailActivity extends BaseActivity {
         initToolbar();
 
         edName = (EditText) findViewById(R.id.ed_name);
-        edModel = (EditText) findViewById(R.id.ed_model);
+        edModel = (EditText) findViewById(R.id.ed_device_model);
         edCertNumber = (EditText) findViewById(R.id.ed_certnumber);
-        edSerialNumber = (EditText) findViewById(R.id.ed_serialnumber);
+        edSerialNumber = (EditText) findViewById(R.id.ed_device_serial_number);
         edTechInfo = (EditText) findViewById(R.id.ed_techinfo);
         edValidDate = (EditText) findViewById(R.id.ed_validdate);
         edManufacture = (EditText) findViewById(R.id.ed_manufacture);

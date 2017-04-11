@@ -28,7 +28,7 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
-                android:id="@+id/ed_consumer"
+                android:id="@+id/ed_device_contact"
                 android:layout_width="@dimen/x400"
                 android:layout_height="@dimen/y60"
                 android:layout_alignParentRight="true"
@@ -62,7 +62,7 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
-                android:id="@+id/ed_instrument"
+                android:id="@+id/ed_device_name"
                 android:layout_width="@dimen/x400"
                 android:layout_height="@dimen/y60"
                 android:layout_alignParentRight="true"
@@ -96,7 +96,7 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
-                android:id="@+id/ed_model"
+                android:id="@+id/ed_device_model"
                 android:layout_width="@dimen/x400"
                 android:layout_height="@dimen/y60"
                 android:layout_alignParentRight="true"
@@ -130,7 +130,7 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
-                android:id="@+id/ed_serialnumber"
+                android:id="@+id/ed_device_serial_number"
                 android:layout_width="@dimen/x400"
                 android:layout_height="@dimen/y60"
                 android:layout_alignParentRight="true"
@@ -242,7 +242,7 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
-                android:id="@+id/ed_tmp"
+                android:id="@+id/ed_mean_temperature"
                 android:layout_width="@dimen/x400"
                 android:layout_height="@dimen/y60"
                 android:layout_alignParentRight="true"
@@ -277,7 +277,7 @@
                 android:textSize="@dimen/y28" />
 
             <EditText
-                android:id="@+id/ed_humidity"
+                android:id="@+id/ed_mean_humidity"
                 android:layout_width="@dimen/x400"
                 android:layout_height="@dimen/y60"
                 android:layout_alignParentRight="true"

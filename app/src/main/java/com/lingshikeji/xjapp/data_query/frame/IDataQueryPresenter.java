@@ -10,4 +10,7 @@ import com.lingshikeji.xjapp.mvp.BasePresenter;
  * Description:
  */
 public abstract class IDataQueryPresenter extends BasePresenter<IDataQueryView> {
+    public abstract void queryLastDayTestPlan();
+
+    public abstract void goTestPlanDetail(int testPlanId);
 }
